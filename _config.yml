@@ -26,7 +26,8 @@ paginate:         5
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-hydeout
+remote_theme: "fongandrew/hydeout"
+#theme: jekyll-theme-hydeout
 plugins:
   - jekyll-feed
   - jekyll-paginate
@@ -42,3 +43,7 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# gem "jekyll-remote-theme"
+plugins:
+  - jekyll-remote-theme
