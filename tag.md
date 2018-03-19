@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Tag
+title: 標籤
 sidebar_link: true
 permalink: /tag/
 ---

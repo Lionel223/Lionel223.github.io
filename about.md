@@ -1,10 +1,15 @@
 ---
 layout: page
-title: About
+title: 關於我
 sidebar_link: true
 permalink: /about/
 ---
 
-Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+###abc
 
-To make pages show up in the sidebar, add sidebar_link: true to the front matter.
+```
+### 關於部落格
+```
+
+我是Lionel，
+這裡將會記錄我的程式學習和筆記，歡迎交流有關程式的各種議題

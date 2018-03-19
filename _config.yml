@@ -13,11 +13,10 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Your awesome title
-email: your-email@example.com
+title: Lionel's Blog
+email: lion6396643@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This is test.(Write an awesome description for your new site here. You can edit this
-  line in _config.yml.)
+  我的程式筆記!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
@@ -29,7 +28,7 @@ markdown: kramdown
 remote_theme: "fongandrew/hydeout"
 #theme: jekyll-theme-hydeout
 plugins:
-  - jekyll-feed
+  # - jekyll-feed
   - jekyll-paginate
 
 # Exclude from processing.
