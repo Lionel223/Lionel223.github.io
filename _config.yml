@@ -16,12 +16,20 @@
 title: Lionel's Blog
 email: lion6396643@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  我的程式筆記!
+  my note
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
-paginate:         5
+url: "https://lionel223.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+# twitter_username: jekyllrb
+# github_username:  jekyll
+
+pagination:
+  enabled: true
+  per_page: 3
+  permalink: '/page/:num/'
+  title: ' - page :num'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
 
 # Build settings
 markdown: kramdown
@@ -29,7 +37,7 @@ remote_theme: "fongandrew/hydeout"
 #theme: jekyll-theme-hydeout
 plugins:
   # - jekyll-feed
-  - jekyll-paginate
+  - jekyll-paginate-v2
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
