@@ -5,7 +5,9 @@
 layout: index
 title: Home
 pagination:
-enabled: true
+    enabled: true
+    sort_field: 'data'
+    sort_reverse: true
 ---
 
 <div class="posts">
