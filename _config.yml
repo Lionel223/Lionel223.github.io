@@ -22,14 +22,15 @@ url: "https://lionel223.github.io" # the base hostname & protocol for your site,
 # twitter_username: jekyllrb
 # github_username:  jekyll
 
-pagination:
-  enabled: true
-  per_page: 3
-  permalink: '/page/:num/'
-  title: ' - page :num'
-  limit: 0
-  sort_field: 'date'
-  sort_reverse: true
+paginate: 3
+# pagination:
+#   enabled: true
+#   per_page: 3
+#   permalink: '/page/:num/'
+#   title: ' - page :num'
+#   limit: 0
+#   sort_field: 'date'
+#   sort_reverse: true
 
 # Build settings
 markdown: kramdown
@@ -37,7 +38,7 @@ remote_theme: "fongandrew/hydeout"
 #theme: jekyll-theme-hydeout
 plugins:
   # - jekyll-feed
-  - jekyll-paginate-v2
+  - jekyll-paginate
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
