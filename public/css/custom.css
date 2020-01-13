@@ -43,3 +43,11 @@
 .archive li {
     list-style: none;
 }
+
+.post {
+    margin-bottom: 2em;
+}
+
+.tag-summary-title{
+    margin-bottom: 1em;
+}

@@ -4,15 +4,15 @@ layout: default
 
 <div class="post">
     <h1 class="post-title">{{ page.title }}</h1>
-    <span class="post-date">{{ page.date | date_to_string }}</span> | 
+    <span class="post-date">{{ page.date | date_to_string }}</span>
 
-    <!-- <div class="tag-list"> -->
+    <div class="tag-list">
         {% for tag in page.tags %}
-        <a class="post-tag" href="/tags/{{ tag }}" title="View posts tagged with &quot;{{ tag }}&quot;">
+        <a class="tag-wrapper" href="/tags/{{ tag }}" title="View posts tagged with &quot;{{ tag }}&quot;">
             <span class="tags">{{ tag }}</span>
         </a>
         {% if forloop.last != true %} {% endif %} {% endfor %}
-    <!-- </div> -->
+    </div>
 
     <!-- <span class="post-tag">
     <span class="fa-stack fa-sm">
