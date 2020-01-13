@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "良好開發習慣 - javascript註解標準"
-date:   2018-03-21 00:30:00 +0800
+date:   2018-04-21 00:30:00 +0800
 tags: javascript comment
 ---
 再寫node.js時，有時候會忘記這個function是在幹嘛的，這時候就會發現適時地加上註解是很重要的一件事

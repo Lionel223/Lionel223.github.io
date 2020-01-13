@@ -1,11 +1,10 @@
 ---
 layout: page
-title: 關於我
+title: About
 sidebar_link: true
 permalink: /about/
 ---
 
-###abc
 
 ```
 ### 關於部落格
