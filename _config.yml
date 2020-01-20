@@ -9,7 +9,7 @@ permalink:        pretty
 title: Lionel's Blog
 email: lion6396643@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  my note
+  一個後端工程師，這裡是我的學習紀錄以及講屁話的地方~~
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://lionel223.github.io"
 tagline: 'A Jekyll theme'
