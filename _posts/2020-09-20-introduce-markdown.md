@@ -5,7 +5,7 @@ subtitle: "markdown的基礎使用與介紹"
 tags: ["basic_introduction"]
 ---
 
-## 簡介
+## Introduction
 
 Markdown是一種輕量級的標記式語言(用簡單句法描述簡單格式的文本語言)，使人可編寫簡單的文件，並轉成有效的HTML文件
 
@@ -13,11 +13,9 @@ Markdown語法的主要目的是用來作為一種web寫作的一種格式
 
 其與HTML的部分有關，並非用來取代HTML的而是讓文件容易閱讀、編寫，也可在文件內編寫HTML，但要注意：markdown語法無法在HTML tag內被處理，以下介紹markdown的語法
 
-(本文將不定期更新)
+## Basic syntax
 
-## 語法
-
-### BLOCK ELEMENTS
+### Block elements
 
 #### Paragraphs and Line Breaks
 
@@ -241,6 +239,8 @@ This is a normal paragraph:
 
 ---------------------------------------
 ```
+
+
 
 ### SPAN ELEMENTS
 
@@ -578,9 +578,203 @@ _   underscore
 !   exclamation mark
 ```
 
+
+
+## Extended Syntax
+
+### Tables
+
+新增表格，可以使用三個或以上的hyphens`---`來產生各個欄位的標頭，並使用pipes`|`來分隔各個欄位，最後也可以增添pipes在表格的最後面，如下範例：
+
+```markdown
+| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
+```
+
+將會產生以下表格
+
+| Syntax    | Description |
+| --------- | :---------- |
+| Header    | Title       |
+| Paragraph | Text        |
+
+#### Alignment
+
+也可使用align，將colon`:`放在hyphen`-`的左、右、或者兩邊，如下範例
+
+```markdown
+| Syntax      | Description | Test Text     |
+| :---        |    :----:   |          ---: |
+| Header      | Title       | Here's this   |
+| Paragraph   | Text        | And more      |
+```
+
+將產生以下表格
+
+| Syntax    | Description |   Test Text |
+| :-------- | :---------: | ----------: |
+| Header    |    Title    | Here's this |
+| Paragraph |    Text     |    And more |
+
+### Fenced Code Blocks
+
+可以使用三個backticks `` ``` ``，或者三個tildes `~~~`來產生code blocks
+
+使用方式如下
+
+```markdown
+​```
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+​```
+```
+
+此會產生
+
+```
+​```
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+​```
+```
+
+若要加上syntax highlighting，只要在backticks之後加上使用的語言即可
+
+使用方式如下
+
+```
+​```json
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+​```
+```
+
+此會產生
+
+```json
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+### Footnotes
+
+註解可使你添加note或reference，當產生一個註解時，會有一個上標(superscript)以及連結，觀看者可以點這個連結，並跳到註解。
+
+要產生一個註解，需要在方括號(brackets)內添加插入符號(caret)和標識符(identifier)，例如`[^1]`，Identifiers可以是數字或文字，但不可以包含空格或tab
+
+範例如下：
+
+```markdown
+Here's a simple footnote,[^1] and here's a longer one.[^bignote]
+
+[^1]: This is the first footnote.
+
+[^bignote]: Here's one with multiple paragraphs and code.
+
+    Indent paragraphs to include them in the footnote.
+
+    `{ my code }`
+
+    Add as many paragraphs as you like.
+```
+
+會產生
+
+Here's a simple footnote,[^1] and here's a longer one.[^bignote]
+
+[^1]: This is the first footnote.
+
+[^bignote]: Here's one with multiple paragraphs and code.
+
+    Indent paragraphs to include them in the footnote.
+    
+    `{ my code }`
+    
+    Add as many paragraphs as you like.
+### Definition Lists
+
+產生定義清單的方式，首先先寫下一行字段，並在下一行輸入colon`:`，以及一個空白，並輸入解釋
+
+使用方式如下：
+
+```markdown
+First Term
+: This is the definition of the first term.
+
+Second Term
+: This is one definition of the second term.
+: This is another definition of the second term.
+```
+
+其轉換成HTML如下
+
+```html
+<dl>
+  <dt>First Term</dt>
+  <dd>This is the definition of the first term.</dd>
+  <dt>Second Term</dt>
+  <dd>This is one definition of the second term. </dd>
+  <dd>This is another definition of the second term.</dd>
+</dl>
+```
+
+最後會轉換成
+
+First Term
+: This is the definition of the first term.
+
+Second Term
+: This is one definition of the second term.
+: This is another definition of the second term.
+
+### Strikethrough
+
+可以使用horizontal line來做出刪除文字功能，只要使用兩個tilde symbols`~~`分別放在字段的左和右即可
+
+```markdown
+~~The world is flat~~. We now know that the world is round.
+```
+
+呈現結果如下
+
+~~The world is flat~~. We now know that the world is round.
+
+### Task Lists
+
+任務清單(task lists)使你可產生一個列表的複選框(checkboxes)，只要加上dash`-`以及一個內部有空格的brackets`[ ]`即可，若要勾選只要在brackets中間加入`x`即可(`[x]`)
+
+使用方法如下：
+
+```markdown
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
+```
+
+呈現結果如下
+
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
+
 ## Reference
 
 * [Basic Syntax Markdown Guide](https://www.markdownguide.org/basic-syntax/)
+* [Extended Syntax](https://www.markdownguide.org/extended-syntax/)
 * [Markdown - 維基百科](https://zh.wikipedia.org/wiki/Markdown)
 * [Daring Fireball: Markdown Syntax Documentation](https://daringfireball.net/projects/markdown/syntax)
 * [Markdown語法說明](https://markdown.tw/)
