@@ -71,8 +71,7 @@ tee [OPTIONS] [FILE ...]
   ```
 
 ## Reference
-
-* [Linux Tee Command with Examples | Linuxize](https://linuxize.com/post/linux-tee-command/)
+* [Linux Tee Command with Examples](https://linuxize.com/post/linux-tee-command/)
 * [[Linux] tee 指令：將結果同時輸出到螢幕和檔案 – OneJar 的隧道](https://www.onejar99.com/linux-command-tee/#more-590)
 * [鳥哥的 Linux 私房菜 -- 第十章、認識與學習BASH](http://linux.vbird.org/linux_basic/0320bash.php)
 
