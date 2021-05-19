@@ -44,6 +44,7 @@ tee [OPTIONS] [FILE ...]
 
   ```bash
   $ ls | tee result.txt result2.txt result3.txt
+  ```
 
 * 將stdout結果同時導向到螢幕與檔案（append file）
 
