@@ -177,4 +177,5 @@ JVM是Java Virtual Machine的縮寫，根據文件，其介紹如下
 * [JVM是什麼？深入解析JVM原理！](https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/654140/#:~:text=JVM%EF%BC%88Java%20Virtual%20Machine%EF%BC%8C%20Java,%E7%84%A1%E9%97%9C%EF%BC%8C%E5%AE%8C%E6%88%90%E8%B7%A8%E5%B9%B3%E8%87%BA%E6%80%A7%E3%80%82)
 * [Guide to the Most Important JVM Parameters](https://www.baeldung.com/jvm-parameters)
 * [基礎語言-資料類別](https://travis90736.pixnet.net/blog/post/106172000)
+* [JVM參數介紹](https://www.twblogs.net/a/5e6f5812bd9eee2116861057)
 
