@@ -5,8 +5,6 @@ subtitle: "bash的命令別名與歷史命令"
 tags: ["unix","bash","command"]
 ---
 
-bash可以使用alias來設定
-
 ## 命令別名
 
 **設定指令**
