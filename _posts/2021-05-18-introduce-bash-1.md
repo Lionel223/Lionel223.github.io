@@ -113,6 +113,23 @@ $ command  [-options]  parameter1  parameter2 ...
 
     讓游標移動到整個指令串的最後面
 
+## 指令搜尋順序
+
+當`ls`或是`echo`等等的指令被下達時，運作順序如下
+
+1. 從相對/絕對路徑來執行指令，例如`/bin/ls`或是`./ls`
+2. 從`alias`找尋是否有該指令並執行
+3. 從bash內建（builtin）指令搜尋並執行
+4. 透過環境變數 `$PATH` 依序搜尋指令並執行
+
+指令 `/bin/ls` 與指令 `ls` 其實不同，指令`ls`執行後顯示的是有顏色的結果，這是因為他也是alias的，我們可以使用`type -a`來查看指令搜尋的順序
+
+```bash
+$ type -a ls
+ls is an alias for ls -G
+ls is /bin/ls
+```
+
 ## Reference
 * [What is Bash?](https://docs.microsoft.com/en-us/learn/modules/bash-introduction/1-what-is-bash)
 * [Bash shell 簡介](https://crmne0707.pixnet.net/blog/post/319685660-bash-shell-%e7%b0%a1%e4%bb%8b)

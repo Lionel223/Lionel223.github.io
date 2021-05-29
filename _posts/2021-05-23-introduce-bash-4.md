@@ -44,6 +44,12 @@ $ alias
 $ unalias ll
 ```
 
+※ 其實 `ls` 也是alias的指令，其由來如下
+
+```bash
+$ alias ls='ls --color=auto'
+```
+
 ## 歷史命令
 
 bash也有查詢歷史命令的服務，就是指令`history`，他有許多的用法，底下就來簡單介紹
