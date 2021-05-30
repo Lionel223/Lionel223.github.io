@@ -20,7 +20,7 @@ permalink: /archieve/
 
     <li>
         <div class="month">
-            {{ post.date | date:"%b" }}
+            {{ post.date | date:"%b %-d" }}
         </div>
         <div class="archive-post-title">
             <a href="{{ post.url }}">{{ post.title }}</a>
