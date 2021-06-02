@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="crontab的使用方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Unix] crontab介紹">
+<meta property="og:url" content="https://lionel223.github.io/2021/05/30/unix-crontab/index.html">
+<meta property="og:site_name" content="Lionel&#39;s Blog">
+<meta property="og:description" content="crontab的使用方式">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-30T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-02T16:47:21.880Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="unix">
+<meta property="article:tag" content="command">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lionel223.github.io/2021/05/30/unix-crontab/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;05&#x2F;30&#x2F;unix-crontab&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;30&#x2F;unix-crontab&#x2F;&quot;,&quot;title&quot;:&quot;[Unix] crontab介紹&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>[Unix] crontab介紹 | Lionel's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lionel's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Command-Syntax"><span class="nav-text">Command Syntax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%80%85%E6%AC%8A%E9%99%90%E8%A8%AD%E5%AE%9A"><span class="nav-text">使用者權限設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%B5%B1%E8%A8%AD%E5%AE%9A%E6%AA%94"><span class="nav-text">系統設定檔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lionel223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lionel223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/05/30/unix-crontab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lionel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lionel's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Unix] crontab介紹
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-30T00:00:00+00:00">2021-05-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-02 16:47:21" itemprop="dateModified" datetime="2021-06-02T16:47:21+00:00">2021-06-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/unix/" itemprop="url" rel="index"><span itemprop="name">unix</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">crontab的使用方式</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Linux系統內，有時需要在指定時間自動執行工作，此種工作又被稱為「例行性工作」。依據其性質又分為「一次性工作」與「循環性工作」。一次性工作就是在指定時間執行後便不再執行，而循環性工作則會依照指定的時間間隔或時間點重複執行，此處我們就來介紹循環性工作如何使用。</p>
+<p>循環性的例行性工作排程是由cron（crond）這個系統服務所控制，使用者也可以使用指令 <code>crontab</code> 來控制。crontab 是 Linux 內建的機制，可以根據設置的時間參數來執行例行性的工作排程，使用指令 <code>man crontab</code> 可查看其描述</p>
+<blockquote>
+<p>The crontab utility is the program used to install, deinstall or list the tables used to drive the cron(8) daemon in Vixie Cron.  Each user can have their own crontab, and they are not intended to be edited directly</p>
+</blockquote>
+<p>底下就來介紹他的語法與詳細使用方式。</p>
+<h2 id="Command-Syntax"><a href="#Command-Syntax" class="headerlink" title="Command Syntax"></a>Command Syntax</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">crontab [-u username] [-e|-l|-r]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-u</code> - 此參數只有root可以使用，可幫其餘使用者建立或移除crontab的工作排程</li>
+<li><code>-e</code> - 編輯crontab的工作內容</li>
+<li><code>-l</code> - 查詢crontab的工作內容</li>
+<li><code>-r</code> - 移除所有crontab的工作內容，若只要移除一項可使用<code>-e</code></li>
+</ul>
+<p>ex. 每天12:00發信給自己</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ crontab -e</span><br><span class="line"><span class="comment"># 此時進入vim的編輯畫面</span></span><br><span class="line"> 0  12 *  *  * mail -s <span class="string">&quot;at 12:00&quot;</span> lionel &lt; /home/lionel/.bashrc</span><br><span class="line"><span class="comment">#分 時 日 月 週 |&lt;====================command==================&gt;|</span></span><br></pre></td></tr></table></figure>
+
+<p>由範例可以看到，進入vim編輯畫面後就可以新增工作，每一行都是一項例行性工作，都會有六個欄位，意義如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">分鐘</th>
+<th align="center">小時</th>
+<th align="center">日期</th>
+<th align="center">月份</th>
+<th align="center">週</th>
+<th align="center">指令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0-59</td>
+<td align="center">0-23</td>
+<td align="center">1-31</td>
+<td align="center">1-12</td>
+<td align="center">0-7<br />※ 0和7都表示星期天</td>
+<td align="center">指令<br />※ 下達指令使用 <strong>絕對路徑</strong> 避免錯誤</td>
+</tr>
+</tbody></table>
+<p>另外還有一些輔助的符號如下</p>
+<ul>
+<li><code>*</code>（星號）- 表示任何時刻，例如小時放入 <code>*</code> 表示每一小時</li>
+<li><code>,</code>（逗號）- 表示分隔時段，例如要下達的工作是每天的3:00與5:00，則可使用<code>0 3,5 * * * command</code></li>
+<li><code>-</code>（減號）- 表示一段時間，例如要下達的工作是每天的3:00、4:00、5:00，則可使用<code>0 3-5 * * * command</code></li>
+<li><code>/n</code>（斜線）-  n表示數字，表示每隔n單位，例如要下達的工作是每五分鐘執行一次，則可使用<code>*/5 * * * * command</code></li>
+</ul>
+<p>※ 週與日月不可同時設定，若設定了週，就不可設定日跟月，反之亦然</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><ul>
+<li><p>每年的5/30 8:00 執行測試程式</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="number">0</span> <span class="number">8</span> <span class="number">30</span> <span class="number">5</span> * /home/ubuntu/test.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure></li>
+<li><p>每五分鐘執行一次測試程式</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">*/<span class="number">5</span> * * * * /home/ubuntu/test.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure></li>
+<li><p>每天早上八點，除了禮拜天以外，執行report.js這個程式</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="number">0</span> <span class="number">8</span> * * <span class="number">1</span>-<span class="number">6</span> node /home/ubuntu/report.js</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="使用者權限設定"><a href="#使用者權限設定" class="headerlink" title="使用者權限設定"></a>使用者權限設定</h2><p>為了安全性，我們還可以限制使用crontab的使用者帳號。我們可以使用root去修改以下資料</p>
+<ul>
+<li><p><code>/etc/cron.allow</code></p>
+<p>將可以使用crontab的帳號寫在此，若不在這個檔案內的使用者將無法使用crontab</p>
+</li>
+<li><p><code>/etc/cron.deny</code></p>
+<p>將不可以使用crontab的帳號寫在此，若不在這個檔案內的使用者即可使用crontab</p>
+</li>
+</ul>
+<p>這兩個檔案只能選擇一個來使用，且 <em>/etc/cron.allow</em> 優先於 <em>/etc/cron.deny</em>。</p>
+<p>當使用者使用指令 <code>crontab</code> 建立工作排程後，工作就會被記錄到 <em>/var/spool/cron/{account}</em> 裡面，例如user lionel的新增工作排程後，就會被記錄到 <em>/var/spool/cron/lionel</em> 裡面，但不要直接修改這個檔案，若因語法錯誤，可能會無法執行cron。</p>
+<p>另外cron所執行的工作都會被記錄到 <em>/var/log/cron</em> 這個登入檔裡面，若需要查看crontab的log，可使用 <code>tail -f /var/log/cron</code> 來查看（不可使用指令 <code>cat</code>，因為檔案可能正在更新）</p>
+<h2 id="系統設定檔"><a href="#系統設定檔" class="headerlink" title="系統設定檔"></a>系統設定檔</h2><p>前面說的指令 <code>crontab</code> 是針對使用者設計的，指令 <code>crontab</code> 實際上修改的執行檔 <em>/usr/bin/crontab</em>。但如果是「系統的例行性任務」時，就不能使用這個指令，而是需要編輯 <em>/etc/crontab</em>，編輯完並儲存後，即可自動執行，因為cron最低偵測限制是「分鐘」，所以cron每分鐘會去讀取 <em>/etc/crontab</em> 與 <em>/var/spool/cron</em> 內的資料內容</p>
+<p>※ 一般linux系統會自動每分鐘讀取一次 <em>/etc/crontab</em> 的工作，但其他unix系統中可能crontab是讀取到記憶體的，所以修改完 <em>/etc/crontab</em> 可能不會立刻生效，此時就需要使用以下指令重啟crond服務</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ systemctl restart crond</span><br></pre></td></tr></table></figure>
+
+<p>底下就來看看 <em>/etc/crontab</em> 的內容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat /etc/crontab</span><br><span class="line">SHELL=/bin/bash</span><br><span class="line">PATH=/sbin:/bin:/usr/sbin:/usr/bin</span><br><span class="line">MAILTO=root</span><br><span class="line"></span><br><span class="line"><span class="comment"># For details see man 4 crontabs</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Example of job definition:</span></span><br><span class="line"><span class="comment"># .---------------- minute (0 - 59)</span></span><br><span class="line"><span class="comment"># |  .------------- hour (0 - 23)</span></span><br><span class="line"><span class="comment"># |  |  .---------- day of month (1 - 31)</span></span><br><span class="line"><span class="comment"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span></span><br><span class="line"><span class="comment"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></span><br><span class="line"><span class="comment"># |  |  |  |  |</span></span><br><span class="line"><span class="comment"># *  *  *  *  * user-name  command to be executed</span></span><br></pre></td></tr></table></figure>
+
+<p>以下幾個地方提出說明</p>
+<ul>
+<li><p>SHELL</p>
+<p>使用的shell</p>
+</li>
+<li><p>PATH</p>
+<p>輸入執行檔的搜尋路徑</p>
+</li>
+<li><p>MAILTO</p>
+<p>當 <em>/etc/crontab</em> 執行出錯時，或是執行結果有stdout或stderr時，要將訊息傳給誰，預設是發一封mail給root，也可將這個部分改成其他信箱</p>
+<p>※ 若有些命令一定會有stdout或stderr，但又不想收到，可使用data stream redirection將資料導到 <code>/dev/null</code> 內</p>
+</li>
+<li><p>欄位設定</p>
+<p>跟 <code>crontab -e</code> 的設定稍微不同，多了一個user-name，需設定執行這串指令的身份，預設是root執行</p>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://linux.vbird.org/linux_basic/0430cron.php#cron">鳥哥的 Linux 私房菜 – 第十五章、例行性工作排程(crontab)</a></li>
+<li><a target="_blank" rel="noopener" href="https://crmne0707.pixnet.net/blog/post/322385712-linux-%e4%be%8b%e8%a1%8c%e6%80%a7%e5%b7%a5%e4%bd%9c">linux 例行性工作</a></li>
+<li><a target="_blank" rel="noopener" href="https://code.kpman.cc/2015/02/11/%E5%88%A9%E7%94%A8-crontab-%E4%BE%86%E5%81%9A-Linux-%E5%9B%BA%E5%AE%9A%E6%8E%92%E7%A8%8B/">利用 crontab 來做 Linux 固定排程</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/unix/" rel="tag"># unix</a>
+              <a href="/tags/command/" rel="tag"># command</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/29/introduce-bash-5/" rel="prev" title="[Unix] bash基本使用(5)">
+                  <i class="fa fa-chevron-left"></i> [Unix] bash基本使用(5)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/31/jvm-heap/" rel="next" title="JVM中的Stack和Heap">
+                  JVM中的Stack和Heap <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

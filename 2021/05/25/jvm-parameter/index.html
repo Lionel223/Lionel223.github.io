@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="jvm的參數介紹">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jvm parameter介紹">
+<meta property="og:url" content="https://lionel223.github.io/2021/05/25/jvm-parameter/index.html">
+<meta property="og:site_name" content="Lionel&#39;s Blog">
+<meta property="og:description" content="jvm的參數介紹">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-25T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-02T16:47:21.880Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="jvm">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lionel223.github.io/2021/05/25/jvm-parameter/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;05&#x2F;25&#x2F;jvm-parameter&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;25&#x2F;jvm-parameter&#x2F;&quot;,&quot;title&quot;:&quot;jvm parameter介紹&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>jvm parameter介紹 | Lionel's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lionel's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E4%BB%8B%E7%B4%B9"><span class="nav-text">JVM介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E5%8F%83%E6%95%B8%E4%BB%8B%E7%B4%B9"><span class="nav-text">JVM參數介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Explicit-Heap-Memory"><span class="nav-text">Explicit Heap Memory</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-Memory"><span class="nav-text">Out of Memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Garbage-Collection"><span class="nav-text">Garbage Collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GC-Logging"><span class="nav-text">GC Logging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-1"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Misc"><span class="nav-text">Misc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lionel223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lionel223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/05/25/jvm-parameter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lionel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lionel's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jvm parameter介紹
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-05-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-25T00:00:00+00:00">2021-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-02 16:47:21" itemprop="dateModified" datetime="2021-06-02T16:47:21+00:00">2021-06-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">jvm的參數介紹</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="JVM介紹"><a href="#JVM介紹" class="headerlink" title="JVM介紹"></a>JVM介紹</h2><p>JVM是Java Virtual Machine的縮寫，根據文件，其介紹如下</p>
+<blockquote>
+<p>The Java Virtual Machine is the cornerstone of the Java platform. It is the component of the technology responsible for its hardware- and operating system-independence, the small size of its compiled code, and its ability to protect users from malicious programs.</p>
+<p>The Java Virtual Machine is an abstract computing machine. Like a real computing machine, it has an instruction set and manipulates various memory areas at run time. It is reasonably common to implement a programming language using a virtual machine; the best-known virtual machine may be the P-Code machine of UCSD Pascal.</p>
+<p>The Java Virtual Machine knows nothing of the Java programming language, only of a particular binary format, the class file format. A class file contains Java Virtual Machine instructions (or bytecodes) and a symbol table, as well as other ancillary information.</p>
+</blockquote>
+<p>可將JVM其視為一個抽象的計算機，且他不能直接解譯java語言，只能解譯特定的二進位格式的檔案（.class檔案）。JVM屏蔽了與操作系統平臺相關的信息，使得Java只要生成在 JVM上運行的目標代碼（.class），就可在多種平臺上不加修改的運行，這也是Java能夠<strong>一次編譯，到處運行的</strong>原因。</p>
+<h2 id="JVM參數介紹"><a href="#JVM參數介紹" class="headerlink" title="JVM參數介紹"></a>JVM參數介紹</h2><p>底下來介紹幾個常用的 JVM 參數</p>
+<h3 id="Explicit-Heap-Memory"><a href="#Explicit-Heap-Memory" class="headerlink" title="Explicit Heap Memory"></a>Explicit Heap Memory</h3><p>使用顯式的指令分配和釋放堆中的記憶體，heap memory指的是存放參考資料型別的物件實體，我們可以根據應用程式的需求設定初始heap（<code>Xms</code>）與最大heap（<code>Xmx</code>）的大小，使用方式如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-Xms&lt;heap size&gt;[unit]</span><br><span class="line">-Xmx&lt;heap size&gt;[unit]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>unit</code> - 表示heap size的單位，可以是<strong>g</strong>(GB), <strong>m</strong>(MB), <strong>k</strong>(KB)</li>
+<li><code>heap size</code> - heap大小</li>
+</ul>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><ul>
+<li><p>JVM的minimum heap size設定為2G，maximum heap size設定為5G</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-Xms2G -Xmx5G</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Out-of-Memory"><a href="#Out-of-Memory" class="headerlink" title="Out of Memory"></a>Out of Memory</h3><p>大型程式遇到<code>out of memory</code>的錯誤是很常見的，他常常是導致應用程式崩潰的原因，所以 JVM 有一些參數可以來調整，可將heap memory轉存到實體文件中，以便後續查找memory leak的原因</p>
+<p>參數如下</p>
+<ul>
+<li><p><strong>HeapDumpOnOutOfMemoryError</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-XX:+HeapDumpOnOutOfMemoryError</span><br></pre></td></tr></table></figure>
+
+<p>當 JVM 發生 <em>OutOfMemoryError</em> 時，生成dump文件</p>
+</li>
+<li><p><strong>HeapDumpPath</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-XX:HeapDumpPath=./java_pid&lt;pid&gt;.hprof</span><br></pre></td></tr></table></figure>
+
+<p>表示OutOfMemoryError時，要寫入的檔案路徑，可自行命名檔案名稱。若 JVM 發現tag <code>&lt;pid&gt;</code>在檔案名稱內的話，還會放上發生問題的 process id，另外副檔名都是 <em>.hprof</em> 格式</p>
+</li>
+<li><p><strong>OnOutOfMemoryError</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-XX:OnOutOfMemoryError=<span class="string">&quot;&lt; cmd args &gt;;&lt; cmd args &gt;&quot;</span> </span><br></pre></td></tr></table></figure>
+
+<p>當發生 <em>OutOfMemoryError</em> 時，可用來執行緊急指令。可用來終止程式，或者重新啟動server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-XX:OnOutOfMemoryError=<span class="string">&quot;shutdown -r&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>UseGCOverheadLimit</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-XX:+UseGCOverheadLimit</span><br></pre></td></tr></table></figure>
+
+<p>在拋出 <em>OutOfMemoryError</em> 錯誤前，用來限制VM在GC花費的時間比例</p>
+</li>
+</ul>
+<h3 id="Garbage-Collection"><a href="#Garbage-Collection" class="headerlink" title="Garbage Collection"></a>Garbage Collection</h3><p>為了應用程式的穩定性，選擇一個合適的Garbage Collection演算法是很重要的。JVM有四種Garbage Collection的演算法可以選擇，分別如下</p>
+<ul>
+<li>Serial Garbage Collector</li>
+<li>Parallel Garbage Collector</li>
+<li>CMS Garbage Collector</li>
+<li>G1 Garbage Collector</li>
+</ul>
+<p>我們可以用以下參數來選擇要使用哪種GC</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-XX:+UseSerialGC</span><br><span class="line">-XX:+UseParallelGC</span><br><span class="line">-XX:+USeParNewGC</span><br><span class="line">-XX:+UseG1GC</span><br></pre></td></tr></table></figure>
+
+<h3 id="GC-Logging"><a href="#GC-Logging" class="headerlink" title="GC Logging"></a>GC Logging</h3><p>為了監控應用程式，我們可以監控JVM的GC的效能，最簡單的方式就是將GC的活動轉成人類可讀的log格式，我們可以用以下參數來紀錄GC的log</p>
+<ul>
+<li><p><strong>UseGCLogFileRotation</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-XX:+UseGCLogFileRotation </span><br></pre></td></tr></table></figure>
+
+<p>這個參數指定log檔案的rolling policy，很像log4j、s4lj等等。</p>
+</li>
+<li><p><strong>NumberOfGCLogFiles</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-XX:NumberOfGCLogFiles=&lt; number of <span class="built_in">log</span> files &gt; </span><br></pre></td></tr></table></figure>
+
+<p>這個參數可以設定在單一應用程式的生命週期中，可以寫入的最大量的log file</p>
+</li>
+<li><p><strong>GCLogFileSize</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-XX:GCLogFileSize=&lt; file size &gt;[ unit ]</span><br></pre></td></tr></table></figure>
+
+<p>此參數則是限制log檔案大小</p>
+</li>
+<li><p><strong>Xloggc</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-Xloggc:/path/to/gc.log</span><br></pre></td></tr></table></figure>
+
+<p>此為設定log檔案的路徑位置</p>
+</li>
+<li><p>PrintGCTimeStamps</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-XX:+PrintGCTimeStamps</span><br></pre></td></tr></table></figure>
+
+<p>設定log的印出的時間區間。</p>
+</li>
+<li><p>PrintGCDateStamps</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">XX:+PrintGCDateStamps</span><br></pre></td></tr></table></figure>
+
+<p>設定log的印出的時間區間</p>
+</li>
+</ul>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><p>若我們想指定一個最大有100個GC的log檔案，每個檔案最大值是50 MB，且我們想將其儲存在<code>/home/user/log/</code>裡面，可以添加參數如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-XX:+UseGCLogFileRotation  </span><br><span class="line">-XX:NumberOfGCLogFiles=10</span><br><span class="line">-XX:GCLogFileSize=50M </span><br><span class="line">-Xloggc:/home/user/<span class="built_in">log</span>/gc.log</span><br></pre></td></tr></table></figure>
+
+<p>※ 另外要注意，這個會產生一個額外的daemon thread在背景執行來監控系統，導致效能產生瓶頸，所以要避免把這些參數使用在正式環境</p>
+<h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><p>待新增</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-1.html">Java Virtual Machine Specification - Chapter 1. Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/654140/#:~:text=JVM%EF%BC%88Java%20Virtual%20Machine%EF%BC%8C%20Java,%E7%84%A1%E9%97%9C%EF%BC%8C%E5%AE%8C%E6%88%90%E8%B7%A8%E5%B9%B3%E8%87%BA%E6%80%A7%E3%80%82">JVM是什麼？深入解析JVM原理！</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.baeldung.com/jvm-parameters">Guide to the Most Important JVM Parameters</a></li>
+<li><a target="_blank" rel="noopener" href="https://travis90736.pixnet.net/blog/post/106172000">基礎語言-資料類別</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.twblogs.net/a/5e6f5812bd9eee2116861057">JVM參數介紹</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/jvm/" rel="tag"># jvm</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/23/introduce-bash-4/" rel="prev" title="[Unix] bash基本使用(4)">
+                  <i class="fa fa-chevron-left"></i> [Unix] bash基本使用(4)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/29/introduce-bash-5/" rel="next" title="[Unix] bash基本使用(5)">
+                  [Unix] bash基本使用(5) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

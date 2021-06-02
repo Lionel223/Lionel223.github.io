@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="JVM裡的Stack與Heap介紹">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM中的Stack和Heap">
+<meta property="og:url" content="https://lionel223.github.io/2021/05/31/jvm-heap/index.html">
+<meta property="og:site_name" content="Lionel&#39;s Blog">
+<meta property="og:description" content="JVM裡的Stack與Heap介紹">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-31T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-02T16:47:21.880Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="jvm">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lionel223.github.io/2021/05/31/jvm-heap/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;05&#x2F;31&#x2F;jvm-heap&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;31&#x2F;jvm-heap&#x2F;&quot;,&quot;title&quot;:&quot;JVM中的Stack和Heap&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>JVM中的Stack和Heap | Lionel's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lionel's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA%E4%B8%AD%E7%9A%84%E8%B3%87%E6%96%99%E5%9E%8B%E6%85%8B"><span class="nav-text">JAVA中的資料型態</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%9E%8B%E6%85%8B"><span class="nav-text">基本型態</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%9E%E5%88%A5%E5%9E%8B%E6%85%8B%EF%BC%88%E5%8F%83%E8%80%83%E5%9E%8B%E6%85%8B%EF%BC%89"><span class="nav-text">類別型態（參考型態）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stack"><span class="nav-text">Stack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Heap"><span class="nav-text">Heap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#On-heap-and-Off-heap"><span class="nav-text">On-heap and Off-heap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-text">結論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lionel223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lionel223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/05/31/jvm-heap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lionel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lionel's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JVM中的Stack和Heap
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-05-31 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-31T00:00:00+00:00">2021-05-31</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-02 16:47:21" itemprop="dateModified" datetime="2021-06-02T16:47:21+00:00">2021-06-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">JVM裡的Stack與Heap介紹</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在使用 java 開發時，常常都會看到 <code>stack</code> 與 <code>heap</code> 這兩個詞，Stack 繁中為 <strong>堆疊</strong> 、簡中為 <strong>棧</strong>，Heap 繁中為 <strong>堆積</strong> 、簡中為 <strong>堆</strong>，他們兩個都是JVM記憶體管理的一部份。</p>
+<p>java 檔經過編譯後會產生Class檔案（bytecode），只能在 JVM 上運行，JVM運行時也需要記憶體儲存運算所需的資料、指令，JVM 裡有需多的記憶體，但其中 Stack 與 Heap 最常被比較，底下就來介紹這兩者是什麼。</p>
+<h2 id="JAVA中的資料型態"><a href="#JAVA中的資料型態" class="headerlink" title="JAVA中的資料型態"></a>JAVA中的資料型態</h2><p>在介紹 Stack 與 Heap 之前，首先要先介紹的是 java 的資料型態。在 java 裡面，不是每個東西都是抽象化為物件，可將 java 區分為兩種型態系統，分別如下</p>
+<ul>
+<li>基本型態（Primitive Type）</li>
+<li>類別型態（Class type），或叫參考型態（Reference type）</li>
+</ul>
+<h3 id="基本型態"><a href="#基本型態" class="headerlink" title="基本型態"></a>基本型態</h3><p>基本型態得考慮資料用多少記憶體長度來存比較經濟，利用程式語法告訴 JVM，然後由 JVM 自動在記憶體中配置與管理，主要可區分為整數、位元組、浮點數、字元與布林，介紹如下：</p>
+<ul>
+<li><p>整數</p>
+<p>整數又可細分為 <code>short</code> 整數（2個位元組）、<code>int</code> 整數（4個位元組）、<code>long</code> 整數（8個位元組），<code>long</code> 整數範圍比 <code>int</code> 整數大，<code>int</code> 整數範圍又比 <code>short</code> 整數大。</p>
+</li>
+<li><p>位元組</p>
+<p><code>byte</code> 型態的長度就是一個位元組，在需要逐位元處理資料時（ex. 影像、編碼處理），就會使用 <code>byte</code> 型態，如果是用於整數，可表示 -128 ~ 127的整數。</p>
+</li>
+<li><p>浮點數</p>
+<p>用來儲存小數數值，又可細分為 <code>float</code> 浮點數（4個位元組）、<code>double</code> 浮點數（8個位元組），其中 <code>double</code> 浮點數需要的記憶體空間比 <code>float</code> 浮點數大，精確度也比較大。</p>
+</li>
+<li><p>字元</p>
+<p><code>char</code> 型態用來儲存字元符號，每個字元為兩個位元組，中英文字元皆一樣。</p>
+</li>
+<li><p>布林</p>
+<p><code>boolean</code> 型態可表示 <em>true</em> 與 <em>false</em>，在 Java 中不用在意 <code>boolean</code> 型態的長度，也無法將<code>boolean</code>型態與其它型態作運算。</p>
+</li>
+</ul>
+<p><strong>總結</strong></p>
+<ul>
+<li><p>共有八種基本型態：<strong>short</strong>、<strong>int</strong>、<strong>long</strong>、<strong>byte</strong>、<strong>float</strong>、<strong>double</strong>、<strong>char</strong>、<strong>boolean</strong></p>
+</li>
+<li><p>宣告基本型態的方式如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">long</span> b = <span class="number">234L</span>;</span><br><span class="line"><span class="keyword">boolean</span> c = <span class="keyword">true</span>;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
+<li><p>長度與生命週期皆可知（程式碼區塊執行完即扔掉）</p>
+</li>
+<li><p>運算速度快，但長度與內容受限。</p>
+</li>
+</ul>
+<h3 id="類別型態（參考型態）"><a href="#類別型態（參考型態）" class="headerlink" title="類別型態（參考型態）"></a>類別型態（參考型態）</h3><ul>
+<li><p>大多屬於此類，例如 <strong>Integer</strong>、<strong>String</strong>、<strong>Long</strong> 等等，或者自訂的類別</p>
+</li>
+<li><p>通常需使用語法 <code>new</code> 創建，使用方法如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">User user = <span class="keyword">new</span> User(<span class="string">&quot;Mark&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p>因為是在執行時才動態創建，所以長度及生命週期都不可預知</p>
+</li>
+<li><p>靈活但運算較耗時</p>
+</li>
+</ul>
+<h2 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h2><p>每一個 Thread 都有自己的 Stack，Thread 之間的 Stack 相互獨立，程式中的 <code>local primitive variables</code>、<code>local object reference variables</code> 都會被儲存在 Stack。</p>
+<p>Stack 是一種後進先出（LIFO，Last-in-First-out）的容器，其存取速度快且管理簡單。由於 Java 中的變數跟函式皆是後進先出，越晚產生的越先被回收、銷毀，所以 Stack 很適合作為<strong>區域變數</strong>、<strong>函式參數</strong>與<strong>函式返回位址</strong>的儲存容器。</p>
+<p>因為 Stack 中的資料生命週期都是規律的，可由系統自行產生、回收，我們不需介入。</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Method1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Method2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Method1();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 Method1 裡面的 <code>int i = 1</code>，這個變數 <code>i</code> 會存放在 stack 內，他只會在執行Method1時才會用到，生命週期是可以預測的。</p>
+<p>而 Method1 只有在執行 Method2 時才能用到，所以它包含的變數也存放在stack。</p>
+<h2 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h2><p>Process 的 Memory Space 是專門儲存共享資料 / 資源的，而 Heap 就屬於這種共享資料。</p>
+<p>當類別型態（Class Type）在創建instance時（ex. <code>new User(&quot;Mark&quot;)</code>），此資料就會放在 Heap 中，系統會在 Heap 中找一個地方放置此 User instance的 屬性資料。因為 Heap 存放的是共享資料，所以不管這個instance是由哪個 Thread 所創建的，只要是同一個 Process裡的不同 Thread 都可以存取。</p>
+<p>由於 instance 的生命週期不可預知，系統較難自行回收，所以在 java 內有 Garbage Collection（GC）可以自動去清理 Heap 內已經沒有被參考（Reference）的資料</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><ul>
+<li><p>範例一</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String... args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  User user1 = <span class="keyword">new</span> User(<span class="string">&quot;Mark&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>User</code> 物件會儲存在heap，但它的reference variable <code>user1</code> 會儲存在Stack。</p>
+</li>
+<li><p>範例二</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">123</span>;</span><br><span class="line"><span class="keyword">long</span> b = <span class="number">456L</span>;</span><br><span class="line">User c = <span class="keyword">new</span> User(<span class="string">&quot;Mark&quot;</span>, Gender.MALE);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>前兩行指令都是 <code>Primitive type</code>，會在 Stack 內建立變數 <code>a</code>、<code>b</code>，並將 value <code>123</code>、``456L` 儲存在變數內。</p>
+</li>
+<li><p>第三行指令要切成等號左邊跟右邊，首先先看右邊的部分，instance <code>User</code> 有兩個參數，分別是<code>name</code> 與 <code>gender</code>，此時 Heap 的一個位址（ex. <code>0x1111</code>）會拿來存放 instance 的屬性資料（ex. <code>name</code>、<code>gender</code>…）</p>
+</li>
+<li><p>再來看第三行指令左邊的部分，instance 的記憶體位址（<code>0x1111</code>）會指定給變數 <code>c</code> 參考，其中 <code>c</code> 是reference variable，他會儲存在 Stack。</p>
+</li>
+</ol>
+<p>※ 第三行指令簡單來說可以這樣看</p>
+<ol>
+<li>創建 User instance（name = Mark, gender = Male）並儲存在 Heap，最後回傳記憶體位址</li>
+<li>在 Stack 新增變量 <code>c</code>，並將記憶體位址傳給 <code>c</code> 參考</li>
+</ol>
+</li>
+</ul>
+<h2 id="On-heap-and-Off-heap"><a href="#On-heap-and-Off-heap" class="headerlink" title="On-heap and Off-heap"></a>On-heap and Off-heap</h2><p>如前面所說，類別型態（Class Type）在創建instance時（ex. <code>new User(&quot;Mark&quot;)</code>），此資料就會放在 Heap 中。一般情況下，java 中所分配的非空物件都會由 JVM 的 GC 來處理，這種 Heap 又被稱為 <strong>on-heap memory</strong>，JVM 會對這種垃圾記憶體回收，在某些特定時間點，還會進行一次徹底的回收（full gc）。執行 full gc 時，還會對所有的 on-heap memory 進行完整的掃描，所以一次 full gc 會對應用程式的效能影響，會與 on-heap memory 的大小成正比，越大的 on-heap memory 越會影響應用程式的效能。</p>
+<p>為了解決這個問題，有另一種方式是使用 <strong>off-heap memory</strong>。off-heap memory 意味著將 memory 分配給 JVM 的 Heap 以外的記憶體，這些記憶體不受 JVM管理，而是直接受到作業系統管理，這樣就能保持一個較小的 heap，進而降低 full gc 進行時的效能影響。</p>
+<p>off-heap memory 與 memory pool 一樣，皆可縮短 GC 的時間，但他適用的物件和 memory pool相反，memory pool 適用於生命週期較短的可變物件，而 off-heap memory 則是適用生命週期中等或較長的物件。off-heap memory具有以下特點</p>
+<ul>
+<li>對於大記憶體有良好的伸縮性</li>
+<li>改善 GC 造成的效能降低</li>
+<li>在程序間可以共享，減少虛擬機器間的複製</li>
+</ul>
+<p>不過 off-heap memory 也有其他問題，例如資料結構變得不直觀，若資料結構比較複雜，還需要對它序列化（serialization），序列化也會影響效能，且因為可使用更大的記憶體，所以也需要注意硬體的速度對它的影響。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><ol>
+<li>Heap 是 Class Type 創建實例時存放資料的地方，在 Heap 創建完成後會回傳所在的記憶體位址。</li>
+<li>變數可能是 Primitive Type 或 Class Type 。若是 Primitive Type，則在 Stack 內的變數值為實際值；若是 Class Type，實例資料會儲存在 Heap 中，Stack 內的變數值為實例在 Heap 中的記憶體位址。</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.marklee.tw/java-interview-jvm-stack-heap/#:~:text=Java%20%E7%9A%84%E8%B3%87%E6%96%99%E9%A1%9E%E5%9E%8B%E5%88%86,%E6%89%80%E5%9C%A8%E7%9A%84%E8%A8%98%E6%86%B6%E9%AB%94%E4%BD%8D%E5%9D%80%E3%80%82">Java 面試 - JVM 的 Stack 和 Heap</a></li>
+<li><a target="_blank" rel="noopener" href="https://travis90736.pixnet.net/blog/post/106172000">基礎語言 -資料類別</a></li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10229672?sc=pt">Java - Stack 與 Heap 的分別</a></li>
+<li><a target="_blank" rel="noopener" href="https://openhome.cc/Gossip/Java/Type.html">型態</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/6091615/difference-between-on-heap-and-off-heap">Difference between “on-heap” and “off-heap”</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.itread01.com/content/1550230763.html">堆外記憶體(off-heap)、堆內記憶體(on-heap)</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/jvm/" rel="tag"># jvm</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/30/unix-crontab/" rel="prev" title="[Unix] crontab介紹">
+                  <i class="fa fa-chevron-left"></i> [Unix] crontab介紹
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

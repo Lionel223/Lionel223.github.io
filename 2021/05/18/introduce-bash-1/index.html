@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="bash介紹與基本使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Unix] bash基本使用(1)">
+<meta property="og:url" content="https://lionel223.github.io/2021/05/18/introduce-bash-1/index.html">
+<meta property="og:site_name" content="Lionel&#39;s Blog">
+<meta property="og:description" content="bash介紹與基本使用">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-18T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-02T16:47:21.880Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="unix">
+<meta property="article:tag" content="bash">
+<meta property="article:tag" content="command">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lionel223.github.io/2021/05/18/introduce-bash-1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;05&#x2F;18&#x2F;introduce-bash-1&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;18&#x2F;introduce-bash-1&#x2F;&quot;,&quot;title&quot;:&quot;[Unix] bash基本使用(1)&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>[Unix] bash基本使用(1) | Lionel's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lionel's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell%E4%BB%8B%E7%B4%B9"><span class="nav-text">Shell介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash%E5%8A%9F%E8%83%BD"><span class="nav-text">Bash功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E4%B8%8B%E9%81%94%E8%88%87%E7%B7%A8%E8%BC%AF"><span class="nav-text">指令下達與編輯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%90%9C%E5%B0%8B%E9%A0%86%E5%BA%8F"><span class="nav-text">指令搜尋順序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lionel223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lionel223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/05/18/introduce-bash-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lionel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lionel's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Unix] bash基本使用(1)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-05-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-18T00:00:00+00:00">2021-05-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-02 16:47:21" itemprop="dateModified" datetime="2021-06-02T16:47:21+00:00">2021-06-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/unix/" itemprop="url" rel="index"><span itemprop="name">unix</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">bash介紹與基本使用</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Shell介紹"><a href="#Shell介紹" class="headerlink" title="Shell介紹"></a>Shell介紹</h2><p>shell是一種介於使用者與頁面的一種介面，他的功能是讓使用者能夠藉由指令來操作作業系統。第一個流行的 shell 是由 Steven Bourne 發展出來的，為了紀念他，就稱之為 Bourne shell ，或直接簡稱為 sh。</p>
+<p>在許多作業系統都會提供shell，以Linux來說，他有bash、ksh、zsh…等等，其中bash是許多人用的一個shell。Bash已成為實際的 Linux標準。 這是因為 Bash 與 Unix 的第一個重大 Shell (Bourne Shell，也稱為 sh) 相容。Bash 納入了其前身的最佳功能。但是 Bash 本身也有其他功能，包括叫用外部程式的內建命令和功能，底下我們就來介紹Bash。</p>
+<p>Bash是管理Linux的一個工具，他是<strong>B</strong>ourne <strong>A</strong>gain <strong>Sh</strong>ell的縮寫，他是Bourne Shell的加強版本，我們可以從這個檔案<code>/etc/shells</code>來查看系統有哪些shell可以使用</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /etc/shells</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> List of acceptable shells <span class="keyword">for</span> chpass(1).</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Ftpd will not allow users to connect who are not using</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> one of these shells.</span></span><br><span class="line"></span><br><span class="line">/bin/bash</span><br><span class="line">/bin/csh</span><br><span class="line">/bin/dash</span><br><span class="line">/bin/ksh</span><br><span class="line">/bin/sh</span><br><span class="line">/bin/tcsh</span><br><span class="line">/bin/zsh</span><br></pre></td></tr></table></figure>
+
+<p>可以看到系統可以使用許多的sh，其中Linux預設的shell就是<code>/bin/bash</code>。</p>
+<h2 id="Bash功能"><a href="#Bash功能" class="headerlink" title="Bash功能"></a>Bash功能</h2><p>Bash有以下的功能</p>
+<ul>
+<li><p>命令記憶（Command history）</p>
+<p>bash可以記憶使用過的命令，只要按下按鍵『上下鍵』即可找到前後一個輸入的指令，預設的記憶數量有1000個，這些都會紀錄在檔案<code>~/.bash_history</code>內，不過這個檔案是紀錄前一次登入之前的指令，而此次登入的指令會暫存在記憶體中，等到登出後才會記錄到<code>~/.bash_history</code>內。不過這也有缺點，若被入侵時，可以往前翻先前的指令，即可知道你過去做過什麼操做了。</p>
+</li>
+<li><p>補全功能（tab completion）</p>
+<p>使用[tab]可以少打很多字，且可以確定輸入的指令/檔案名稱正確，使用[tab]的時機會依據在指令後或參數後而不同</p>
+<ul>
+<li>放在一串指令的第一個字的後面，可進行命令補全</li>
+<li>放在一串指令的第二個字以後，可進行檔案補齊</li>
+</ul>
+<p>若要找尋以mk為開頭的指令，只要輸入mk[tab]，即可列出全部mk為開頭的指令了</p>
+</li>
+<li><p>設定別名（alias）</p>
+<p>可使用指令<code>alias</code>來設定命令，可使用指令<code>alias</code>來取得目前的別名有哪些，也可使用此命令來設定別名</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 設定pb當作ansible-playbook的別名</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">alias</span> pb=<span class="string">&#x27;ansible-playbook&#x27;</span></span></span><br></pre></td></tr></table></figure></li>
+<li><p>工作控制（job control）</p>
+<p>可將工作丟到背景執行，而不用擔心不小心按了[Ctrl] + c停下process</p>
+</li>
+<li><p>shell scripts</p>
+<p>可設定環境變數與指令設計，寫一個簡單的腳本</p>
+</li>
+</ul>
+<ul>
+<li><p>萬用字元： (Wildcard)</p>
+<p>支援許多的萬用字元來幫助使用者查詢與指令下達。例如想知道<code>/user/bin</code>有哪些以X為開頭的檔案，只要使用指令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls -al /user/bin/X*</span><br></pre></td></tr></table></figure>
+
+<p>即可得知了，還有其他的萬用字元，之後再介紹。</p>
+</li>
+</ul>
+<h2 id="指令下達與編輯"><a href="#指令下達與編輯" class="headerlink" title="指令下達與編輯"></a>指令下達與編輯</h2><p>以下面的指令為例</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">command</span>  [-options]  parameter1  parameter2 ...</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一個輸入的部分一定是『指令(command)』或『可執行檔案(例如批次腳本,script)』</li>
+<li>command 為指令的名稱，例如變換工作目錄的指令為 cd 等等；</li>
+<li>加入選項設定時，通常選項前會帶<code>-</code>號，例如<code>-h</code>；若是使用選項的完整全名，則選項前帶有<code>--</code>符號，例如<code>--help</code>；</li>
+<li>parameter1 parameter2.. 為依附在選項後面的參數，或者是 command 的參數；</li>
+<li>指令, 選項, 參數等以空格來區分，不管空幾格 shell 都視為一格。</li>
+<li>使用[Enter]指令即會執行，[Enter]按鍵代表著一行指令的開始啟動。</li>
+<li>指令太長的時候，可以使用反斜線<code>\</code>來跳脫[Enter]符號，使指令連續到下一行，當跳脫後，下一行最前面就會出現<code>&gt;</code>符號，就可以繼續輸入指令囉。</li>
+</ul>
+<p>※ 在 Linux 系統中，英文大小寫字母是不一樣的。舉例來說， 指令<code>cd</code>與<code>CD</code>並不同。</p>
+<p>若想做編輯，一般可以使用刪除鍵以及左右鍵來移動、修改，或者也可以使用以下的組合鍵來操作</p>
+<ul>
+<li><p>刪除指令</p>
+<ul>
+<li><p>[ctrl]+u</p>
+<p>從游標處向前刪除指令串</p>
+</li>
+<li><p>[ctrl]+k</p>
+<p>從游標處向後刪除指令串</p>
+</li>
+</ul>
+</li>
+<li><p>移動游標指令</p>
+<ul>
+<li><p>[ctrl]+a</p>
+<p>讓游標移動到整個指令串的最前面</p>
+</li>
+<li><p>[ctrl]+e</p>
+<p>讓游標移動到整個指令串的最後面</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="指令搜尋順序"><a href="#指令搜尋順序" class="headerlink" title="指令搜尋順序"></a>指令搜尋順序</h2><p>當<code>ls</code>或是<code>echo</code>等等的指令被下達時，運作順序如下</p>
+<ol>
+<li>從相對/絕對路徑來執行指令，例如<code>/bin/ls</code>或是<code>./ls</code></li>
+<li>從<code>alias</code>找尋是否有該指令並執行</li>
+<li>從bash內建（builtin）指令搜尋並執行</li>
+<li>透過環境變數 <code>$PATH</code> 依序搜尋指令並執行</li>
+</ol>
+<p>指令 <code>/bin/ls</code> 與指令 <code>ls</code> 其實不同，指令<code>ls</code>執行後顯示的是有顏色的結果，這是因為他也是alias的，我們可以使用<code>type -a</code>來查看指令搜尋的順序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">type</span> -a ls</span><br><span class="line">ls is an <span class="built_in">alias</span> <span class="keyword">for</span> ls -G</span><br><span class="line">ls is /bin/ls</span><br></pre></td></tr></table></figure>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/learn/modules/bash-introduction/1-what-is-bash">What is Bash?</a></li>
+<li><a target="_blank" rel="noopener" href="https://crmne0707.pixnet.net/blog/post/319685660-bash-shell-%e7%b0%a1%e4%bb%8b">Bash shell 簡介</a></li>
+<li><a target="_blank" rel="noopener" href="http://linux.vbird.org/linux_basic/0320bash.php">鳥哥的 Linux 私房菜 – 第十章、認識與學習BASH</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/unix/" rel="tag"># unix</a>
+              <a href="/tags/bash/" rel="tag"># bash</a>
+              <a href="/tags/command/" rel="tag"># command</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/16/unix-command-tee/" rel="prev" title="[Unix] tee 指令介紹">
+                  <i class="fa fa-chevron-left"></i> [Unix] tee 指令介紹
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/19/introduce-bash-2/" rel="next" title="[Unix] bash基本使用(2)">
+                  [Unix] bash基本使用(2) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

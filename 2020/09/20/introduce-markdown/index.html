@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="markdown的基礎使用與介紹">
+<meta property="og:type" content="article">
+<meta property="og:title" content="markdown基礎使用">
+<meta property="og:url" content="https://lionel223.github.io/2020/09/20/introduce-markdown/index.html">
+<meta property="og:site_name" content="Lionel&#39;s Blog">
+<meta property="og:description" content="markdown的基礎使用與介紹">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-20T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-02T16:47:21.880Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="basic_introduction">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lionel223.github.io/2020/09/20/introduce-markdown/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2020&#x2F;09&#x2F;20&#x2F;introduce-markdown&#x2F;&quot;,&quot;path&quot;:&quot;2020&#x2F;09&#x2F;20&#x2F;introduce-markdown&#x2F;&quot;,&quot;title&quot;:&quot;markdown基礎使用&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>markdown基礎使用 | Lionel's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lionel's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-syntax"><span class="nav-text">Basic syntax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Block-elements"><span class="nav-text">Block elements</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Paragraphs-and-Line-Breaks"><span class="nav-text">Paragraphs and Line Breaks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Headers"><span class="nav-text">Headers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Blockquotes"><span class="nav-text">Blockquotes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Code-block"><span class="nav-text">Code block</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Horizontal-rules"><span class="nav-text">Horizontal rules</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPAN-ELEMENTS"><span class="nav-text">SPAN ELEMENTS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Link"><span class="nav-text">Link</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#inline-link"><span class="nav-text">inline link</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#reference-link"><span class="nav-text">reference link</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Emphasis"><span class="nav-text">Emphasis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Code"><span class="nav-text">Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Images"><span class="nav-text">Images</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#inline"><span class="nav-text">inline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#reference"><span class="nav-text">reference</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other"><span class="nav-text">Other</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Automatic-links"><span class="nav-text">Automatic links</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Backslash-escapes"><span class="nav-text">Backslash escapes</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extended-Syntax"><span class="nav-text">Extended Syntax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tables"><span class="nav-text">Tables</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Alignment"><span class="nav-text">Alignment</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fenced-Code-Blocks"><span class="nav-text">Fenced Code Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footnotes"><span class="nav-text">Footnotes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-Lists"><span class="nav-text">Definition Lists</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strikethrough"><span class="nav-text">Strikethrough</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Task-Lists"><span class="nav-text">Task Lists</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lionel223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lionel223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2020/09/20/introduce-markdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lionel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lionel's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          markdown基礎使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-09-20 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-20T00:00:00+00:00">2020-09-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-02 16:47:21" itemprop="dateModified" datetime="2021-06-02T16:47:21+00:00">2021-06-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">markdown的基礎使用與介紹</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Markdown是一種輕量級的標記式語言(用簡單句法描述簡單格式的文本語言)，使人可編寫簡單的文件，並轉成有效的HTML文件</p>
+<p>Markdown語法的主要目的是用來作為一種web寫作的一種格式</p>
+<p>其與HTML的部分有關，並非用來取代HTML的而是讓文件容易閱讀、編寫，也可在文件內編寫HTML，但要注意：markdown語法無法在HTML tag內被處理，以下介紹markdown的語法</p>
+<h2 id="Basic-syntax"><a href="#Basic-syntax" class="headerlink" title="Basic syntax"></a>Basic syntax</h2><h3 id="Block-elements"><a href="#Block-elements" class="headerlink" title="Block elements"></a>Block elements</h3><h4 id="Paragraphs-and-Line-Breaks"><a href="#Paragraphs-and-Line-Breaks" class="headerlink" title="Paragraphs and Line Breaks"></a>Paragraphs and Line Breaks</h4><p>一個段落是由一個以上相連接的行句組成，而一個以上的空行則會切分出不同的段落（空行的定義是顯示上看起來像是空行，便會被視為空行。比方說，若某一行只包含空白和tab，則該行也會被視為空行），一般的段落不需要用空白或斷行縮排。</p>
+<p>如果想插入<code>&lt;br /&gt;</code>標籤的話，在行尾加上兩個以上的空白，然後按enter。但這在Markdown中並不適合， Markdown中email式的blockquote(區塊引言)和多段落的list item在使用換行來排版的時候，不但更好用，還更好閱讀。</p>
+<h4 id="Headers"><a href="#Headers" class="headerlink" title="Headers"></a>Headers</h4><p>Markdown支援兩種header，Setext跟atx</p>
+<p>Setex-style的header是用底線(underlined)的形式，以下為範例</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section">This is an H1</span></span><br><span class="line"><span class="section">=============</span></span><br><span class="line"></span><br><span class="line"><span class="section">This is an H2</span></span><br><span class="line"><span class="section">-------------</span></span><br></pre></td></tr></table></figure>
+
+<p>Atx-style的header則是用1~6個<code>#</code>，例如</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># This is an H1</span></span><br><span class="line"></span><br><span class="line"><span class="section">## This is an H2</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Blockquotes"><a href="#Blockquotes" class="headerlink" title="Blockquotes"></a>Blockquotes</h4><p>Blockquotes類似e-mail的區塊引言，只要在每一行的最前面加上<code>&gt;</code>即可</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,</span></span><br><span class="line"><span class="quote">&gt; consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.</span></span><br><span class="line"><span class="quote">&gt; Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</span></span><br><span class="line"><span class="quote">&gt; </span></span><br><span class="line"><span class="quote">&gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse</span></span><br><span class="line"><span class="quote">&gt; id sem consectetuer libero luctus adipiscing.</span></span><br></pre></td></tr></table></figure>
+
+<p>也可在段落的第一行加上<code>&gt;</code></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,</span></span><br><span class="line">consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.</span><br><span class="line">Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse</span></span><br><span class="line">id sem consectetuer libero luctus adipiscing.</span><br></pre></td></tr></table></figure>
+
+<p>####List</p>
+<p>Markdown支援有序(order)與無序(unordered)清單</p>
+<p>#####Unorder(bulleted) list</p>
+<p>可使用 <code>*</code> 或 <code>+</code> 或 <code>-</code> 作為清單標記</p>
+<p>以下</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span> red</span><br><span class="line"><span class="bullet">*</span> green</span><br></pre></td></tr></table></figure>
+
+<p>等同於</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">+</span> red</span><br><span class="line"><span class="bullet">+</span> green</span><br></pre></td></tr></table></figure>
+
+<p>以及</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> red</span><br><span class="line"><span class="bullet">-</span> green</span><br></pre></td></tr></table></figure>
+
+<p>#####Order(numbered) List</p>
+<p>使用數字和點作為清單標記</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span>  Bird</span><br><span class="line"><span class="bullet">2.</span>  McHale</span><br></pre></td></tr></table></figure>
+
+<p>要注意的是前面的數字不影響HTML的輸出結果，上面的清單轉換成HTML會變成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>Bird<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>McHale<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>若是數字亂改，輸出結果也不變，但是不建議</p>
+<p>如果清單項目間用空行分開， Markdown 會把項目的內容在輸出時用 <code>&lt;p&gt;</code> 標籤包起來，舉例來說：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span>   Bird</span><br><span class="line"><span class="bullet">*</span>   Magic</span><br></pre></td></tr></table></figure>
+
+<p>會轉換成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Bird<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Magic<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span> Bird</span><br><span class="line"></span><br><span class="line"><span class="bullet">*</span> Magic</span><br></pre></td></tr></table></figure>
+
+<p>則會變成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">p</span>&gt;</span>Bird<span class="tag">&lt;/<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">p</span>&gt;</span>Magic<span class="tag">&lt;/<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>list也可以包含多個段落，段落必須用四個空白或是tab來顯示如下</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span>  This is a list item with two paragraphs. Lorem ipsum dolor</span><br><span class="line"><span class="code">    sit amet, consectetuer adipiscing elit. Aliquam hendrerit</span></span><br><span class="line"><span class="code">    mi posuere lectus.</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    Vestibulum enim wisi, viverra nec, fringilla in, laoreet</span></span><br><span class="line"><span class="code">    vitae, risus. Donec sit amet nisl. Aliquam semper ipsum</span></span><br><span class="line"><span class="code">    sit amet velit.</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="bullet">2.</span>  Suspendisse id sem consectetuer libero luctus adipiscing.</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在list裡使用引言(blockquote)，那<code>&gt;</code>就必須使用縮排(intent)</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span>   A list item with a blockquote:</span><br><span class="line"></span><br><span class="line"><span class="code">    &gt; This is a blockquote</span></span><br><span class="line"><span class="code">    &gt; inside a list item.</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>在list裡放入程式碼區塊(code block)，則要放入兩次縮排(八個空白或是兩個tab)</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span>   A list item with a code block:</span><br><span class="line"><span class="code">        &lt;code goes here&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>另外，有時可能不小心變成list，例如以下情況</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1986.</span> What a great season.</span><br></pre></td></tr></table></figure>
+
+<p>要避免誤變成list，可加上反斜線<code>/</code></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">1986\. What a great season.</span><br></pre></td></tr></table></figure>
+
+<h4 id="Code-block"><a href="#Code-block" class="headerlink" title="Code block"></a>Code block</h4><p>Markdown可用 <code>&lt;pre&gt;</code> 和 <code>&lt;code&gt;</code> 標籤來把程式碼區塊包起來。</p>
+<p>建立程式碼只要縮排 4 個空白或是 1 個 tab 就即可</p>
+<p>例如以下</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">This is a normal paragraph:</span><br><span class="line"></span><br><span class="line"><span class="code">    This is a code block.</span></span><br></pre></td></tr></table></figure>
+
+<p>將會轉換成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a normal paragraph:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span>&gt;</span>This is a code block.</span><br><span class="line"><span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Horizontal-rules"><a href="#Horizontal-rules" class="headerlink" title="Horizontal rules"></a>Horizontal rules</h4><p>可使用以下方式產生分隔線<code>&lt;hr /&gt;</code></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span> <span class="emphasis">* *</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**<span class="emphasis">*</span></span></span><br><span class="line"><span class="emphasis"><span class="strong"></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="strong">****</span>*</span></span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">- - -</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">---------------------------------------</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="SPAN-ELEMENTS"><a href="#SPAN-ELEMENTS" class="headerlink" title="SPAN ELEMENTS"></a>SPAN ELEMENTS</h3><h4 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h4><p>Markdown支援兩種形式的link：<code>inline</code> and <code>reference</code>，兩種形式的文字皆用square brackets <code>[]</code>表示</p>
+<h5 id="inline-link"><a href="#inline-link" class="headerlink" title="inline link"></a>inline link</h5><p>要產生inline link，需要在square brackets <code>[]</code>後加上regular parentheses <code>()</code>，其中regular parentheses內需要放入URL，若要加上link的title，則要在URL後面加上quotes，並將title文字放入quote內。</p>
+<p>例如以下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">This is [<span class="string">an example</span>](<span class="link">http://example.com/ &quot;Title&quot;</span>) inline link.</span><br><span class="line"></span><br><span class="line">[<span class="string">This link</span>](<span class="link">http://example.net/</span>) has no title attribute.</span><br></pre></td></tr></table></figure>
+
+<p>將產生</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://example.com/&quot;</span> <span class="attr">title</span>=<span class="string">&quot;Title&quot;</span>&gt;</span></span><br><span class="line">an example<span class="tag">&lt;/<span class="name">a</span>&gt;</span> inline link.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://example.net/&quot;</span>&gt;</span>This link<span class="tag">&lt;/<span class="name">a</span>&gt;</span> has no</span><br><span class="line">title attribute.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>若要連接至同樣server的其他位置，也可使用relative paths</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">See my [<span class="string">About</span>](<span class="link">/about/</span>) page for details.   </span><br></pre></td></tr></table></figure>
+
+<h5 id="reference-link"><a href="#reference-link" class="headerlink" title="reference link"></a>reference link</h5><p>reference link是使用兩個square bracket組成，第一個中括號放入連結文字，第二個中括號則是一個標籤</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">This is [<span class="string">an example</span>][<span class="symbol">id</span>] reference-style link.</span><br></pre></td></tr></table></figure>
+
+<p>兩個中括號間也可加上空白</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">This is [an example] [id] reference-style link.</span><br></pre></td></tr></table></figure>
+
+<p>最後，在此文件的任意的一個地方則可以定義標籤連結，此連結不會出現在文件中，只有產生連結時會用到</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="symbol">id</span>]: <span class="link">http://example.com/  &quot;Optional Title Here&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>連結的定義格式與順序：</p>
+<ol>
+<li>中括號，且裡面放入連結標籤((link identifier)</li>
+<li>放入colon，放入一或多個空白(tab也可)</li>
+<li>放入連結網址(URL)</li>
+<li>(optional)放入空格，以及title，title可用single或double quotes，或者使用parentheses也可(Markdown.pl 1.0.1可能忽略單引號的title)</li>
+</ol>
+<p>以下三種格式皆可</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="symbol">foo</span>]: <span class="link">http://example.com/  &quot;Optional Title Here&quot;</span></span><br><span class="line">[<span class="symbol">foo</span>]: <span class="link">http://example.com/  &#x27;Optional Title Here&#x27;</span></span><br><span class="line">[<span class="symbol">foo</span>]: <span class="link">http://example.com/  (Optional Title Here)</span></span><br></pre></td></tr></table></figure>
+
+<p>URL也可用angle brackets包起來</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="symbol">id</span>]: <span class="link">&lt;http://example.com/&gt;  &quot;Optional Title Here&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>title也可放在下一行，增加tab或space</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="symbol">id</span>]: <span class="link">http://example.com/longish/path/to/resource/here</span></span><br><span class="line"><span class="code">    &quot;Optional Title Here&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>link identifier可以使用letters, numbers, spaces, and punctuation(標點符號)，但連結不是case sensitive，所以以下兩個是相同的</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">link text</span>][<span class="symbol">a</span>]</span><br><span class="line">[<span class="string">link text</span>][<span class="symbol">A</span>]</span><br></pre></td></tr></table></figure>
+
+<p>implicit link可以讓我們忽略link名稱，此種情況下，link文字與link名稱會視為相同，要使用implicit link，只需要在link文字後加一個square brackets，範例如下</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">Google</span>][<span class="symbol"></span>]</span><br></pre></td></tr></table></figure>
+
+<p>標籤連結則可定義如下</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="symbol">Google</span>]: <span class="link">http://google.com/</span></span><br></pre></td></tr></table></figure>
+
+<p>標籤連結定義可以放在文件中的任一地方，建議可以放在段落後或文件後，類似註解</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">I get 10 times more traffic from [Google] [1] than from</span><br><span class="line">[Yahoo] [2] or [MSN] [3].</span><br><span class="line"></span><br><span class="line">  [1]: http://google.com/        &quot;Google&quot;</span><br><span class="line">  [2]: http://search.yahoo.com/  &quot;Yahoo Search&quot;</span><br><span class="line">  [3]: http://search.msn.com/    &quot;MSN Search&quot;</span><br></pre></td></tr></table></figure>
+
+<p>若改用implicit link則是</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">I get 10 times more traffic from [<span class="string">Google</span>][<span class="symbol"></span>] than from</span><br><span class="line">[<span class="string">Yahoo</span>][<span class="symbol"></span>] or [<span class="string">MSN</span>][<span class="symbol"></span>].</span><br><span class="line"></span><br><span class="line">  [google]: http://google.com/        &quot;Google&quot;</span><br><span class="line">  [yahoo]:  http://search.yahoo.com/  &quot;Yahoo Search&quot;</span><br><span class="line">  [msn]:    http://search.msn.com/    &quot;MSN Search&quot;</span><br></pre></td></tr></table></figure>
+
+<p>若使用inline link則是</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">I get 10 times more traffic from [<span class="string">Google</span>](<span class="link">http://google.com/ &quot;Google&quot;</span>)</span><br><span class="line">than from [<span class="string">Yahoo</span>](<span class="link">http://search.yahoo.com/ &quot;Yahoo Search&quot;</span>) or</span><br><span class="line">[<span class="string">MSN</span>](<span class="link">http://search.msn.com/ &quot;MSN Search&quot;</span>).</span><br></pre></td></tr></table></figure>
+
+<p>以上轉變成html：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>I get 10 times more traffic from <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://google.com/&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">title</span>=<span class="string">&quot;Google&quot;</span>&gt;</span>Google<span class="tag">&lt;/<span class="name">a</span>&gt;</span> than from</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://search.yahoo.com/&quot;</span> <span class="attr">title</span>=<span class="string">&quot;Yahoo Search&quot;</span>&gt;</span>Yahoo<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">or <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://search.msn.com/&quot;</span> <span class="attr">title</span>=<span class="string">&quot;MSN Search&quot;</span>&gt;</span>MSN<span class="tag">&lt;/<span class="name">a</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>reference-style links的重點不在於好寫，而是較易讀，將標記資訊移到段落外來增加文章閱讀性。</p>
+<h4 id="Emphasis"><a href="#Emphasis" class="headerlink" title="Emphasis"></a>Emphasis</h4><p>Markdown使用asterisks <code>*</code>與 underscores <code>_</code>當作強調的符號。當文字使用一個<code>*</code>或<code>_</code>，將會轉成<code>&lt;em&gt;</code>，兩個<code>*</code>或<code>_</code>時，則會轉成<code>&lt;strong&gt;</code>，例如</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*single asterisks*</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">_single underscores_</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**double asterisks**</span></span><br><span class="line"></span><br><span class="line"><span class="strong">__double underscores__</span></span><br></pre></td></tr></table></figure>
+
+<p>會轉成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>single asterisks<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>single underscores<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>double asterisks<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>double underscores<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>你可以使用各個符號，唯一限制是，若你用什麼符號開啟，就要用那個符號結束，另外若<code>*</code>與<code>_</code>兩邊都有空白時，只會被當成普通符號</p>
+<p>另外若只是要插入普通的<code>*</code>或<code>_</code>，則可使用backslash</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">\<span class="emphasis">*this text is surrounded by literal asterisks\*</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h4><p>若要加入一小段程式碼，可以使用反引號(backtick quotes (<code>`</code>)將其包起來，例如</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Use the <span class="code">`printf()`</span> function.</span><br></pre></td></tr></table></figure>
+
+<p>將產生</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Use the <span class="tag">&lt;<span class="name">code</span>&gt;</span>printf()<span class="tag">&lt;/<span class="name">code</span>&gt;</span> function.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果要在程式碼區段內插入反引號，你可以用多個反引號來開啟和結束程式碼區段：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">``There is a literal backtick (`</span>) here.``</span><br></pre></td></tr></table></figure>
+
+<p>這段語法會產生：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">code</span>&gt;</span>There is a literal backtick (`) here.<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在程式碼的起始與結束端皆加上一個空白，即可加入backtick delimiters<code>`</code></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">A single backtick in a code span: <span class="code">`` `</span> ``</span><br><span class="line"></span><br><span class="line">A backtick-delimited string in a code span: <span class="code">`` `</span>foo<span class="code">` `</span>`</span><br></pre></td></tr></table></figure>
+
+<p>會產生：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A single backtick in a code span: <span class="tag">&lt;<span class="name">code</span>&gt;</span>`<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A backtick-delimited string in a code span: <span class="tag">&lt;<span class="name">code</span>&gt;</span>`foo`<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在code的區段內，ampersands(<code>&amp;</code>) and angle brackets<code>&lt;&gt;</code>會被自動轉為HTML實體(HTML entities)，例如</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Please don&#x27;t use any <span class="code">`&lt;blink&gt;`</span> tags.</span><br></pre></td></tr></table></figure>
+
+<p>會轉為</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Please don&#x27;t use any <span class="tag">&lt;<span class="name">code</span>&gt;</span><span class="symbol">&amp;lt;</span>blink<span class="symbol">&amp;gt;</span><span class="tag">&lt;/<span class="name">code</span>&gt;</span> tags.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>也可如此</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">`&amp;#8212;`</span> is the decimal-encoded equivalent of <span class="code">`&amp;mdash;`</span>.</span><br></pre></td></tr></table></figure>
+
+<p>轉為</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">code</span>&gt;</span><span class="symbol">&amp;amp;</span>#8212;<span class="tag">&lt;/<span class="name">code</span>&gt;</span> is the decimal-encoded</span><br><span class="line">equivalent of <span class="tag">&lt;<span class="name">code</span>&gt;</span><span class="symbol">&amp;amp;</span>mdash;<span class="tag">&lt;/<span class="name">code</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Images"><a href="#Images" class="headerlink" title="Images"></a>Images</h4><p>Markdown可使用兩種格式去標記圖片：<em>inline</em>和_reference_</p>
+<h5 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h5><p>inline-style的語法如下</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg</span>)</span><br><span class="line"></span><br><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg &quot;Optional title&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>格式與順序：</p>
+<ol>
+<li><code>!</code>起始</li>
+<li>接著放入square brackets<code>[]</code>，裡面放入<code>alt</code> attribute(文字的替代文字)</li>
+<li>放入一組parentheses<code>()</code>，裡面放入圖片的URL</li>
+<li>(optional)放入title，可使用double或single quotes將其包起來</li>
+</ol>
+<h5 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h5><p>reference-style的語法如下</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">Alt text</span>][<span class="symbol">id</span>]</span><br></pre></td></tr></table></figure>
+
+<p><code>id</code>是圖片的reference，使用方式和link一樣</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="symbol">id</span>]: <span class="link">url/to/image  &quot;Optional title attribute&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>目前markdown尚無語法可設定圖片的寬高，若有需要也可使用HTML的<code>&lt;img&gt;</code> tags.</p>
+<h3 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h3><h4 id="Automatic-links"><a href="#Automatic-links" class="headerlink" title="Automatic links"></a>Automatic links</h4><p>Markdow支援簡短的形式產生URL和email，只要使用angle brackets將其包起來，則會變成link，例如：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="xml">&lt;http://example.com/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>將會轉成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://example.com/&quot;</span>&gt;</span>http://example.com/<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>email也類似，只是markdown會先進行部分隨機編碼，將文字轉成16進位，來混淆收集email的機器人(address-harvesting spambots)</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="xml">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>會轉成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;<span class="symbol">&amp;#x6D;</span><span class="symbol">&amp;#x61;</span>i<span class="symbol">&amp;#x6C;</span><span class="symbol">&amp;#x74;</span><span class="symbol">&amp;#x6F;</span>:<span class="symbol">&amp;#x61;</span><span class="symbol">&amp;#x64;</span><span class="symbol">&amp;#x64;</span><span class="symbol">&amp;#x72;</span><span class="symbol">&amp;#x65;</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="symbol">&amp;#115;</span><span class="symbol">&amp;#115;</span><span class="symbol">&amp;#64;</span><span class="symbol">&amp;#101;</span><span class="symbol">&amp;#120;</span><span class="symbol">&amp;#x61;</span><span class="symbol">&amp;#109;</span><span class="symbol">&amp;#x70;</span><span class="symbol">&amp;#x6C;</span>e<span class="symbol">&amp;#x2E;</span><span class="symbol">&amp;#99;</span><span class="symbol">&amp;#111;</span></span></span></span><br><span class="line"><span class="string"><span class="tag"><span class="symbol">&amp;#109;</span>&quot;</span>&gt;</span><span class="symbol">&amp;#x61;</span><span class="symbol">&amp;#x64;</span><span class="symbol">&amp;#x64;</span><span class="symbol">&amp;#x72;</span><span class="symbol">&amp;#x65;</span><span class="symbol">&amp;#115;</span><span class="symbol">&amp;#115;</span><span class="symbol">&amp;#64;</span><span class="symbol">&amp;#101;</span><span class="symbol">&amp;#120;</span><span class="symbol">&amp;#x61;</span></span><br><span class="line"><span class="symbol">&amp;#109;</span><span class="symbol">&amp;#x70;</span><span class="symbol">&amp;#x6C;</span>e<span class="symbol">&amp;#x2E;</span><span class="symbol">&amp;#99;</span><span class="symbol">&amp;#111;</span><span class="symbol">&amp;#109;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面將轉換成可點擊的<code>address@example.com</code>連結。</p>
+<p>(This sort of entity-encoding trick will indeed fool many, if not most, address-harvesting bots, but it definitely won’t fool all of them. It’s better than nothing, but an address published in this way will probably eventually start receiving spam.)</p>
+<hr>
+<h4 id="Backslash-escapes"><a href="#Backslash-escapes" class="headerlink" title="Backslash escapes"></a>Backslash escapes</h4><p>Markdown允許使用backslash<code>\</code>來產生一些語法中有意義的符號，對於下面符號提供backslash escapes功能</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">\   backslash</span><br><span class="line">`   backtick</span><br><span class="line">*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly braces</span><br><span class="line">[]  square brackets</span><br><span class="line">()  parentheses</span><br><span class="line">#   hash mark</span><br><span class="line">+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation mark</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Extended-Syntax"><a href="#Extended-Syntax" class="headerlink" title="Extended Syntax"></a>Extended Syntax</h2><h3 id="Tables"><a href="#Tables" class="headerlink" title="Tables"></a>Tables</h3><p>新增表格，可以使用三個或以上的hyphens<code>---</code>來產生各個欄位的標頭，並使用pipes<code>|</code>來分隔各個欄位，最後也可以增添pipes在表格的最後面，如下範例：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">| Syntax      | Description |</span><br><span class="line">| ----------- | ----------- |</span><br><span class="line">| Header      | Title       |</span><br><span class="line">| Paragraph   | Text        |</span><br></pre></td></tr></table></figure>
+
+<p>將會產生以下表格</p>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Header</td>
+<td align="left">Title</td>
+</tr>
+<tr>
+<td>Paragraph</td>
+<td align="left">Text</td>
+</tr>
+</tbody></table>
+<h4 id="Alignment"><a href="#Alignment" class="headerlink" title="Alignment"></a>Alignment</h4><p>也可使用align，將colon<code>:</code>放在hyphen<code>-</code>的左、右、或者兩邊，如下範例</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">| Syntax      | Description | Test Text     |</span><br><span class="line">| :---        |    :----:   |          ---: |</span><br><span class="line">| Header      | Title       | Here&#x27;s this   |</span><br><span class="line">| Paragraph   | Text        | And more      |</span><br></pre></td></tr></table></figure>
+
+<p>將產生以下表格</p>
+<table>
+<thead>
+<tr>
+<th align="left">Syntax</th>
+<th align="center">Description</th>
+<th align="right">Test Text</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Header</td>
+<td align="center">Title</td>
+<td align="right">Here’s this</td>
+</tr>
+<tr>
+<td align="left">Paragraph</td>
+<td align="center">Text</td>
+<td align="right">And more</td>
+</tr>
+</tbody></table>
+<h3 id="Fenced-Code-Blocks"><a href="#Fenced-Code-Blocks" class="headerlink" title="Fenced Code Blocks"></a>Fenced Code Blocks</h3><p>可以使用三個backticks <code>```</code>，或者三個tildes <code>~~~</code>來產生code blocks</p>
+<p>使用方式如下</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">​<span class="code">```</span></span><br><span class="line"><span class="code">&#123;</span></span><br><span class="line"><span class="code">  &quot;firstName&quot;: &quot;John&quot;,</span></span><br><span class="line"><span class="code">  &quot;lastName&quot;: &quot;Smith&quot;,</span></span><br><span class="line"><span class="code">  &quot;age&quot;: 25</span></span><br><span class="line"><span class="code">&#125;</span></span><br><span class="line"><span class="code">​```</span></span><br></pre></td></tr></table></figure>
+
+<p>此會產生</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">​```</span><br><span class="line">&#123;</span><br><span class="line">  &quot;firstName&quot;: &quot;John&quot;,</span><br><span class="line">  &quot;lastName&quot;: &quot;Smith&quot;,</span><br><span class="line">  &quot;age&quot;: 25</span><br><span class="line">&#125;</span><br><span class="line">​```</span><br></pre></td></tr></table></figure>
+
+<p>若要加上syntax highlighting，只要在backticks之後加上使用的語言即可</p>
+<p>使用方式如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">​```json</span><br><span class="line">&#123;</span><br><span class="line">  &quot;firstName&quot;: &quot;John&quot;,</span><br><span class="line">  &quot;lastName&quot;: &quot;Smith&quot;,</span><br><span class="line">  &quot;age&quot;: 25</span><br><span class="line">&#125;</span><br><span class="line">​```</span><br></pre></td></tr></table></figure>
+
+<p>此會產生</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;firstName&quot;</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;lastName&quot;</span>: <span class="string">&quot;Smith&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;age&quot;</span>: <span class="number">25</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Footnotes"><a href="#Footnotes" class="headerlink" title="Footnotes"></a>Footnotes</h3><p>註解可使你添加note或reference，當產生一個註解時，會有一個上標(superscript)以及連結，觀看者可以點這個連結，並跳到註解。</p>
+<p>要產生一個註解，需要在方括號(brackets)內添加插入符號(caret)和標識符(identifier)，例如<code>[^1]</code>，Identifiers可以是數字或文字，但不可以包含空格或tab</p>
+<p>範例如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Here&#x27;s a simple footnote,[^1] and here&#x27;s a longer one.[^bignote]</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^1</span>]: <span class="link">This is the first footnote.</span></span><br><span class="line"></span><br><span class="line">[<span class="symbol">^bignote</span>]: <span class="link">Here&#x27;s one with multiple paragraphs and code.</span></span><br><span class="line"></span><br><span class="line"><span class="code">    Indent paragraphs to include them in the footnote.</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    `&#123; my code &#125;`</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    Add as many paragraphs as you like.</span></span><br></pre></td></tr></table></figure>
+
+<p>會產生</p>
+<p>Here’s a simple footnote,[^1] and here’s a longer one.[^bignote]</p>
+<p>[^1]: This is the first footnote.</p>
+<p>[^bignote]: Here’s one with multiple paragraphs and code.</p>
+<pre><code>Indent paragraphs to include them in the footnote.
+
+`&#123; my code &#125;`
+
+Add as many paragraphs as you like.
+</code></pre>
+<h3 id="Definition-Lists"><a href="#Definition-Lists" class="headerlink" title="Definition Lists"></a>Definition Lists</h3><p>產生定義清單的方式，首先先寫下一行字段，並在下一行輸入colon<code>:</code>，以及一個空白，並輸入解釋</p>
+<p>使用方式如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">First Term</span><br><span class="line">: This is the definition of the first term.</span><br><span class="line"></span><br><span class="line">Second Term</span><br><span class="line">: This is one definition of the second term.</span><br><span class="line">: This is another definition of the second term.</span><br></pre></td></tr></table></figure>
+
+<p>其轉換成HTML如下</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>First Term<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>This is the definition of the first term.<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>Second Term<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>This is one definition of the second term. <span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>This is another definition of the second term.<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>最後會轉換成</p>
+<dl><dt>First Term</dt><dd>This is the definition of the first term.</dd></dl><dl><dt>Second Term<br>: This is one definition of the second term.</dt><dd>This is another definition of the second term.</dd></dl><h3 id="Strikethrough"><a href="#Strikethrough" class="headerlink" title="Strikethrough"></a>Strikethrough</h3><p>可以使用horizontal line來做出刪除文字功能，只要使用兩個tilde symbols<code>~~</code>分別放在字段的左和右即可</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">~~The world is flat~~. We now know that the world is round.</span><br></pre></td></tr></table></figure>
+
+<p>呈現結果如下</p>
+<p><del>The world is flat</del>. We now know that the world is round.</p>
+<h3 id="Task-Lists"><a href="#Task-Lists" class="headerlink" title="Task Lists"></a>Task Lists</h3><p>任務清單(task lists)使你可產生一個列表的複選框(checkboxes)，只要加上dash<code>-</code>以及一個內部有空格的brackets<code>[ ]</code>即可，若要勾選只要在brackets中間加入<code>x</code>即可(<code>[x]</code>)</p>
+<p>使用方法如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [x] Write the press release</span><br><span class="line"><span class="bullet">-</span> [ ] Update the website</span><br><span class="line"><span class="bullet">-</span> [ ] Contact the media</span><br></pre></td></tr></table></figure>
+
+<p>呈現結果如下</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Write the press release</li>
+<li><input disabled="" type="checkbox"> Update the website</li>
+<li><input disabled="" type="checkbox"> Contact the media</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.markdownguide.org/basic-syntax/">Basic Syntax Markdown Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.markdownguide.org/extended-syntax/">Extended Syntax</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Markdown">Markdown - 維基百科</a></li>
+<li><a target="_blank" rel="noopener" href="https://daringfireball.net/projects/markdown/syntax">Daring Fireball: Markdown Syntax Documentation</a></li>
+<li><a target="_blank" rel="noopener" href="https://markdown.tw/">Markdown語法說明</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/basic-introduction/" rel="tag"># basic_introduction</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/01/19/SSL-explanation/" rel="prev" title="SSL簡易說明">
+                  <i class="fa fa-chevron-left"></i> SSL簡易說明
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/14/vim-shortcuts/" rel="next" title="vim shortcuts">
+                  vim shortcuts <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

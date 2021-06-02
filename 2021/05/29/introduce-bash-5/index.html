@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="bash的資料流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Unix] bash基本使用(5)">
+<meta property="og:url" content="https://lionel223.github.io/2021/05/29/introduce-bash-5/index.html">
+<meta property="og:site_name" content="Lionel&#39;s Blog">
+<meta property="og:description" content="bash的資料流">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-29T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-02T16:47:21.880Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="unix">
+<meta property="article:tag" content="bash">
+<meta property="article:tag" content="command">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lionel223.github.io/2021/05/29/introduce-bash-5/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;05&#x2F;29&#x2F;introduce-bash-5&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;29&#x2F;introduce-bash-5&#x2F;&quot;,&quot;title&quot;:&quot;[Unix] bash基本使用(5)&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>[Unix] bash基本使用(5) | Lionel's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lionel's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stdin-stdout-and-stderr"><span class="nav-text">stdin, stdout and stderr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E6%B5%81%E9%87%8D%E5%B0%8E%E5%90%91-Data-stream-redirection"><span class="nav-text">資料流重導向(Data stream redirection)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E7%9A%84%E9%80%A3%E7%BA%8C%E5%9F%B7%E8%A1%8C"><span class="nav-text">命令的連續執行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipe"><span class="nav-text">Pipe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lionel223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lionel223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/05/29/introduce-bash-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lionel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lionel's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Unix] bash基本使用(5)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-05-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-29T00:00:00+00:00">2021-05-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-02 16:47:21" itemprop="dateModified" datetime="2021-06-02T16:47:21+00:00">2021-06-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/unix/" itemprop="url" rel="index"><span itemprop="name">unix</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">bash的資料流</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>什麼是資料流？在bash裡的資料流（data stream）指的就是執行指令時，指令可能從檔案讀取資料，也就是stdin，經過處理後，將資料輸出到螢幕上，輸出至螢幕時又分為成功與失敗的情況，分別是stdout與stderr。</p>
+<p>底下就來介紹這三個資料流（data stream）</p>
+<h2 id="stdin-stdout-and-stderr"><a href="#stdin-stdout-and-stderr" class="headerlink" title="stdin, stdout and stderr"></a>stdin, stdout and stderr</h2><p>當執行linux指令時，會有這三種資料流，底下就來詳細介紹</p>
+<ul>
+<li><p>標準輸入（stdin，standard input）</p>
+<p>將資料輸出給檔案或程式。例如將檔案資料輸入至指令 <code>cat</code> </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat ./XXX.txt</span><br></pre></td></tr></table></figure></li>
+<li><p>標準輸出（stdout，standard output）</p>
+<p>當執行一個執行檔，若執行成功時，會在螢幕上輸出的訊息。例如使用指令 <code>cat</code> 顯示XXX.txt檔案後所得到的訊息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat ./XXX.txt</span><br><span class="line">...ignore</span><br></pre></td></tr></table></figure></li>
+<li><p>標準錯誤輸出（stderr，standard error output）</p>
+<p>當執行一個執行檔，若執行失敗時，會在螢幕上輸出的錯誤訊息。例如使用指令<code>cat</code>顯示一個不存在的檔案所得到的錯誤訊息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 此檔案不存在</span></span><br><span class="line">$ cat ./YYY.txt</span><br><span class="line">[bat error]: <span class="string">&#x27;XXX.txt&#x27;</span>: No such file or directory (os error 2)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>一般正確或錯誤的資料預設都是輸出至螢幕上，如果要分析時就會很麻煩，我們也可以透過資料流重導向（data stream redirection）將資料導向至其他地方</p>
+<h2 id="資料流重導向-Data-stream-redirection"><a href="#資料流重導向-Data-stream-redirection" class="headerlink" title="資料流重導向(Data stream redirection)"></a>資料流重導向(Data stream redirection)</h2><p>對於輸出而言，資料流重導向就是將原本輸入的訊息，就是將顯示在螢幕的訊息改為存放到檔案裡；對於輸入而言，則是將輸入訊息的來源，從「使用者輸入」改為「從檔案輸入」，要達成這件事情，就需要使用到特殊字元</p>
+<table>
+<thead>
+<tr>
+<th align="left">Data stream</th>
+<th>value</th>
+<th>redirection symbol</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">標準輸入（stdin）</td>
+<td><code>0</code></td>
+<td><code>&lt;</code> or <code>&lt;&lt;</code></td>
+</tr>
+<tr>
+<td align="left">標準輸出（stdout）</td>
+<td><code>1</code></td>
+<td><code>&gt;</code> or <code>&gt;&gt;</code></td>
+</tr>
+<tr>
+<td align="left">標準錯誤輸出（stderr）</td>
+<td><code>2</code></td>
+<td><code>2&gt;</code> or <code>2&gt;&gt;</code></td>
+</tr>
+</tbody></table>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><ol>
+<li><p>列出根目錄 <code>/</code> 的檔案、屬性</p>
+<ul>
+<li><p><strong>將結果顯示在螢幕上</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ll /</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>結果不顯示在螢幕上，而是新增一個檔案rootfile，並將原本顯示在螢幕的資料放入此檔案（overwrite）</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 沒有output</span></span><br><span class="line">$ ll / &gt; ~/rootfile</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>若檔案不存在時，使用 <code>&gt;</code> 與 <code>&gt;&gt;</code> 皆會自動建立檔案</li>
+<li>使用 <code>&gt;</code> 輸出檔案至一個已存在的檔案時，檔案會被覆蓋（overwrite）</li>
+<li>若想要檔案被累加（append），可使用 <code>&gt;&gt;</code></li>
+<li>使用 <code>&gt;</code> 或 <code>&gt;&gt;</code>，預設表示 <code>1&gt;</code> 或 <code>1&gt;&gt;</code></li>
+</ul>
+</li>
+<li><p><strong>結果不顯示在螢幕上，而是將資料累加在檔案rootfile裡（append）</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 沒有output</span></span><br><span class="line">$ ll / &gt;&gt; ~/rootfile</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>使用一般身份查詢<code>.bashrc</code>檔案是否存在</p>
+<ul>
+<li><p><strong>將全部結果顯示在螢幕上</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 搜尋根目錄時，可能會有permission denied的錯誤訊息</span></span><br><span class="line">$ find /home -name .bashrc</span><br><span class="line">find: /home/xxx/: Permission denied  &lt;=stderr</span><br><span class="line">/home/lionel/.bashrc                 &lt;=stdout</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>將stderr儲存入檔案裡</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 將stderr放入檔案裡，此時stdout的資料仍會顯示在螢幕上</span></span><br><span class="line">$ find /home -name .bashrc 2&gt; ~/errorlog</span><br><span class="line">/home/lionel/.bashrc</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>若檔案不存在時，使用 <code>2&gt;</code> 與 <code>2&gt;&gt;</code> 皆會自動建立檔案</li>
+<li>使用 <code>2&gt;</code> 輸出檔案至一個已存在的檔案時，檔案會被覆蓋（overwrite）</li>
+<li>若想要檔案被累加（append），可使用 <code>2&gt;&gt;</code></li>
+</ul>
+</li>
+<li><p><strong>將stdout跟stderr的資料分別寫到不同檔案</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 此時螢幕不會顯示任何output訊息</span></span><br><span class="line">$ find /home -name .bashrc &gt; list_right 2&gt; list error</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>將stdout跟stderr的資料分別寫到同一檔案</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 錯誤</span></span><br><span class="line">$ find /home -name .bashrc &gt; list 2&gt; list</span><br><span class="line"><span class="comment"># 正確</span></span><br><span class="line">$ find /home -name .bashrc &gt; list 2&gt;&amp;1 list</span><br><span class="line">$ find /home -name .bashrc &amp;&gt; list</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一個錯誤的原因是因為兩種資料同時寫入一個檔案，沒使用特殊語法的話，會造成資料交叉寫入，造成次序錯亂</li>
+<li>要寫入同一個檔案可使用特殊語法 <code>2&gt;&amp;1</code> 或是 <code>&amp;&gt;</code></li>
+</ul>
+</li>
+<li><p><strong>【特殊情況】將stdout內容轉寫到stderr</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 仍會顯示，但已將stdout轉到stderr</span></span><br><span class="line">$ fine /home/lionel -name .bashrc 1&gt;&amp;2</span><br><span class="line">/home/lionel/.bashrc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不會顯示，因為將stdout轉到stderr，但stderr會被拋入/dev/null內</span></span><br><span class="line">$ fine /home/lionel -name .bashrc 2&gt; /dev/null 1&gt;&amp;2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>前面使用<code>2&gt;&amp;1</code>的方式來將 <code>2&gt;</code> 的內容轉到 <code>1&gt;</code> 去，那 <code>1&gt;&amp;2</code> 則是反過來的情況</li>
+</ul>
+</li>
+<li><p><strong>僅顯示stdout，拋棄stderr</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ find /home -name .bashrc 2&gt; /dev/null</span><br><span class="line">/home/lionel/.bashrc</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>若要將資訊拋棄，不顯示也不儲存，可將資料導入<code>/dev/null</code>，<code>/dev/null</code>可以吃掉導向這裡的資訊</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>指令 <code>cat</code> 的進階應用</p>
+<p>前面了解的stdout與stderr，<code>&lt;</code> 表示的則是「將原本由鍵盤輸入的資料，改由檔案來取代」，也就是「使用者輸入」改為「從檔案輸入」</p>
+<ul>
+<li><p><strong>使用指令 <code>cat</code> 建立一個檔案的簡單流程</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat &gt; catfile</span><br><span class="line">abc</span><br><span class="line">cat file <span class="built_in">test</span></span><br><span class="line"><span class="comment"># 按下[ctrl] + d 離開</span></span><br><span class="line"></span><br><span class="line">$ cat catfile</span><br><span class="line">abc</span><br><span class="line">cat file <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>將 <code>&gt;</code> 加在指令 <code>cat</code> 之後，<em>catfile</em> 會被主動建立，其內容就是後面使用鍵盤輸入的兩行資料，但我們也可以使用某個檔案的內容來取代鍵盤輸入</li>
+</ul>
+</li>
+<li><p><strong>使用stdin取代鍵盤輸入，並使用指令 <code>cat</code> 建立一個檔案的簡單流程</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat &gt; catfile &lt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>此時會將 <em>~/.bashrc</em> 內的檔案寫入 <em>catfile</em> 內，<em>catfile</em> 與 <em>~/.bashrc</em> 兩個檔案會幾乎一模一樣，就像是使用指令<code>cp</code>一樣</li>
+</ul>
+</li>
+<li><p><strong>使用指令 <code>cat</code> 將輸入的訊息輸出至 <em>catfile</em> 中，且鍵盤輸入eof時，當次輸入即結束</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat &gt; catfile &lt;&lt; <span class="string">&quot;eof&quot;</span></span><br><span class="line">&gt; abc</span><br><span class="line">&gt; cat file <span class="built_in">test</span></span><br><span class="line">&gt; eof</span><br><span class="line"><span class="comment"># 輸入eof關鍵字即結束，不需輸入 [ctrl] + d</span></span><br><span class="line"></span><br><span class="line">$ cat catfile</span><br><span class="line">abc</span><br><span class="line">cat file <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>&lt;&lt;</code> 表示結束的「輸入字元」，當看到此輸入字元，即可中止一次輸入，而不必輸入 <code>[ctrl] + d</code> 來結束</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="命令的連續執行"><a href="#命令的連續執行" class="headerlink" title="命令的連續執行"></a>命令的連續執行</h2><p>有些指令想要一次輸入去執行，可用以下的符號來一次執行多重指令</p>
+<ul>
+<li><p><code>;</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cmd;cmd</span><br></pre></td></tr></table></figure>
+
+<p>此指令是使用在不考慮指令相關性的連續指令下達，指令之間使用分號 <code>;</code> 分隔，分號前的指令執行後會立刻執行後面的指令</p>
+<p>ex. 執行兩次sync同步然後shutdown電腦</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sync; sync; shutdown -h now</span><br></pre></td></tr></table></figure></li>
+<li><p><code>$?</code></p>
+<p>若是指令有相依性，需判斷前面指令是否正確，此時可使用指令回傳值 <code>$?</code>，指令回傳值是一個變數，其表示</p>
+<p>「當前一個指令執行結果為正確時，會回傳 <code>$?=0</code> 的值」，可使用指令 <code>echo $?</code> 來查看其值。</p>
+<p>可藉由 <code>&amp;&amp;</code>、<code>||</code> 來查看指令回傳值，判斷後續指令是否執行</p>
+</li>
+<li><p><code>&amp;&amp;</code>、<code>||</code></p>
+<p>以下介紹這兩個符號的使用方式</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cmd1 &amp;&amp; cmd2</code></td>
+<td>1. <code>cmd1</code>執行完畢且正確執行（<code>$?=0</code>），執行<code>cmd2</code><br />2. <code>cmd1</code>執行完畢且錯誤（<code>$?≠0</code>），不執行<code>cmd2</code></td>
+</tr>
+<tr>
+<td>`cmd1</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><ol>
+<li><p>建立檔案</p>
+<ul>
+<li><p>檢查目錄是否存在，若存在則在底下建立檔案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ls /tmp/abc &amp;&amp; touch /tmp/abc/def.txt</span><br><span class="line">ls: cannot access /tmp/abc: No such file or directory</span><br><span class="line"><span class="comment"># ls指令出錯，但沒有touch指令的錯誤，touch指令沒有執行</span></span><br><span class="line"></span><br><span class="line">$ mkdir /tmp/abc</span><br><span class="line">$ ls /tmp/abc &amp;&amp; touch /tmp/abc/def.txt</span><br><span class="line"><span class="comment"># 此時可成功執行touch</span></span><br></pre></td></tr></table></figure></li>
+<li><p>檢查目錄是否存在，若不存在則建立，存在則不做其他事</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ls /tmp/abc || mkdir /tmp/abc</span><br><span class="line"><span class="comment"># 成功建立目錄</span></span><br></pre></td></tr></table></figure></li>
+<li><p>不管目錄存不存在，要在底下建立檔案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ls /tmp/abc || mkdir /tmp/abc &amp;&amp; touch /tmp/abc/def.txt</span><br></pre></td></tr></table></figure>
+
+<p>Linux的指令都是由左往右執行的，此範例有以下幾種情況</p>
+<ul>
+<li>情況一<ol>
+<li>若 <code>/tmp/abc</code> 不存在，則回傳 <code>$?≠0</code></li>
+<li><code>||</code> 遇到 <code>$?≠0</code>，執行指令 <code>mkdir</code> 並成功執行，回傳 <code>$?=0</code></li>
+<li><code>&amp;&amp;</code> 遇到 <code>$?=0</code>，執行指令 <code>touch</code>，成功建立檔案</li>
+</ol>
+</li>
+<li>情況二<ol>
+<li>若 <code>/tmp/abc</code> 存在，則回傳 <code>$?=0</code></li>
+<li><code>||</code> 遇到 <code>$?≠0</code>，不執行執行指令 <code>mkdir</code>，<code>$?=0</code> 繼續往後傳</li>
+<li><code>&amp;&amp;</code> 遇到 <code>$?=0</code>，執行指令 <code>touch</code>，成功建立檔案</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Pipe"><a href="#Pipe" class="headerlink" title="Pipe"></a>Pipe</h2><p>與前面的連續執行命令不同，有時會需要將輸出的資料經過一些處理後，才會得到我們所需要的格式，這時我們就可以使用pipe（<code>|</code>）。例如我們想查看 <em>/etc/</em> 底下有多少檔案，但他底下有太多檔案，會立刻將螢幕塞滿，這時就可以搭配指令 <code>less</code> 的協助將指令 <code>ls</code> 的輸出的內容被指令 <code>less</code> 讀取</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ls -al /etc | less</span><br></pre></td></tr></table></figure>
+
+<p>Pipe（<code>|</code>）主要有以下幾點要注意</p>
+<ul>
+<li>Pipe可以處理前一個指令的stdout，對於stderr沒有直接處理能力（遇到stderr會忽略）</li>
+<li>Pipe會接受前一個指令的stdout，並變成下個指令的stdin繼續處理</li>
+<li>後面的指令必須可接受stdin的資料，例如指令 <code>less</code>、<code>more</code>、<code>grep</code>、<code>tail</code> 皆可，而<code>ls</code>、<code>cp</code>、<code>mv</code> 則不可</li>
+</ul>
+<p>※ 若想讓stderr也被pipe處理的話，可使用 <code>2&gt;&amp;1</code>，即可讓stderr跟stdout一起被處理</p>
+<p>使用Pipe時，經常需要使用前一個指令的stdout作為下個指令的stdin，有些指令會需要使用檔案名城處理，這時stdin與stdout可以使用減號 <code>-</code> 來替代，例如以下例子</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir /tmp/homeback</span><br><span class="line">$ tar -cvf - /home | tar -xvf - -C /tmp/homeback</span><br></pre></td></tr></table></figure>
+
+<p>這個例子是將 <em>/home</em> 的檔案打包，但打包的資料不紀錄到檔案，而是傳到stdout，經由pipe將 <code>tar -cvf - /home</code> 傳送給後面的 <code>tar -xvf -</code>，後面的<code>-</code>是來取用前一個指令的stdout，所以此時就不需要使用filename了。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://linux.vbird.org/linux_basic/0320bash.php">鳥哥的 Linux 私房菜 – 第十章、認識與學習BASH</a></li>
+<li><a target="_blank" rel="noopener" href="https://crmne0707.pixnet.net/blog/post/319927706-bash-%e6%a8%99%e6%ba%96%e8%bc%b8%e5%85%a5%e8%88%87%e8%bc%b8%e5%87%ba">bash 標準輸入與輸出</a></li>
+<li><a target="_blank" rel="noopener" href="https://crmne0707.pixnet.net/blog/post/320177606-bash-%e9%80%a3%e7%ba%8c%e5%9f%b7%e8%a1%8c%e5%91%bd%e4%bb%a4">bash 連續執行命令</a></li>
+<li><a target="_blank" rel="noopener" href="https://crmne0707.pixnet.net/blog/post/320177804-bash-%E7%AE%A1%E7%B7%9A%E7%AC%A6%E8%99%9F">bash 管線符號</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/unix/" rel="tag"># unix</a>
+              <a href="/tags/bash/" rel="tag"># bash</a>
+              <a href="/tags/command/" rel="tag"># command</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/25/jvm-parameter/" rel="prev" title="jvm parameter介紹">
+                  <i class="fa fa-chevron-left"></i> jvm parameter介紹
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/30/unix-crontab/" rel="next" title="[Unix] crontab介紹">
+                  [Unix] crontab介紹 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

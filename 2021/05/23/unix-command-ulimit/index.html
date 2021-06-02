@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="介紹常用的unix指令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Unix] ulimit 指令介紹">
+<meta property="og:url" content="https://lionel223.github.io/2021/05/23/unix-command-ulimit/index.html">
+<meta property="og:site_name" content="Lionel&#39;s Blog">
+<meta property="og:description" content="介紹常用的unix指令">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-23T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-02T16:47:21.880Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="unix">
+<meta property="article:tag" content="bash">
+<meta property="article:tag" content="command">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lionel223.github.io/2021/05/23/unix-command-ulimit/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;05&#x2F;23&#x2F;unix-command-ulimit&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;23&#x2F;unix-command-ulimit&#x2F;&quot;,&quot;title&quot;:&quot;[Unix] ulimit 指令介紹&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>[Unix] ulimit 指令介紹 | Lionel's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lionel's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Command-Syntax"><span class="nav-text">Command Syntax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E9%A4%98%E7%9A%84%E8%A8%AD%E5%AE%9A"><span class="nav-text">其餘的設定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#etc-security-limits-conf"><span class="nav-text">&#x2F;etc&#x2F;security&#x2F;limits.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#etc-sysctl-conf"><span class="nav-text">&#x2F;etc&#x2F;sysctl.conf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-2"><span class="nav-text">Example 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lionel223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lionel223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/05/23/unix-command-ulimit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lionel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lionel's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Unix] ulimit 指令介紹
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-05-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-23T00:00:00+00:00">2021-05-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-02 16:47:21" itemprop="dateModified" datetime="2021-06-02T16:47:21+00:00">2021-06-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/unix/" itemprop="url" rel="index"><span itemprop="name">unix</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">介紹常用的unix指令</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><code>ulimit</code>是unix的一個指令，他是shell使用來管控系統資源的指令，可以限制使用者的某些系統資源</p>
+<p>使用指令<code>man ulimit</code>來看他的描述</p>
+<blockquote>
+<p>Provides control over the resources available to the shell and to processes started by it, on systems that allow such control.</p>
+</blockquote>
+<h2 id="Command-Syntax"><a href="#Command-Syntax" class="headerlink" title="Command Syntax"></a>Command Syntax</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> [-SHacdfltu] [<span class="built_in">limit</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>OPTIONS</code><ul>
+<li><code>-H</code> - hard limit，不可超過這個設定數值</li>
+<li><code>-S</code> - soft limit，可以超過這個設定數值，但會有警告訊息，通常 soft limit 比 hard limit 小</li>
+<li><code>-a</code> - 後面若不接選項、參數，則列出所有限制額度</li>
+<li><code>-c</code> - 程式發生錯誤時，系統可能會將該程式在記憶體中的資訊寫成檔案(除錯用)，這種檔案就被稱為核心檔案(core file)。此為限制每個核心檔案的最大容量。</li>
+<li><code>-f</code> - 此 shell 可以建立的最大檔案容量（Kbytes）</li>
+<li><code>-d</code> - 程序可使用的最大斷裂記憶體(segment)容量</li>
+<li><code>-l</code> - 可用於鎖定 (lock) 的記憶體量</li>
+<li><code>-t</code> - 可使用的最大 CPU 時間（Second）</li>
+<li><code>-u</code> - 單一使用者可以使用的最大程序(process)數量</li>
+<li><code>-n</code> - 開啟檔案數限制</li>
+</ul>
+</li>
+<li><code>limit</code> - 給予的配額</li>
+</ul>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><ul>
+<li><p>列出目前身份的所有限制</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -a</span><br><span class="line">core file size          (blocks, -c) 0 <span class="comment"># 0表示沒限制</span></span><br><span class="line">data seg size           (kbytes, -d) unlimited</span><br><span class="line">scheduling priority             (-e) 0</span><br><span class="line">file size               (blocks, -f) unlimited</span><br><span class="line">pending signals                 (-i) 31356</span><br><span class="line">max locked memory       (kbytes, -l) 64</span><br><span class="line">max memory size         (kbytes, -m) unlimited</span><br><span class="line">open files                      (-n) 1024</span><br><span class="line">pipe size            (512 bytes, -p) 8</span><br><span class="line">POSIX message queues     (bytes, -q) 819200</span><br><span class="line">real-time priority              (-r) 0</span><br><span class="line">stack size              (kbytes, -s) 8192</span><br><span class="line">cpu time               (seconds, -t) unlimited</span><br><span class="line">max user processes              (-u) 4096</span><br><span class="line">virtual memory          (kbytes, -v) unlimited</span><br><span class="line">file locks                      (-x) unlimited</span><br></pre></td></tr></table></figure></li>
+<li><p>取得使用者的開啟檔案數的soft limit與hard limit</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -Hn</span><br><span class="line">1048576</span><br><span class="line">$ <span class="built_in">ulimit</span> -Sn</span><br><span class="line">1024</span><br></pre></td></tr></table></figure></li>
+<li><p>限制使用者僅能建立 10MBytes 以下的容量的檔案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -f 10240</span><br><span class="line">$ <span class="built_in">ulimit</span> -a | grep <span class="string">&#x27;file size&#x27;</span></span><br><span class="line">core file size          (blocks, -c) 0</span><br><span class="line">file size               (blocks, -f) 10240</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>※ 此方式設定後，只要登出再登入即可復原，一般身份使用者如果以<code>ulimit</code>設定了<code>-f</code>的檔案大小， 那麼他『只能繼續減小檔案容量，不能增加檔案容量』</p>
+<h2 id="其餘的設定"><a href="#其餘的設定" class="headerlink" title="其餘的設定"></a>其餘的設定</h2><h3 id="etc-security-limits-conf"><a href="#etc-security-limits-conf" class="headerlink" title="/etc/security/limits.conf"></a>/etc/security/limits.conf</h3><p>除了使用指令<code>ulimit</code>來控制資源外，還可以透過<code>/etc/security/limits.conf</code>這個檔案來設定，這個檔案是通過PAM登入的使用者設定資源限制，其內容如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/security/limits.conf</span><br><span class="line">...ignore</span><br><span class="line"><span class="comment">#&lt;domain&gt;      &lt;type&gt;  &lt;item&gt;         &lt;value&gt;</span></span><br><span class="line">@student        hard    fsize          90000</span><br><span class="line">...ignore</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一個欄位是帳號或群組，若是群組前面需加上@，若是*，表示所有使用者</span></span><br><span class="line"><span class="comment"># 第二個欄位是限制的依據，可以是hard或是soft</span></span><br><span class="line"><span class="comment"># 第三個欄位是相關限制，這邊限制的是檔案容量</span></span><br><span class="line"><span class="comment"># 第四個欄位是限制的值，這邊單位是KB</span></span><br><span class="line"><span class="comment"># 也可開啟檔案查看敘述</span></span><br></pre></td></tr></table></figure>
+
+<p>這個檔案是設定完即生效，但他對於已登入的使用者是無效的，需要再次登入才能生效</p>
+<h3 id="etc-sysctl-conf"><a href="#etc-sysctl-conf" class="headerlink" title="/etc/sysctl.conf"></a>/etc/sysctl.conf</h3><p>前一個說的<code>/etc/security/limit.conf</code>是對特定使用者設定資源限制，<code>/etc/sysctl.conf</code> 則是用於設定系統範圍的資源限制，他的內容都對應於<code>/proc/sys/</code>這個目錄的子目錄與文件，<code>/proc</code>是每次系統啟動時重新掛載的，他顯示系統內存的一些狀態，透過<code>/proc</code>可以了解當前系統的一些訊息，而<code>/proc/sys/</code>只是其一小部分而已</p>
+<p>以下就來顯示<code>/etc/sysctl.conf</code>的內容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/sysctl.conf</span><br><span class="line">fs.file-max = 10000000 </span><br><span class="line">fs.nr_open = 10000000</span><br></pre></td></tr></table></figure>
+
+<p>等號左邊的<code>fs.file-max</code>，可以這樣解讀，每個<code>.</code>分割的代表一個目錄，<code>fs.file-max</code>代表的是<code>/proc/sys/fs.file-max</code></p>
+<p>一般設定<code>sysctl.conf</code>參數的方法有以下幾個</p>
+<ol>
+<li><p>使用指令直接編輯</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> value &gt; /proc/sys/oo/xx</span><br></pre></td></tr></table></figure></li>
+<li><p>使用vim編輯</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/sysctl.conf</span><br><span class="line"><span class="comment">#...編輯後使用以下指令使其生效</span></span><br><span class="line">$ sysctl -p</span><br></pre></td></tr></table></figure></li>
+<li><p>使用指令sysctl編輯</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sysctl -w fs.file-max=<span class="string">&quot;10000000&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>※ 需注意<code>/etc/sysctl.conf</code>與指令<code>sysctl</code>的修改都要root才有權限執行</p>
+<h2 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h2><ul>
+<li><p>執行程式時遇到錯誤<code>Can&#39;t open so many files</code>的處理方式</p>
+<p>此問題可能是允許可開啟檔案的上限不夠，需要增加 <code>open files</code> 的數目，可能需要增加open file的數目，需要在<code>/etc/security/limits.conf</code>新增nofile的設定</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/security/limits.conf</span><br><span class="line"><span class="comment"># 新增以下兩行</span></span><br><span class="line">* soft nofile unlimited</span><br><span class="line">* hard nofile unlimited</span><br></pre></td></tr></table></figure>
+
+<p>設定完並跳出後，此設定才生效，此時你會發現你無法登入VM了，這是因為除了<code>/etc/security/limits.conf</code>，還有<code>/proc/sys</code>需要修改，在這邊列出遇到此問題需要修改的參數</p>
+<table>
+<thead>
+<tr>
+<th align="left">參數</th>
+<th align="left">意義</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>soft nofile</code> ( <code>/etc/security/limits.conf</code> )</td>
+<td align="left">使用者自己設的最大控制代碼數限制（超過後會有警告）</td>
+</tr>
+<tr>
+<td align="left"><code>hard nofile</code> ( <code>/etc/security/limits.conf</code> )</td>
+<td align="left">root 給每個使用者設定的最大控制代碼數限制。</td>
+</tr>
+<tr>
+<td align="left"><code>/proc/sys/fs/nr_open</code></td>
+<td align="left">單程序的最大控制代碼數限制。</td>
+</tr>
+<tr>
+<td align="left"><code>/proc/sys/fs/file-max</code></td>
+<td align="left">系統最多可以分配的檔案控制代碼。</td>
+</tr>
+</tbody></table>
+<p>這幾個參數由大到小分別是</p>
+<p><code>/proc/sys/fs/file-max </code>&gt; <code>/proc/sys/fs/nr_open</code> &gt; <code>hard nofile</code> &gt; <code>soft nofile</code></p>
+<p>若是設定了<code>/etc/security/limits.conf</code>的<code>nofile</code>而已，可能就會導致無法登入VM（root也一樣）</p>
+<p>這個例子是先前開發程式時遇到的一個錯誤，也在此紀錄一下</p>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://linux.vbird.org/linux_basic/0320bash.php">鳥哥的 Linux 私房菜 – 第十章、認識與學習BASH</a></li>
+<li><a target="_blank" rel="noopener" href="http://linux.vbird.org/linux_basic/0410accountmanager.php">鳥哥的 Linux 私房菜 – 第十三章、Linux 帳號管理與 ACL 權限設定</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.osc.edu/resources/getting_started/howto/howto_use_ulimit_command_to_set_soft_limits">HOWTO: Use ulimit command to set soft limits</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linuxtechi.com/set-ulimit-file-descriptors-limit-linux-servers">How to set ulimit and file descriptors limit on Linux Servers</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.unixlinux.online/unixlinux/linuxjc/linuxjc/201702/36274.html">Linux系統控制文件 /etc/sysctl.conf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gushiciku.cn/pl/23TZ/zh-tw">SSH 登陸問題及排查思路</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/unix/" rel="tag"># unix</a>
+              <a href="/tags/bash/" rel="tag"># bash</a>
+              <a href="/tags/command/" rel="tag"># command</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/22/introduce-bash-3/" rel="prev" title="[Unix] bash基本使用(3)">
+                  <i class="fa fa-chevron-left"></i> [Unix] bash基本使用(3)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/23/introduce-bash-4/" rel="next" title="[Unix] bash基本使用(4)">
+                  [Unix] bash基本使用(4) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
