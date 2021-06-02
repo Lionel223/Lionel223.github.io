@@ -40,3 +40,9 @@ validation-report.json
 # Folders to ignore
 node_modules
 _temp-posts
+
+
+db.json
+public/
+.deploy*/
+tmp
