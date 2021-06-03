@@ -2174,10 +2174,6 @@ pre code {
   font-size: 0.875em;
   margin-top: 2px;
 }
-.posts-expand .post-meta-container time {
-  border-bottom: 1px dashed #999;
-  cursor: pointer;
-}
 .post-meta {
   display: flex;
   flex-wrap: wrap;
