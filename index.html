@@ -127,7 +127,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -183,6 +183,143 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/06/04/introduce-bash-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lionel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lionel's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/06/04/introduce-bash-6/" class="post-title-link" itemprop="url">[Unix] bash基本使用(6)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-06-04 01:30:16" itemprop="dateCreated datePublished" datetime="2021-06-04T01:30:16+00:00">2021-06-04</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/unix/" itemprop="url" rel="index"><span itemprop="name">unix</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>前面所提到的命令別名與自訂變數，若沒做任何設定時，只要登出bash就會失效了，要將這些設定寫入設定檔，才能保留這些設定，下面就來介紹這些設定檔。</p>
+<h2 id="Bash的環境設定檔"><a href="#Bash的環境設定檔" class="headerlink" title="Bash的環境設定檔"></a>Bash的環境設定檔</h2><p>首先，會根據進入 shell 時是否有登入，分為 login shell 與 non-login shell，若是使用圖形介面登入，並開啟 terminal時，這時不需輸入帳密，此時的 bash 環境就稱為 non-login shell，在此 bash 下達 指令 <code>bash</code>，也不需輸入帳密，這個 bash 子程序也是 non-login shell</p>
+<p>這兩個情況取得的設定檔資料會不同，login shell會讀取以下兩個設定檔</p>
+<ul>
+<li><code>/etc/profile</code> - 系統設定，通常不會動</li>
+<li><code>~/.bash_profile</code> or <code>~/.bash_login</code> or <code>~/.profile</code> - 個人設定，只會讀取其中一個，讀取順序依據前面的順序</li>
+</ul>
+<p>non-login shell 則只會讀取 <code>~/.bashrc</code> 而已</p>
+<p>※ 當修改了 bash 環境設定檔後，一般都要登出再登入，設定才能生效，不過也可以使用指令 <code>source</code> 來將設定檔重新讀入現在的環境，以下是使用方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span> 設定檔檔名</span><br><span class="line"></span><br><span class="line"><span class="comment"># ex. 將~/.bashrc的設定檔讀入目前的環境，下面兩種方式皆可</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.bashrc</span><br><span class="line">$ . ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="終端機環境設定"><a href="#終端機環境設定" class="headerlink" title="終端機環境設定"></a>終端機環境設定</h2><p>登入 bash 時，我們可以使用 backspace 按鍵來刪除字元，也可以使用 [ctrl] + c 終止指令，除此以外，還有其餘的按鍵，可以透過指令 <code>stty</code>（setting tty）來查看</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 列出全部的stty參數</span></span><br><span class="line">$ stty -a</span><br></pre></td></tr></table></figure>
+
+<p>底下列出幾個比較重要的按鍵</p>
+<table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>按鍵</th>
+<th>意義</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>intr</td>
+<td>^C</td>
+<td>送出interrupt訊號給正在執行的程序（中止）</td>
+</tr>
+<tr>
+<td>kill</td>
+<td>^U</td>
+<td>刪除目前指令的所有文字</td>
+</tr>
+<tr>
+<td>eof</td>
+<td>^D</td>
+<td>End of file，輸入結束</td>
+</tr>
+<tr>
+<td>start</td>
+<td>^Q</td>
+<td>恢復螢幕輸出</td>
+</tr>
+<tr>
+<td>stop</td>
+<td>^S</td>
+<td>暫停螢幕輸出</td>
+</tr>
+<tr>
+<td>susp</td>
+<td>^Z</td>
+<td>暫停目前命令</td>
+</tr>
+</tbody></table>
+<p>※ <code>intr = ^C</code> 此部分的 <code>^</code> 表示 ctrl 的意思</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://linux.vbird.org/linux_basic/0320bash.php">鳥哥的 Linux 私房菜 – 第十章、認識與學習BASH</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/05/31/jvm-heap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -214,7 +351,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-03 14:24:15" itemprop="dateModified" datetime="2021-06-03T14:24:15+00:00">2021-06-03</time>
+        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -301,7 +438,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-03 14:24:15" itemprop="dateModified" datetime="2021-06-03T14:24:15+00:00">2021-06-03</time>
+        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -388,7 +525,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-03 14:24:15" itemprop="dateModified" datetime="2021-06-03T14:24:15+00:00">2021-06-03</time>
+        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -475,7 +612,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-03 14:24:15" itemprop="dateModified" datetime="2021-06-03T14:24:15+00:00">2021-06-03</time>
+        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -562,7 +699,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-03 14:24:15" itemprop="dateModified" datetime="2021-06-03T14:24:15+00:00">2021-06-03</time>
+        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -649,7 +786,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-03 14:24:15" itemprop="dateModified" datetime="2021-06-03T14:24:15+00:00">2021-06-03</time>
+        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -736,7 +873,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-03 14:24:15" itemprop="dateModified" datetime="2021-06-03T14:24:15+00:00">2021-06-03</time>
+        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -823,7 +960,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-03 14:24:15" itemprop="dateModified" datetime="2021-06-03T14:24:15+00:00">2021-06-03</time>
+        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -910,7 +1047,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-03 14:24:15" itemprop="dateModified" datetime="2021-06-03T14:24:15+00:00">2021-06-03</time>
+        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -936,93 +1073,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/05/18/introduce-bash-1/">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/05/16/unix-command-tee/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lionel">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lionel's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/05/16/unix-command-tee/" class="post-title-link" itemprop="url">[Unix] tee 指令介紹</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-05-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-16T00:00:00+00:00">2021-05-16</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-03 14:24:15" itemprop="dateModified" datetime="2021-06-03T14:24:15+00:00">2021-06-03</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/unix/" itemprop="url" rel="index"><span itemprop="name">unix</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>介紹常用的unix指令</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/16/unix-command-tee/">
                 Read more &raquo;
               </a>
             </div>
