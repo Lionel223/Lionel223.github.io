@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="test">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git團隊使用手冊讀後心得">
+<meta property="og:url" content="https://lionel223.github.io/2021/06/14/git-for-teams-1/index.html">
+<meta property="og:site_name" content="Lionel&#39;s Blog">
+<meta property="og:description" content="test">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png">
+<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig04-github-flow.png">
+<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig08-gitflow-dev-features.png">
+<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig09-gitflow-release-branch.png">
+<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig10-gitflow-release-bug.png">
+<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig11-gitflow-master.png">
+<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig12-gitflow-hotfix.png">
+<meta property="article:published_time" content="2021-06-14T04:39:16.000Z">
+<meta property="article:modified_time" content="2021-06-14T07:11:46.419Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="github">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png">
+
+
+<link rel="canonical" href="https://lionel223.github.io/2021/06/14/git-for-teams-1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;06&#x2F;14&#x2F;git-for-teams-1&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;14&#x2F;git-for-teams-1&#x2F;&quot;,&quot;title&quot;:&quot;git團隊使用手冊讀後心得&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>git團隊使用手冊讀後心得 | Lionel's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lionel's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%98%E9%9A%8A%E4%BD%9C%E6%A5%AD%E7%9A%84%E5%AD%98%E5%8F%96%E6%A8%A1%E5%9E%8B"><span class="nav-text">團隊作業的存取模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%98%E9%9A%8A%E4%BD%9C%E6%A5%AD%E7%9A%84%E5%88%86%E6%94%AF%E6%96%B9%E6%B3%95"><span class="nav-text">團隊作業的分支方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%B8%E6%93%87%E5%88%86%E6%94%AF%E7%AD%96%E7%95%A5%E7%9A%84%E6%85%A3%E4%BE%8B"><span class="nav-text">選擇分支策略的慣例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E7%B7%9A%E5%88%86%E6%94%AF%E9%96%8B%E7%99%BC"><span class="nav-text">主線分支開發</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E5%8A%9F%E8%83%BD%E4%B8%80%E5%88%86%E6%94%AF%E9%83%A8%E7%BD%B2"><span class="nav-text">一功能一分支部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Github-Flow"><span class="nav-text">Github Flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8B%80%E6%85%8B%E5%88%86%E6%94%AF"><span class="nav-text">狀態分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B"><span class="nav-text">範例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%98%E9%9A%8A%E7%9A%84%E4%BD%9C%E6%A5%AD%E7%A8%8B%E5%BA%8F"><span class="nav-text">團隊的作業程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%9C%E6%A5%AD%E7%A8%8B%E5%BA%8F"><span class="nav-text">基本作業程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%97%E4%BF%A1%E4%BB%BB%E9%96%8B%E7%99%BC%E4%BA%BA%E5%93%A1%E6%90%AD%E9%85%8D%E5%90%8C%E5%84%95%E5%AF%A9%E6%A0%B8"><span class="nav-text">受信任開發人員搭配同儕審核</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E4%BF%A1%E4%BB%BB%E9%96%8B%E7%99%BC%E4%BA%BA%E5%93%A1%E6%90%AD%E9%85%8D-QA-%E5%AE%88%E9%96%80%E5%93%A1"><span class="nav-text">未信任開發人員搭配 QA 守門員</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lionel223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lionel223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/06/14/git-for-teams-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lionel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lionel's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git團隊使用手冊讀後心得
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-06-14 04:39:16 / Modified: 07:11:46" itemprop="dateCreated datePublished" datetime="2021-06-14T04:39:16+00:00">2021-06-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">test</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本書以使用者的角度介紹git，觀看團隊的作業方式，以及個別命令的使用時機，以下就來摘要我的理解，本文主要介紹各種作業方式。</p>
+<h2 id="團隊作業的存取模型"><a href="#團隊作業的存取模型" class="headerlink" title="團隊作業的存取模型"></a>團隊作業的存取模型</h2><p>Git 是個分散式版本控制系統，所以使用者要記錄更動時，不需使用同樣的地方，每個使用者都可在程式碼代管系統之外獨立工作，以下就來介紹幾種常見的git工作模式：</p>
+<ul>
+<li><p>共用的貢獻者儲存庫（Collocated Contributor Repository）</p>
+<p>要貢獻的開發人員建立遠端的專案副本，由專案維護者決定是否接受，也就是用 merge request 或是 pull request 的形式送出更動的需求，這種方式常用於開放原始碼的開發方式</p>
+</li>
+<li><p>共享維護儲存庫</p>
+<p>團隊所有人都是維護者，都有上傳更動到 repository 的權限。這種方式常用於內部團隊或一人團隊，團隊成員彼此有一定的互信</p>
+</li>
+</ul>
+<p>除了以上方式，團隊也常會混用多種模式。</p>
+<h2 id="團隊作業的分支方法"><a href="#團隊作業的分支方法" class="headerlink" title="團隊作業的分支方法"></a>團隊作業的分支方法</h2><p>在 Git 裡面，分支（branch）是一種隔離平行概念的方法，branch 的建立可能用來呈獻成果，或者分離成果。</p>
+<p>我們選擇的分支策略（branching strategy）會與發布管理程序有關，其中一個作法如下，依據軟體版本，分成 <code>v1.0.0</code>、<code>v1.0.1</code>、<code>v1.0.2</code>，其中某些版本裡面可能又有其他正在進行的想法，這些想法就會依據他們所代表的意義而分為不同的 branch，這些 branch 可能是 bug 的修正，也可能是新的功能。</p>
+<p>在使用 branch 前，我們會希望有一些人為的限制（慣例），讓開發人員可以快速了解專案執行的模式。</p>
+<h3 id="選擇分支策略的慣例"><a href="#選擇分支策略的慣例" class="headerlink" title="選擇分支策略的慣例"></a>選擇分支策略的慣例</h3><p>慣例是指大家一致同意對事情的處理方式，可讓開發人員快速了解專案執行的模式，並將各自的成果可順利整合。</p>
+<p>一般的軟體專案，團隊一般會分成兩種主要做法，一個是持續整合[^1]（continuous integration）；另一個則是檢查完所有完成的結果，再一併發佈，在這兩者中還有許多的變形。以下就來介紹數種分支策略的慣例</p>
+<p>[^1]: 持續整合（continuous integration）：開發人員每段時間多次將各自的成果整合到專案的主線分支；持續發布（continuous delivery）：開發人員上傳伺服器的部分自動化；持續部署（continuous deployment）：自動化最完整的定義，開發人員上傳後會通過程式測試，通過後自動部署到伺服器</p>
+<h4 id="主線分支開發"><a href="#主線分支開發" class="headerlink" title="主線分支開發"></a>主線分支開發</h4><p>主線分支（mainline branch）是最簡單的方式，開發人員持續將成果記錄到單一分支，上去的分支都是已測試的結果，通常用於單人作業。但當人員變多時，就越難追蹤所有的概念想法，這時就需要建立新的 branch，等到各自完成工作，並將成果整合後，分支數量才會下降。</p>
+<p>到了這種情況下，讓團隊經常將成果整合到主線分支，但只有特定的時間部署可能才是比較合理的做法，也就是離開持續部署策略，轉為定期部署的方式。</p>
+<p>持續整合的分支策略有以下優點</p>
+<ul>
+<li>不會有太多分支，較不會找不到更動發生的位置</li>
+<li>紀錄較小，發生問題很快能復原</li>
+<li>發布到主分支的程式應都可供部署，所以較不會有緊急修正，藉由經常性的更新使部署過程越來越頻繁，最終自動化，使用者也不會感覺部署發生</li>
+</ul>
+<p>但也有他的缺點</p>
+<ul>
+<li>若團隊沒有測試基礎設施，隨專案越來越複雜，風險會越來越高</li>
+<li>『部署』只適合自動下載到使用者設備的程式（ex. 網站），若是需使用者自行下載安裝的軟體則不適合此方式</li>
+</ul>
+<h4 id="一功能一分支部署"><a href="#一功能一分支部署" class="headerlink" title="一功能一分支部署"></a>一功能一分支部署</h4><p>另一個方式則是引入兩種類型的分支，分別是功能分支（feature branch）與整合分支（integration branch），這兩個不算是不同類型的分支，只是記錄的成果類型不太一樣，以下來詳細介紹。</p>
+<p>所有的新成果都要在 feature branch 完成，且盡量不要太大，只包含一個完整的概念，功能。featute branch 可透過 integration branch 來取得其他人的最新成果，到了需要發布時，再選擇此次要包含哪些功能，並為部署建立新的 integration branch</p>
+<p><img src="../image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png" alt="03fig03-integration-branch"></p>
+<h4 id="Github-Flow"><a href="#Github-Flow" class="headerlink" title="Github Flow"></a>Github Flow</h4><p>所有在 master branch 的內容都是可部署的狀態，若要開發新的功能時，則需用一個可描述的名稱建立新的 branch，功能完成時會對 master branch 發出 pull request。</p>
+<p>到這裡都和前一個方式相同，但其差異就在部署的方式。在前一個模型部署時，需明確選擇要納入部署的 feature，但 Github Flow 則是 pull request 被接受時，就會將其 feature branch 轉為可供部署，先部署 feature branch，若沒有錯誤，就會將 feature branch 合併進入 master branch；若 feature branch 有任何問題，也可以重新部署 master branch</p>
+<p><img src="../image/2021-06-14-git-for-teams-1/03fig04-github-flow.png" alt="03fig03-integration-branch"></p>
+<p>使用以上兩種方式有以下優點：</p>
+<ul>
+<li>與主線開發類似，可專注在程式碼的快速部署</li>
+<li>有個可選擇性採用的建置步驟，可選擇哪些功能要納入主線部署</li>
+</ul>
+<p>以下是其缺點</p>
+<ul>
+<li>若有功能在 feature branch，且沒立即合併至 master branch，在合併至可部署之前，需額外維持其功能與 master branch 一致</li>
+<li>額外維護分支結構，舊的 branch 合併至 master branch 後，也須將舊的 branch 移除</li>
+</ul>
+<h4 id="狀態分支"><a href="#狀態分支" class="headerlink" title="狀態分支"></a>狀態分支</h4><p>與前面不同，將各個分支部署到特定的環境，此方式又被稱為 GitLab Flow 模型。GitlLab FLow 透過分支命名明確顯示此程式碼的環境，例如 release 表示正式環境。</p>
+<p>此方式有以下優點</p>
+<ul>
+<li>不用猜測個分支作用</li>
+</ul>
+<p>但也有以下缺點</p>
+<ul>
+<li>需有指引才能明確知道該從哪個分支開始</li>
+<li>分支名稱與情境有緊密關係，較難在不同專案間建立相同結構</li>
+</ul>
+<h3 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h3><p>接下來的範例是使用一個專案，逐步實作 GitFlow 的過程</p>
+<p>一開始專案只有一個 develop branch，開發人員都從這個 branch 建立各自的 branch 來開發功能、修 bug、或是重構等等，開始時做時可以以工單（ticket）來描述，且 branch 的名稱也會包含工單名稱。</p>
+<p><img src="../image/2021-06-14-git-for-teams-1/03fig08-gitflow-dev-features.png" alt="03fig08-gitflow-dev-features"></p>
+<p>之後開始工作，到了某個時間後會決定不會有新功能了，此時稱為功能凍結（feature freeze）開始測試，這個時候會從 develop branch 建立一個新的分支，此處稱為 release 1.0</p>
+<p><img src="../image/2021-06-14-git-for-teams-1/03fig09-gitflow-release-branch.png" alt="03fig09-gitflow-release-branch"></p>
+<p>，只有 bug 修正才會記錄到這個 branch。需注意，feature freeze 時並非表示功能都已完成，此時仍有其餘工作成果被合併到 develop branch，若有 bug 也會修正回去 develop branch，測試的時間越長，越長需要在 develop 與 release1.0 branch 上作業。</p>
+<p><img src="../image/2021-06-14-git-for-teams-1/03fig10-gitflow-release-bug.png" alt="03fig10-gitflow-release-bug"></p>
+<p>經過一段時間的測試後，產品即可上線，經過測試的程式碼會被記錄到新的 branch master，並且加上 tag</p>
+<p><img src="../image/2021-06-14-git-for-teams-1/03fig11-gitflow-master.png" alt="03fig11-gitflow-master"></p>
+<p>如果發現一個需立即修正的 bug 時，則需做緊急修正（hotfix），此時會從 master branch 中建立新的 branch，所以發布緊急修正時，不會包含後來的功能，最後這個修正的 bug 也要被合併回去 develop branch 中</p>
+<p><img src="../image/2021-06-14-git-for-teams-1/03fig12-gitflow-hotfix.png" alt="03fig12-gitflow-hotfix"></p>
+<p>使用這種定期部署的方式有以下優點</p>
+<ul>
+<li>不需在初期就建立全面的測試</li>
+<li>有分版本的軟體很適合這種方式，不需要每隔幾天就部署一份新的版本</li>
+</ul>
+<p>也有以下缺點</p>
+<ul>
+<li>用錯 branch 需要費一番功夫才能回復</li>
+</ul>
+<h2 id="團隊的作業程序"><a href="#團隊的作業程序" class="headerlink" title="團隊的作業程序"></a>團隊的作業程序</h2><p>前面介紹了存取模型、分支方法，到最後開發人員使用 git 的方式就會越來越複雜，這時候最好將開發時的程序記錄下來，例如底下這個作業程序的樣板</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">PM: <span class="xml"><span class="tag">&lt;<span class="name">name</span>&gt;</span></span></span><br><span class="line">Site: <span class="xml"><span class="tag">&lt;<span class="name">URL</span>&gt;</span></span></span><br><span class="line">Branch deployed on dev site: <span class="xml"><span class="tag">&lt;<span class="name">branch_name</span>&gt;</span></span></span><br><span class="line">Start a dev ticket: <span class="xml"><span class="tag">&lt;<span class="name">branch_name</span>&gt;</span></span></span><br><span class="line">hotfix ticket: <span class="xml"><span class="tag">&lt;<span class="name">branch_name</span>&gt;</span></span></span><br><span class="line">update work, use: <span class="xml"><span class="tag">&lt;<span class="name">git_command</span>&gt;</span></span></span><br><span class="line">merge work post review, use: <span class="xml"><span class="tag">&lt;<span class="name">git_command</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>以下介紹數個情境下的作業程序</p>
+<h3 id="基本作業程序"><a href="#基本作業程序" class="headerlink" title="基本作業程序"></a>基本作業程序</h3><p>此流程適合沒有同儕審核需求的小型團隊，當團隊成長、或是採用的特殊的品保程序，此方式可能會不太成熟，不能符合需求，其特色如下</p>
+<ul>
+<li>治理模型：貢獻者共同維護</li>
+<li>整合合併：開發人員操作</li>
+<li>整合分支：develop branch</li>
+</ul>
+<p>作業程序如下：</p>
+<ol>
+<li>開發人員開始作業程序時，將工單更新為進行中，並從 develop branch 建立工單的 branch，名稱包含工單編號以及工作內容的簡單說明</li>
+<li>處理工單時，要注意隨時與 master branch 的狀態一致，且所有的紀錄訊息（commit message）都應以中括號標記工單名稱，例如工單為1234，commit message 就應以 <code>[#1234]</code> 開頭，後面補上訊息的描述</li>
+<li>處理完畢時，將工單標記為 Resolved，commit message也需做最後一次的紀錄，例如工單1234完成後，commit message標註為 Resolves #1234</li>
+<li>將工單的 branch 推送至遠端儲存庫，因紀錄訊息已包含必要的關鍵字，可讓工單追蹤系統將功單移往下個階段</li>
+<li>於工單系統填寫處理紀錄，確保工單的 branch 有反映主分支的其他更動後，將工單 branch 合併至 develop branch</li>
+<li>若沒其他問題，即可關閉工單，刪除工單 branch</li>
+</ol>
+<p>※ 某些工單系統在前面加 <code>#</code> 可以自動將commit message連結到工單號碼，不用一定要用 <code>#</code> 來紀錄工單訊息</p>
+<h3 id="受信任開發人員搭配同儕審核"><a href="#受信任開發人員搭配同儕審核" class="headerlink" title="受信任開發人員搭配同儕審核"></a>受信任開發人員搭配同儕審核</h3><p>接下來再加上同儕審核作為延伸，所有的工單都要其他成員審核程式碼，其特色如下</p>
+<ul>
+<li>治理模型：貢獻者共同維護</li>
+<li>整合合併：審核者執行</li>
+<li>整合分支：develop branch</li>
+</ul>
+<p>作業程序如下：</p>
+<ol>
+<li>開發人員開始作業程序時，將工單更新為進行中，並從 develop branch 建立工單的 branch，名稱包含工單編號以及工作內容的簡單說明</li>
+<li>處理工單時，要注意隨時與 master branch 的狀態一致，且所有的紀錄訊息（commit message）都應以中括號標記工單名稱，例如工單為1234，commit message 就應以 <code>[#1234]</code> 開頭，後面補上訊息的描述</li>
+<li>將工單的 branch 推至遠端儲存庫作為備份</li>
+<li>處理完工單後，確保 branch 與 develop branch 最新狀態一致，再將工單狀態改為需測試</li>
+<li>若需人工審核，審核者須根據工單描述檢視成果，必要的話需將工單送回給開發人員進行修正，或是解決與 develop branch 不一致的狀況</li>
+<li>審核者將工單 branch 合併至 develop branch，若沒有錯誤的話，審核者關閉工單，並告知開發人員其功單已經合併，並由審核者刪除工單 branch 的遠端複本</li>
+</ol>
+<h3 id="未信任開發人員搭配-QA-守門員"><a href="#未信任開發人員搭配-QA-守門員" class="headerlink" title="未信任開發人員搭配 QA 守門員"></a>未信任開發人員搭配 QA 守門員</h3><p>此為前一個的變形，未信任的開發人員不可將各自成果合併至主分支，而是透過品保（quaility assurance，QA）進行最終的合併，其特色如下</p>
+<ul>
+<li>治理模型：共險者使用同一個代管系統</li>
+<li>整合合併：審核者執行</li>
+<li>整合分支：develop branch</li>
+</ul>
+<p>作業程序如下：</p>
+<p>首先開發人員須建立專案的 fork，並從 fork 建立主機副本，以下行為皆是在 fork 操作，其步驟大致上類似前一節</p>
+<ol>
+<li>前面步驟 1、2、3、4 皆一樣，開發人員須為自己成果建立 pull request</li>
+<li>接下來由審核者執行，審核者須根據工單描述檢視成果，必要的話需將工單送回給開發人員進行修正，或是解決與 develop branch 不一致的狀況</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.tenlong.com.tw/products/9789864762453">Git 團隊使用手冊 (Git for Teams: A User-Centered Approach to Creating Efficient Workflows in Git)</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/git/" rel="tag"># git</a>
+              <a href="/tags/github/" rel="tag"># github</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/04/introduce-bash-6/" rel="prev" title="[Unix] bash基本使用(6)">
+                  <i class="fa fa-chevron-left"></i> [Unix] bash基本使用(6)
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="comment-button-group">
+          <a class="btn comment-button disqus">disqus</a>
+          <a class="btn comment-button disqusjs">disqusjs</a>
+      </div>
+        <div class="comment-position disqus">
+          
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+        </div>
+        <div class="comment-position disqusjs">
+          
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+        </div><script data-pjax src="/js/comments-buttons.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{&quot;enable&quot;:&quot;ture&quot;,&quot;shortname&quot;:&quot;lionel223&quot;,&quot;count&quot;:false,&quot;i18n&quot;:{&quot;disqus&quot;:&quot;disqus&quot;}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css" integrity="sha256-GxdCIOyfxQ1OBfS99qAIJDoGK1ADuBsxhMTqXG82fAY=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{&quot;enable&quot;:true,&quot;api&quot;:&quot;https:&#x2F;&#x2F;disqus.skk.moe&#x2F;disqus&#x2F;&quot;,&quot;apikey&quot;:&quot;qQdEARuomIWB3sp0lcWI1GaWdJfiagymjTPsXp1E8IJiISMeuM5kaHUdXK87bHPx&quot;,&quot;shortname&quot;:&quot;lionel223&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;disqusjs@1.3.0&#x2F;dist&#x2F;disqus.js&quot;,&quot;integrity&quot;:&quot;sha256-LVaMHPQ2zLqOc5rXSAfr4d1PIkEGNLyyUTDNPZmTtUw&#x3D;&quot;}}</script>
+<script src="/js/third-party/comments/disqusjs.js"></script>
+
+</body>
+</html>

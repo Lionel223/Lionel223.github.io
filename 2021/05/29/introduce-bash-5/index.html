@@ -28,7 +28,7 @@
 <meta property="og:description" content="bash的資料流">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-29T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-08T14:58:49.509Z">
+<meta property="article:modified_time" content="2021-06-14T07:11:46.419Z">
 <meta property="article:author" content="Lionel">
 <meta property="article:tag" content="unix">
 <meta property="article:tag" content="bash">
@@ -135,20 +135,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -223,7 +223,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
+        <time title="Modified: 2021-06-14 07:11:46" itemprop="dateModified" datetime="2021-06-14T07:11:46+00:00">2021-06-14</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -252,13 +252,17 @@
 <ul>
 <li><p>標準輸入（stdin，standard input）</p>
 <p>將資料輸出給檔案或程式。例如將檔案資料輸入至指令 <code>cat</code> </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat ./XXX.txt</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat ./XXX.txt</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>標準輸出（stdout，standard output）</p>
 <p>當執行一個執行檔，若執行成功時，會在螢幕上輸出的訊息。例如使用指令 <code>cat</code> 顯示XXX.txt檔案後所得到的訊息</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat ./XXX.txt</span><br><span class="line">...ignore</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat ./XXX.txt</span><br><span class="line">...ignore</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>標準錯誤輸出（stderr，standard error output）</p>
 <p>當執行一個執行檔，若執行失敗時，會在螢幕上輸出的錯誤訊息。例如使用指令<code>cat</code>顯示一個不存在的檔案所得到的錯誤訊息</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 此檔案不存在</span></span><br><span class="line">$ cat ./YYY.txt</span><br><span class="line">[bat error]: <span class="string">&#x27;XXX.txt&#x27;</span>: No such file or directory (os error 2)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 此檔案不存在</span></span><br><span class="line">$ cat ./YYY.txt</span><br><span class="line">[bat error]: <span class="string">&#x27;XXX.txt&#x27;</span>: No such file or directory (os error 2)</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
 <p>一般正確或錯誤的資料預設都是輸出至螢幕上，如果要分析時就會很麻煩，我們也可以透過資料流重導向（data stream redirection）將資料導向至其他地方</p>
 <h2 id="資料流重導向-Data-stream-redirection"><a href="#資料流重導向-Data-stream-redirection" class="headerlink" title="資料流重導向(Data stream redirection)"></a>資料流重導向(Data stream redirection)</h2><p>對於輸出而言，資料流重導向就是將原本輸入的訊息，就是將顯示在螢幕的訊息改為存放到檔案裡；對於輸入而言，則是將輸入訊息的來源，從「使用者輸入」改為「從檔案輸入」，要達成這件事情，就需要使用到特殊字元</p>
@@ -290,7 +294,8 @@
 <li><p>列出根目錄 <code>/</code> 的檔案、屬性</p>
 <ul>
 <li><p><strong>將結果顯示在螢幕上</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ll /</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ll /</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
 <li><p><strong>結果不顯示在螢幕上，而是新增一個檔案rootfile，並將原本顯示在螢幕的資料放入此檔案（overwrite）</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 沒有output</span></span><br><span class="line">$ ll / &gt; ~/rootfile</span><br></pre></td></tr></table></figure>
 
@@ -302,13 +307,15 @@
 </ul>
 </li>
 <li><p><strong>結果不顯示在螢幕上，而是將資料累加在檔案rootfile裡（append）</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 沒有output</span></span><br><span class="line">$ ll / &gt;&gt; ~/rootfile</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 沒有output</span></span><br><span class="line">$ ll / &gt;&gt; ~/rootfile</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 <li><p>使用一般身份查詢<code>.bashrc</code>檔案是否存在</p>
 <ul>
 <li><p><strong>將全部結果顯示在螢幕上</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 搜尋根目錄時，可能會有permission denied的錯誤訊息</span></span><br><span class="line">$ find /home -name .bashrc</span><br><span class="line">find: /home/xxx/: Permission denied  &lt;=stderr</span><br><span class="line">/home/lionel/.bashrc                 &lt;=stdout</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 搜尋根目錄時，可能會有permission denied的錯誤訊息</span></span><br><span class="line">$ find /home -name .bashrc</span><br><span class="line">find: /home/xxx/: Permission denied  &lt;=stderr</span><br><span class="line">/home/lionel/.bashrc                 &lt;=stdout</span><br></pre></td></tr></table></figure>
+</li>
 <li><p><strong>將stderr儲存入檔案裡</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 將stderr放入檔案裡，此時stdout的資料仍會顯示在螢幕上</span></span><br><span class="line">$ find /home -name .bashrc 2&gt; ~/errorlog</span><br><span class="line">/home/lionel/.bashrc</span><br></pre></td></tr></table></figure>
 
@@ -319,7 +326,8 @@
 </ul>
 </li>
 <li><p><strong>將stdout跟stderr的資料分別寫到不同檔案</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 此時螢幕不會顯示任何output訊息</span></span><br><span class="line">$ find /home -name .bashrc &gt; list_right 2&gt; list error</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 此時螢幕不會顯示任何output訊息</span></span><br><span class="line">$ find /home -name .bashrc &gt; list_right 2&gt; list error</span><br></pre></td></tr></table></figure>
+</li>
 <li><p><strong>將stdout跟stderr的資料分別寫到同一檔案</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 錯誤</span></span><br><span class="line">$ find /home -name .bashrc &gt; list 2&gt; list</span><br><span class="line"><span class="comment"># 正確</span></span><br><span class="line">$ find /home -name .bashrc &gt; list 2&gt;&amp;1 list</span><br><span class="line">$ find /home -name .bashrc &amp;&gt; list</span><br></pre></td></tr></table></figure>
 
@@ -378,7 +386,8 @@
 
 <p>此指令是使用在不考慮指令相關性的連續指令下達，指令之間使用分號 <code>;</code> 分隔，分號前的指令執行後會立刻執行後面的指令</p>
 <p>ex. 執行兩次sync同步然後shutdown電腦</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sync; sync; shutdown -h now</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sync; sync; shutdown -h now</span><br></pre></td></tr></table></figure>
+</li>
 <li><p><code>$?</code></p>
 <p>若是指令有相依性，需判斷前面指令是否正確，此時可使用指令回傳值 <code>$?</code>，指令回傳值是一個變數，其表示</p>
 <p>「當前一個指令執行結果為正確時，會回傳 <code>$?=0</code> 的值」，可使用指令 <code>echo $?</code> 來查看其值。</p>
@@ -408,9 +417,11 @@
 <li><p>建立檔案</p>
 <ul>
 <li><p>檢查目錄是否存在，若存在則在底下建立檔案</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ls /tmp/abc &amp;&amp; touch /tmp/abc/def.txt</span><br><span class="line">ls: cannot access /tmp/abc: No such file or directory</span><br><span class="line"><span class="comment"># ls指令出錯，但沒有touch指令的錯誤，touch指令沒有執行</span></span><br><span class="line"></span><br><span class="line">$ mkdir /tmp/abc</span><br><span class="line">$ ls /tmp/abc &amp;&amp; touch /tmp/abc/def.txt</span><br><span class="line"><span class="comment"># 此時可成功執行touch</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ls /tmp/abc &amp;&amp; touch /tmp/abc/def.txt</span><br><span class="line">ls: cannot access /tmp/abc: No such file or directory</span><br><span class="line"><span class="comment"># ls指令出錯，但沒有touch指令的錯誤，touch指令沒有執行</span></span><br><span class="line"></span><br><span class="line">$ mkdir /tmp/abc</span><br><span class="line">$ ls /tmp/abc &amp;&amp; touch /tmp/abc/def.txt</span><br><span class="line"><span class="comment"># 此時可成功執行touch</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>檢查目錄是否存在，若不存在則建立，存在則不做其他事</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ls /tmp/abc || mkdir /tmp/abc</span><br><span class="line"><span class="comment"># 成功建立目錄</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ls /tmp/abc || mkdir /tmp/abc</span><br><span class="line"><span class="comment"># 成功建立目錄</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>不管目錄存不存在，要在底下建立檔案</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ls /tmp/abc || mkdir /tmp/abc &amp;&amp; touch /tmp/abc/def.txt</span><br></pre></td></tr></table></figure>
 

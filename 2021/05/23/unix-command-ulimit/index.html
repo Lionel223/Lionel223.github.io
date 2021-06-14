@@ -28,7 +28,7 @@
 <meta property="og:description" content="介紹常用的unix指令">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-23T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-08T14:58:49.509Z">
+<meta property="article:modified_time" content="2021-06-14T07:11:46.419Z">
 <meta property="article:author" content="Lionel">
 <meta property="article:tag" content="unix">
 <meta property="article:tag" content="bash">
@@ -135,20 +135,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -223,7 +223,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
+        <time title="Modified: 2021-06-14 07:11:46" itemprop="dateModified" datetime="2021-06-14T07:11:46+00:00">2021-06-14</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -271,11 +271,15 @@
 </ul>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><ul>
 <li><p>列出目前身份的所有限制</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -a</span><br><span class="line">core file size          (blocks, -c) 0 <span class="comment"># 0表示沒限制</span></span><br><span class="line">data seg size           (kbytes, -d) unlimited</span><br><span class="line">scheduling priority             (-e) 0</span><br><span class="line">file size               (blocks, -f) unlimited</span><br><span class="line">pending signals                 (-i) 31356</span><br><span class="line">max locked memory       (kbytes, -l) 64</span><br><span class="line">max memory size         (kbytes, -m) unlimited</span><br><span class="line">open files                      (-n) 1024</span><br><span class="line">pipe size            (512 bytes, -p) 8</span><br><span class="line">POSIX message queues     (bytes, -q) 819200</span><br><span class="line">real-time priority              (-r) 0</span><br><span class="line">stack size              (kbytes, -s) 8192</span><br><span class="line">cpu time               (seconds, -t) unlimited</span><br><span class="line">max user processes              (-u) 4096</span><br><span class="line">virtual memory          (kbytes, -v) unlimited</span><br><span class="line">file locks                      (-x) unlimited</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -a</span><br><span class="line">core file size          (blocks, -c) 0 <span class="comment"># 0表示沒限制</span></span><br><span class="line">data seg size           (kbytes, -d) unlimited</span><br><span class="line">scheduling priority             (-e) 0</span><br><span class="line">file size               (blocks, -f) unlimited</span><br><span class="line">pending signals                 (-i) 31356</span><br><span class="line">max locked memory       (kbytes, -l) 64</span><br><span class="line">max memory size         (kbytes, -m) unlimited</span><br><span class="line">open files                      (-n) 1024</span><br><span class="line">pipe size            (512 bytes, -p) 8</span><br><span class="line">POSIX message queues     (bytes, -q) 819200</span><br><span class="line">real-time priority              (-r) 0</span><br><span class="line">stack size              (kbytes, -s) 8192</span><br><span class="line">cpu time               (seconds, -t) unlimited</span><br><span class="line">max user processes              (-u) 4096</span><br><span class="line">virtual memory          (kbytes, -v) unlimited</span><br><span class="line">file locks                      (-x) unlimited</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>取得使用者的開啟檔案數的soft limit與hard limit</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -Hn</span><br><span class="line">1048576</span><br><span class="line">$ <span class="built_in">ulimit</span> -Sn</span><br><span class="line">1024</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -Hn</span><br><span class="line">1048576</span><br><span class="line">$ <span class="built_in">ulimit</span> -Sn</span><br><span class="line">1024</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>限制使用者僅能建立 10MBytes 以下的容量的檔案</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -f 10240</span><br><span class="line">$ <span class="built_in">ulimit</span> -a | grep <span class="string">&#x27;file size&#x27;</span></span><br><span class="line">core file size          (blocks, -c) 0</span><br><span class="line">file size               (blocks, -f) 10240</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ulimit</span> -f 10240</span><br><span class="line">$ <span class="built_in">ulimit</span> -a | grep <span class="string">&#x27;file size&#x27;</span></span><br><span class="line">core file size          (blocks, -c) 0</span><br><span class="line">file size               (blocks, -f) 10240</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
 <p>※ 此方式設定後，只要登出再登入即可復原，一般身份使用者如果以<code>ulimit</code>設定了<code>-f</code>的檔案大小， 那麼他『只能繼續減小檔案容量，不能增加檔案容量』</p>
 <h2 id="其餘的設定"><a href="#其餘的設定" class="headerlink" title="其餘的設定"></a>其餘的設定</h2><h3 id="etc-security-limits-conf"><a href="#etc-security-limits-conf" class="headerlink" title="/etc/security/limits.conf"></a>/etc/security/limits.conf</h3><p>除了使用指令<code>ulimit</code>來控制資源外，還可以透過<code>/etc/security/limits.conf</code>這個檔案來設定，這個檔案是通過PAM登入的使用者設定資源限制，其內容如下</p>
@@ -290,11 +294,15 @@
 <p>一般設定<code>sysctl.conf</code>參數的方法有以下幾個</p>
 <ol>
 <li><p>使用指令直接編輯</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> value &gt; /proc/sys/oo/xx</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> value &gt; /proc/sys/oo/xx</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>使用vim編輯</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/sysctl.conf</span><br><span class="line"><span class="comment">#...編輯後使用以下指令使其生效</span></span><br><span class="line">$ sysctl -p</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/sysctl.conf</span><br><span class="line"><span class="comment">#...編輯後使用以下指令使其生效</span></span><br><span class="line">$ sysctl -p</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>使用指令sysctl編輯</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sysctl -w fs.file-max=<span class="string">&quot;10000000&quot;</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sysctl -w fs.file-max=<span class="string">&quot;10000000&quot;</span></span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
 <p>※ 需注意<code>/etc/sysctl.conf</code>與指令<code>sysctl</code>的修改都要root才有權限執行</p>
 <h2 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h2><ul>

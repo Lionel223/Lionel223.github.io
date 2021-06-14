@@ -28,7 +28,7 @@
 <meta property="og:description" content="bash的變數">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-19T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-08T14:58:49.509Z">
+<meta property="article:modified_time" content="2021-06-14T07:11:46.419Z">
 <meta property="article:author" content="Lionel">
 <meta property="article:tag" content="unix">
 <meta property="article:tag" content="bash">
@@ -135,20 +135,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -223,7 +223,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-08 14:58:49" itemprop="dateModified" datetime="2021-06-08T14:58:49+00:00">2021-06-08</time>
+        <time title="Modified: 2021-06-14 07:11:46" itemprop="dateModified" datetime="2021-06-14T07:11:46+00:00">2021-06-14</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -251,44 +251,56 @@
 <h2 id="變數的取得與設定"><a href="#變數的取得與設定" class="headerlink" title="變數的取得與設定"></a>變數的取得與設定</h2><ul>
 <li><p>取得變數</p>
 <p>變數的取得可使用<code>echo</code>指令，取得變數時，需在變數的前面加上<code>$</code>，以下面指令為例，我們想取得<code>user</code>內的值，可以這樣使用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$user</span></span><br><span class="line">Lionel</span><br><span class="line"><span class="comment"># 也可將變數加上大括號</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;user&#125;</span></span><br><span class="line">Lionel</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$user</span></span><br><span class="line">Lionel</span><br><span class="line"><span class="comment"># 也可將變數加上大括號</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;user&#125;</span></span><br><span class="line">Lionel</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>設定、修改變數</p>
 <p>設定、修改變數，只要使用<code>=</code>即可設定，例如我們想將<code>user</code>的值修改為LIONEL，只要這樣即可</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ user=LIONEL</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;user&#125;</span></span><br><span class="line">LIONEL</span><br></pre></td></tr></table></figure>
 
 <p>※ 當一個變數名稱尚未被設定時，預設內容是空的</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;abc&#125;</span></span><br><span class="line">  （這邊會是空的）</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;abc&#125;</span></span><br><span class="line">  （這邊會是空的）</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>取消變數</p>
 <p>使用指令<code>unset</code>即可取消變數</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">unset</span> user</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">unset</span> user</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
 <h2 id="變數的設定規則"><a href="#變數的設定規則" class="headerlink" title="變數的設定規則"></a>變數的設定規則</h2><ul>
 <li><p>變數與變數內容要使用等號連結，且等號兩邊不可空白，以下兩個是錯誤的設定</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ user = Lionel</span><br><span class="line">$ user=Lionel Chen</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ user = Lionel</span><br><span class="line">$ user=Lionel Chen</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>變數名稱只能由英文與數字組成，且開頭不可是數字，以下為錯誤的變數名稱</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1user</span><br><span class="line">user_name</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1user</span><br><span class="line">user_name</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>若變數內容包含空白字元，可使用<code>&quot;&quot;</code>或是<code>&#39;&#39;</code>將變數內容包起來，例如以下範例</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ user=<span class="string">&quot;Lionel Chen&quot;</span></span><br><span class="line"><span class="comment"># 也可使用單引號</span></span><br><span class="line">$ user=<span class="string">&#x27;Lionel Chen&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>不過單引號跟雙引號也有差異</p>
 <ul>
 <li><p>使用雙引號時，若裡面包含特殊字元，可以保留原先的特性</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 雙引號內，$可以保留原先的特性</span></span><br><span class="line">$ var=<span class="string">&quot;Current lang is <span class="variable">$LANG</span>&quot;</span></span><br><span class="line">$ <span class="built_in">echo</span> var</span><br><span class="line">Current lang is zh_TW.UTF-8</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 雙引號內，$可以保留原先的特性</span></span><br><span class="line">$ var=<span class="string">&quot;Current lang is <span class="variable">$LANG</span>&quot;</span></span><br><span class="line">$ <span class="built_in">echo</span> var</span><br><span class="line">Current lang is zh_TW.UTF-8</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>使用單引號時，若裡面包含特殊字元，會視為一般字元（純文字）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 單引號內，$視為一般字元</span></span><br><span class="line">$ var=<span class="string">&#x27;Current lang is $LANG&#x27;</span></span><br><span class="line">$ <span class="built_in">echo</span> var</span><br><span class="line">Current lang is <span class="variable">$LANG</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 單引號內，$視為一般字元</span></span><br><span class="line">$ var=<span class="string">&#x27;Current lang is $LANG&#x27;</span></span><br><span class="line">$ <span class="built_in">echo</span> var</span><br><span class="line">Current lang is <span class="variable">$LANG</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>也可使用跳脫字元<code>\</code>將特殊字元變成一般字元</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 跳脫字元後面的空白視為一般字元</span></span><br><span class="line">$ user=Lionel\ Chen</span><br><span class="line">$ <span class="built_in">echo</span> user</span><br><span class="line">Lionel Chen</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 跳脫字元後面的空白視為一般字元</span></span><br><span class="line">$ user=Lionel\ Chen</span><br><span class="line">$ <span class="built_in">echo</span> user</span><br><span class="line">Lionel Chen</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 <li><p>若需藉由其餘指令的資訊，可使用此方式<code>`command`</code>或是<code>$(command)</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 取得核心版本設定</span></span><br><span class="line">$ version=$(uname -r)</span><br><span class="line"><span class="comment"># 這樣也可</span></span><br><span class="line">$ version=`uname -r`</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$version</span></span><br><span class="line">19.6.0</span><br></pre></td></tr></table></figure>
 
 <p>※ 也可在執行指令時使用此變數</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 進入核心模組目錄，此指令會先把內部的指令執行後，在執行外部的指令</span></span><br><span class="line">$ <span class="built_in">cd</span> /lib/modules/$(uname -r)/kernel</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 進入核心模組目錄，此指令會先把內部的指令執行後，在執行外部的指令</span></span><br><span class="line">$ <span class="built_in">cd</span> /lib/modules/$(uname -r)/kernel</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>若需要擴充變數內容，可使用<code>&quot;$變數&quot;</code>或是<code>$&#123;變數&#125;</code>來累加內容</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PATH=<span class="string">&quot;<span class="variable">$PATH</span>&quot;</span>:/home/bin</span><br><span class="line">PATH=<span class="variable">$&#123;PATH&#125;</span>:/home/bin</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PATH=<span class="string">&quot;<span class="variable">$PATH</span>&quot;</span>:/home/bin</span><br><span class="line">PATH=<span class="variable">$&#123;PATH&#125;</span>:/home/bin</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>若需要此變數在其他子程序內執行，需使用指令<code>export</code>使變數變成環境變數</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>通常大寫字元都是系統預設變數，建議自行設定的變數可使用小寫字元，以利區分</p>
 </li>
 </ul>
