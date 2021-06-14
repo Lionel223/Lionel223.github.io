@@ -27,20 +27,20 @@
 <meta property="og:site_name" content="Lionel&#39;s Blog">
 <meta property="og:description" content="test">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png">
-<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig04-github-flow.png">
-<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig08-gitflow-dev-features.png">
-<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig09-gitflow-release-branch.png">
-<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig10-gitflow-release-bug.png">
-<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig11-gitflow-master.png">
-<meta property="og:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig12-gitflow-hotfix.png">
+<meta property="og:image" content="https://lionel223.github.io/image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png">
+<meta property="og:image" content="https://lionel223.github.io/image/2021-06-14-git-for-teams-1/03fig04-github-flow.png">
+<meta property="og:image" content="https://lionel223.github.io/image/2021-06-14-git-for-teams-1/03fig08-gitflow-dev-features.png">
+<meta property="og:image" content="https://lionel223.github.io/image/2021-06-14-git-for-teams-1/03fig09-gitflow-release-branch.png">
+<meta property="og:image" content="https://lionel223.github.io/image/2021-06-14-git-for-teams-1/03fig10-gitflow-release-bug.png">
+<meta property="og:image" content="https://lionel223.github.io/image/2021-06-14-git-for-teams-1/03fig11-gitflow-master.png">
+<meta property="og:image" content="https://lionel223.github.io/image/2021-06-14-git-for-teams-1/03fig12-gitflow-hotfix.png">
 <meta property="article:published_time" content="2021-06-14T04:39:16.000Z">
-<meta property="article:modified_time" content="2021-06-14T07:11:46.419Z">
+<meta property="article:modified_time" content="2021-06-14T07:15:34.696Z">
 <meta property="article:author" content="Lionel">
 <meta property="article:tag" content="git">
 <meta property="article:tag" content="github">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lionel223.github.io/2021/06/14/image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png">
+<meta name="twitter:image" content="https://lionel223.github.io/image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png">
 
 
 <link rel="canonical" href="https://lionel223.github.io/2021/06/14/git-for-teams-1/">
@@ -224,7 +224,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-06-14 04:39:16 / Modified: 07:11:46" itemprop="dateCreated datePublished" datetime="2021-06-14T04:39:16+00:00">2021-06-14</time>
+      <time title="Created: 2021-06-14 04:39:16 / Modified: 07:15:34" itemprop="dateCreated datePublished" datetime="2021-06-14T04:39:16+00:00">2021-06-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -279,10 +279,10 @@
 </ul>
 <h4 id="一功能一分支部署"><a href="#一功能一分支部署" class="headerlink" title="一功能一分支部署"></a>一功能一分支部署</h4><p>另一個方式則是引入兩種類型的分支，分別是功能分支（feature branch）與整合分支（integration branch），這兩個不算是不同類型的分支，只是記錄的成果類型不太一樣，以下來詳細介紹。</p>
 <p>所有的新成果都要在 feature branch 完成，且盡量不要太大，只包含一個完整的概念，功能。featute branch 可透過 integration branch 來取得其他人的最新成果，到了需要發布時，再選擇此次要包含哪些功能，並為部署建立新的 integration branch</p>
-<p><img src="../image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png" alt="03fig03-integration-branch"></p>
+<p><img src="/image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png" alt="03fig03-integration-branch"></p>
 <h4 id="Github-Flow"><a href="#Github-Flow" class="headerlink" title="Github Flow"></a>Github Flow</h4><p>所有在 master branch 的內容都是可部署的狀態，若要開發新的功能時，則需用一個可描述的名稱建立新的 branch，功能完成時會對 master branch 發出 pull request。</p>
 <p>到這裡都和前一個方式相同，但其差異就在部署的方式。在前一個模型部署時，需明確選擇要納入部署的 feature，但 Github Flow 則是 pull request 被接受時，就會將其 feature branch 轉為可供部署，先部署 feature branch，若沒有錯誤，就會將 feature branch 合併進入 master branch；若 feature branch 有任何問題，也可以重新部署 master branch</p>
-<p><img src="../image/2021-06-14-git-for-teams-1/03fig04-github-flow.png" alt="03fig03-integration-branch"></p>
+<p><img src="/image/2021-06-14-git-for-teams-1/03fig04-github-flow.png" alt="03fig03-integration-branch"></p>
 <p>使用以上兩種方式有以下優點：</p>
 <ul>
 <li>與主線開發類似，可專注在程式碼的快速部署</li>
@@ -305,15 +305,15 @@
 </ul>
 <h3 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h3><p>接下來的範例是使用一個專案，逐步實作 GitFlow 的過程</p>
 <p>一開始專案只有一個 develop branch，開發人員都從這個 branch 建立各自的 branch 來開發功能、修 bug、或是重構等等，開始時做時可以以工單（ticket）來描述，且 branch 的名稱也會包含工單名稱。</p>
-<p><img src="../image/2021-06-14-git-for-teams-1/03fig08-gitflow-dev-features.png" alt="03fig08-gitflow-dev-features"></p>
+<p><img src="/image/2021-06-14-git-for-teams-1/03fig08-gitflow-dev-features.png" alt="03fig08-gitflow-dev-features"></p>
 <p>之後開始工作，到了某個時間後會決定不會有新功能了，此時稱為功能凍結（feature freeze）開始測試，這個時候會從 develop branch 建立一個新的分支，此處稱為 release 1.0</p>
-<p><img src="../image/2021-06-14-git-for-teams-1/03fig09-gitflow-release-branch.png" alt="03fig09-gitflow-release-branch"></p>
+<p><img src="/image/2021-06-14-git-for-teams-1/03fig09-gitflow-release-branch.png" alt="03fig09-gitflow-release-branch"></p>
 <p>，只有 bug 修正才會記錄到這個 branch。需注意，feature freeze 時並非表示功能都已完成，此時仍有其餘工作成果被合併到 develop branch，若有 bug 也會修正回去 develop branch，測試的時間越長，越長需要在 develop 與 release1.0 branch 上作業。</p>
-<p><img src="../image/2021-06-14-git-for-teams-1/03fig10-gitflow-release-bug.png" alt="03fig10-gitflow-release-bug"></p>
+<p><img src="/image/2021-06-14-git-for-teams-1/03fig10-gitflow-release-bug.png" alt="03fig10-gitflow-release-bug"></p>
 <p>經過一段時間的測試後，產品即可上線，經過測試的程式碼會被記錄到新的 branch master，並且加上 tag</p>
-<p><img src="../image/2021-06-14-git-for-teams-1/03fig11-gitflow-master.png" alt="03fig11-gitflow-master"></p>
+<p><img src="/image/2021-06-14-git-for-teams-1/03fig11-gitflow-master.png" alt="03fig11-gitflow-master"></p>
 <p>如果發現一個需立即修正的 bug 時，則需做緊急修正（hotfix），此時會從 master branch 中建立新的 branch，所以發布緊急修正時，不會包含後來的功能，最後這個修正的 bug 也要被合併回去 develop branch 中</p>
-<p><img src="../image/2021-06-14-git-for-teams-1/03fig12-gitflow-hotfix.png" alt="03fig12-gitflow-hotfix"></p>
+<p><img src="/image/2021-06-14-git-for-teams-1/03fig12-gitflow-hotfix.png" alt="03fig12-gitflow-hotfix"></p>
 <p>使用這種定期部署的方式有以下優點</p>
 <ul>
 <li>不需在初期就建立全面的測試</li>
