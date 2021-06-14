@@ -61,7 +61,7 @@ Git 是個分散式版本控制系統，所以使用者要記錄更動時，不�
 
 所有的新成果都要在 feature branch 完成，且盡量不要太大，只包含一個完整的概念，功能。featute branch 可透過 integration branch 來取得其他人的最新成果，到了需要發布時，再選擇此次要包含哪些功能，並為部署建立新的 integration branch
 
-![03fig03-integration-branch](../image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png)
+![03fig03-integration-branch](/image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png)
 
 #### Github Flow
 
@@ -69,7 +69,7 @@ Git 是個分散式版本控制系統，所以使用者要記錄更動時，不�
 
 到這裡都和前一個方式相同，但其差異就在部署的方式。在前一個模型部署時，需明確選擇要納入部署的 feature，但 Github Flow 則是 pull request 被接受時，就會將其 feature branch 轉為可供部署，先部署 feature branch，若沒有錯誤，就會將 feature branch 合併進入 master branch；若 feature branch 有任何問題，也可以重新部署 master branch
 
-![03fig03-integration-branch](../image/2021-06-14-git-for-teams-1/03fig04-github-flow.png)
+![03fig03-integration-branch](/image/2021-06-14-git-for-teams-1/03fig04-github-flow.png)
 
 使用以上兩種方式有以下優點：
 
@@ -100,23 +100,23 @@ Git 是個分散式版本控制系統，所以使用者要記錄更動時，不�
 
 一開始專案只有一個 develop branch，開發人員都從這個 branch 建立各自的 branch 來開發功能、修 bug、或是重構等等，開始時做時可以以工單（ticket）來描述，且 branch 的名稱也會包含工單名稱。
 
-![03fig08-gitflow-dev-features](../image/2021-06-14-git-for-teams-1/03fig08-gitflow-dev-features.png)
+![03fig08-gitflow-dev-features](/image/2021-06-14-git-for-teams-1/03fig08-gitflow-dev-features.png)
 
 之後開始工作，到了某個時間後會決定不會有新功能了，此時稱為功能凍結（feature freeze）開始測試，這個時候會從 develop branch 建立一個新的分支，此處稱為 release 1.0
 
-![03fig09-gitflow-release-branch](../image/2021-06-14-git-for-teams-1/03fig09-gitflow-release-branch.png)
+![03fig09-gitflow-release-branch](/image/2021-06-14-git-for-teams-1/03fig09-gitflow-release-branch.png)
 
 ，只有 bug 修正才會記錄到這個 branch。需注意，feature freeze 時並非表示功能都已完成，此時仍有其餘工作成果被合併到 develop branch，若有 bug 也會修正回去 develop branch，測試的時間越長，越長需要在 develop 與 release1.0 branch 上作業。
 
-![03fig10-gitflow-release-bug](../image/2021-06-14-git-for-teams-1/03fig10-gitflow-release-bug.png)
+![03fig10-gitflow-release-bug](/image/2021-06-14-git-for-teams-1/03fig10-gitflow-release-bug.png)
 
 經過一段時間的測試後，產品即可上線，經過測試的程式碼會被記錄到新的 branch master，並且加上 tag
 
-![03fig11-gitflow-master](../image/2021-06-14-git-for-teams-1/03fig11-gitflow-master.png)
+![03fig11-gitflow-master](/image/2021-06-14-git-for-teams-1/03fig11-gitflow-master.png)
 
 如果發現一個需立即修正的 bug 時，則需做緊急修正（hotfix），此時會從 master branch 中建立新的 branch，所以發布緊急修正時，不會包含後來的功能，最後這個修正的 bug 也要被合併回去 develop branch 中
 
-![03fig12-gitflow-hotfix](../image/2021-06-14-git-for-teams-1/03fig12-gitflow-hotfix.png)
+![03fig12-gitflow-hotfix](/image/2021-06-14-git-for-teams-1/03fig12-gitflow-hotfix.png)
 
 使用這種定期部署的方式有以下優點
 
