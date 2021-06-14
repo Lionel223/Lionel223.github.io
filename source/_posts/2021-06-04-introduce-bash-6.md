@@ -1,7 +1,7 @@
 ---
 title: "[Unix] bash基本使用(6)"
 date: 2021-06-04 01:30:16
-subtitle: "bash的環境設定"
+description: "bash的環境設定"
 tags: ["unix","bash","command"]
 categories: unix
 ---
@@ -17,9 +17,9 @@ categories: unix
 * `/etc/profile` - 系統設定，通常不會動
 * `~/.bash_profile` or `~/.bash_login` or `~/.profile` - 個人設定，只會讀取其中一個，讀取順序依據前面的順序
 
-non-login shell 則只會讀取 `~/.bashrc` 而已
+non-login shell 則只會讀取 `~/.bashrc` 而已[^1]
 
-※ 當修改了 bash 環境設定檔後，一般都要登出再登入，設定才能生效，不過也可以使用指令 `source` 來將設定檔重新讀入現在的環境，以下是使用方式
+[^1]: 當修改了 bash 環境設定檔後，一般都要登出再登入，設定才能生效，不過也可以使用指令 `source` 來將設定檔重新讀入現在的環境，以下是使用方式
 
 ```bash
 $ source 設定檔檔名
@@ -40,16 +40,16 @@ $ stty -a
 
 底下列出幾個比較重要的按鍵
 
-| 名稱  | 按鍵 | 意義                                      |
-| ----- | ---- | ----------------------------------------- |
-| intr  | ^C   | 送出interrupt訊號給正在執行的程序（中止） |
-| kill  | ^U   | 刪除目前指令的所有文字                    |
-| eof   | ^D   | End of file，輸入結束                     |
-| start | ^Q   | 恢復螢幕輸出                              |
-| stop  | ^S   | 暫停螢幕輸出                              |
-| susp  | ^Z   | 暫停目前命令                              |
+| 名稱     | 按鍵 | 意義                                      |
+| -------- | ---- | ----------------------------------------- |
+| intr[^2] | ^C   | 送出interrupt訊號給正在執行的程序（中止） |
+| kill     | ^U   | 刪除目前指令的所有文字                    |
+| eof      | ^D   | End of file，輸入結束                     |
+| start    | ^Q   | 恢復螢幕輸出                              |
+| stop     | ^S   | 暫停螢幕輸出                              |
+| susp     | ^Z   | 暫停目前命令                              |
 
-※ `intr = ^C` 此部分的 `^` 表示 ctrl 的意思
+[^2]: `intr = ^C` 此部分的 `^` 表示 ctrl 的意思
 
 
 ## Reference
