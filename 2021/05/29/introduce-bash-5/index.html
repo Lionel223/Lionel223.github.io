@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
-<meta name="description" content="bash的資料流">
+<meta name="description" content="什麼是資料流？在bash裡的資料流（data stream）指的就是執行指令時，指令可能從檔案讀取資料，也就是stdin，經過處理後，將資料輸出到螢幕上，輸出至螢幕時又分為成功與失敗的情況，分別是stdout與stderr。 底下就來介紹這三個資料流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Unix] bash基本使用(5)">
 <meta property="og:url" content="https://lionel223.github.io/2021/05/29/introduce-bash-5/index.html">
 <meta property="og:site_name" content="Lionel&#39;s Blog">
-<meta property="og:description" content="bash的資料流">
+<meta property="og:description" content="什麼是資料流？在bash裡的資料流（data stream）指的就是執行指令時，指令可能從檔案讀取資料，也就是stdin，經過處理後，將資料輸出到螢幕上，輸出至螢幕時又分為成功與失敗的情況，分別是stdout與stderr。 底下就來介紹這三個資料流">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-29T00:00:00.000Z">
 <meta property="article:modified_time" content="2021-05-29T00:00:00.000Z">
@@ -121,7 +121,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stdin-stdout-and-stderr"><span class="nav-text">stdin, stdout and stderr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E6%B5%81%E9%87%8D%E5%B0%8E%E5%90%91-Data-stream-redirection"><span class="nav-text">資料流重導向(Data stream redirection)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E7%9A%84%E9%80%A3%E7%BA%8C%E5%9F%B7%E8%A1%8C"><span class="nav-text">命令的連續執行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipe"><span class="nav-text">Pipe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#stdin-stdout-and-stderr"><span class="nav-text">stdin, stdout and stderr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E6%B5%81%E9%87%8D%E5%B0%8E%E5%90%91-Data-stream-redirection"><span class="nav-text">資料流重導向(Data stream redirection)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E7%9A%84%E9%80%A3%E7%BA%8C%E5%9F%B7%E8%A1%8C"><span class="nav-text">命令的連續執行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipe"><span class="nav-text">Pipe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -231,7 +231,6 @@
   
 </div>
 
-            <div class="post-description">bash的資料流</div>
         </div>
       </header>
 
@@ -239,8 +238,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>什麼是資料流？在bash裡的資料流（data stream）指的就是執行指令時，指令可能從檔案讀取資料，也就是stdin，經過處理後，將資料輸出到螢幕上，輸出至螢幕時又分為成功與失敗的情況，分別是stdout與stderr。</p>
-<p>底下就來介紹這三個資料流（data stream）</p>
+        <p>什麼是資料流？在bash裡的資料流（data stream）指的就是執行指令時，指令可能從檔案讀取資料，也就是stdin，經過處理後，將資料輸出到螢幕上，輸出至螢幕時又分為成功與失敗的情況，分別是stdout與stderr。</p>
+<p>底下就來介紹這三個資料流<span id="more"></span>（data stream）</p>
 <h2 id="stdin-stdout-and-stderr"><a href="#stdin-stdout-and-stderr" class="headerlink" title="stdin, stdout and stderr"></a>stdin, stdout and stderr</h2><p>當執行linux指令時，會有這三種資料流，底下就來詳細介紹</p>
 <ul>
 <li><p>標準輸入（stdin，standard input）</p>

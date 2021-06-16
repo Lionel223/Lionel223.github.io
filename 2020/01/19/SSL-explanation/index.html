@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
-<meta name="description" content="簡易說明ssl的原理">
+<meta name="description" content="SSL就是Secure Socket Layer的縮寫，是一種安全協定，目的是為網際網路通訊提供安全及資料完整性保障，以及防止兩個應用&#x2F;系統間發送的資料不會被讀取或修改任何傳輸的資訊。底下就來簡易說明 ssl 的原理。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSL簡易說明">
 <meta property="og:url" content="https://lionel223.github.io/2020/01/19/SSL-explanation/index.html">
 <meta property="og:site_name" content="Lionel&#39;s Blog">
-<meta property="og:description" content="簡易說明ssl的原理">
+<meta property="og:description" content="SSL就是Secure Socket Layer的縮寫，是一種安全協定，目的是為網際網路通訊提供安全及資料完整性保障，以及防止兩個應用&#x2F;系統間發送的資料不會被讀取或修改任何傳輸的資訊。底下就來簡易說明 ssl 的原理。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://www.netadmin.com.tw/upload/news/NP110614000811061414255001.png">
 <meta property="og:image" content="http://tutorialspedia.com/wp-content/uploads/2017/12/one-way-ssl.png">
@@ -124,7 +124,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AFssl"><span class="nav-text">什麼是ssl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%81%8B%E4%BD%9C"><span class="nav-text">如何運作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Certificate%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">Certificate的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-Way-SSL"><span class="nav-text">One-Way SSL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-Way-SSL"><span class="nav-text">Two-Way SSL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-text">總結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%81%8B%E4%BD%9C"><span class="nav-text">如何運作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Certificate%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">Certificate的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-Way-SSL"><span class="nav-text">One-Way SSL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-Way-SSL"><span class="nav-text">Two-Way SSL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-text">總結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -234,7 +234,6 @@
   
 </div>
 
-            <div class="post-description">簡易說明ssl的原理</div>
         </div>
       </header>
 
@@ -242,7 +241,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="什麼是ssl"><a href="#什麼是ssl" class="headerlink" title="什麼是ssl"></a>什麼是ssl</h2><p>SSL就是Secure Socket Layer的縮寫，是一種安全協定，目的是為網際網路通訊提供安全及資料完整性保障，以及防止兩個應用/系統間發送的資料不會被讀取或修改任何傳輸的資訊。SSL使用上被排在OSI model(Open Systems Interconnection model)中的Session層以及Application層，示意如下</p>
+        <p>SSL就是Secure Socket Layer的縮寫，是一種安全協定，目的是為網際網路通訊提供安全及資料完整性保障，以及防止兩個應用/系統間發送的資料不會被讀取或修改任何傳輸的資訊。底下就來簡易說明 ssl 的原理。</p>
+<span id="more"></span>
+
+<p>SSL使用上被排在OSI model(Open Systems Interconnection model)中的Session層以及Application層，示意如下</p>
 <ol>
 <li>Physical layer (network cable / wifi)</li>
 <li>Data link layer (ethernet)</li>

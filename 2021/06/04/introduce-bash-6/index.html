@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
-<meta name="description" content="bash的環境設定">
+<meta name="description" content="前面所提到的命令別名與自訂變數，若沒做任何設定時，只要登出bash就會失效了，要將這些設定寫入設定檔，才能保留這些設定，下面就來介紹這些設定檔。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Unix] bash基本使用(6)">
 <meta property="og:url" content="https://lionel223.github.io/2021/06/04/introduce-bash-6/index.html">
 <meta property="og:site_name" content="Lionel&#39;s Blog">
-<meta property="og:description" content="bash的環境設定">
+<meta property="og:description" content="前面所提到的命令別名與自訂變數，若沒做任何設定時，只要登出bash就會失效了，要將這些設定寫入設定檔，才能保留這些設定，下面就來介紹這些設定檔。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-04T01:30:16.000Z">
 <meta property="article:modified_time" content="2021-06-04T01:30:16.000Z">
@@ -231,7 +231,6 @@
   
 </div>
 
-            <div class="post-description">bash的環境設定</div>
         </div>
       </header>
 
@@ -240,6 +239,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>前面所提到的命令別名與自訂變數，若沒做任何設定時，只要登出bash就會失效了，要將這些設定寫入設定檔，才能保留這些設定，下面就來介紹這些設定檔。</p>
+<span id="more"></span>
+
 <h2 id="Bash的環境設定檔"><a href="#Bash的環境設定檔" class="headerlink" title="Bash的環境設定檔"></a>Bash的環境設定檔</h2><p>首先，會根據進入 shell 時是否有登入，分為 login shell 與 non-login shell，若是使用圖形介面登入，並開啟 terminal時，這時不需輸入帳密，此時的 bash 環境就稱為 non-login shell，在此 bash 下達 指令 <code>bash</code>，也不需輸入帳密，這個 bash 子程序也是 non-login shell</p>
 <p>這兩個情況取得的設定檔資料會不同，login shell會讀取以下兩個設定檔</p>
 <ul>

@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
-<meta name="description" content="test">
+<meta name="description" content="本書以使用者的角度介紹git，觀看團隊的作業方式，以及個別命令的使用時機，以下就來摘要我的理解，本文主要介紹各種作業方式。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git團隊使用手冊讀後心得(1)">
 <meta property="og:url" content="https://lionel223.github.io/2021/06/14/git-for-teams-1/index.html">
 <meta property="og:site_name" content="Lionel&#39;s Blog">
-<meta property="og:description" content="test">
+<meta property="og:description" content="本書以使用者的角度介紹git，觀看團隊的作業方式，以及個別命令的使用時機，以下就來摘要我的理解，本文主要介紹各種作業方式。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://lionel223.github.io/image/2021-06-14-git-for-teams-1/03fig03-integration-branch.png">
 <meta property="og:image" content="https://lionel223.github.io/image/2021-06-14-git-for-teams-1/03fig04-github-flow.png">
@@ -238,7 +238,6 @@
   
 </div>
 
-            <div class="post-description">test</div>
         </div>
       </header>
 
@@ -247,6 +246,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>本書以使用者的角度介紹git，觀看團隊的作業方式，以及個別命令的使用時機，以下就來摘要我的理解，本文主要介紹各種作業方式。</p>
+<span id="more"></span>
+
 <h2 id="團隊作業的存取模型"><a href="#團隊作業的存取模型" class="headerlink" title="團隊作業的存取模型"></a>團隊作業的存取模型</h2><p>Git 是個分散式版本控制系統，所以使用者要記錄更動時，不需使用同樣的地方，每個使用者都可在程式碼代管系統之外獨立工作，以下就來介紹幾種常見的git工作模式：</p>
 <ul>
 <li><p>共用的貢獻者儲存庫（Collocated Contributor Repository）</p>

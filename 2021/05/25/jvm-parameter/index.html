@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
-<meta name="description" content="jvm的參數介紹">
+<meta name="description" content="JVM是Java Virtual Machine的縮寫，可將JVM其視為一個抽象的計算機，且他不能直接解譯java語言，只能解譯特定的二進位格式的檔案（.class檔案）。JVM屏蔽了與操作系統平臺相關的信息，使得Java只要生成在 JVM上運行的目標代碼（.class），就可在多種平臺上不加修改的運行，這也是Java能夠一次編譯，到處運行的原因。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jvm parameter介紹">
 <meta property="og:url" content="https://lionel223.github.io/2021/05/25/jvm-parameter/index.html">
 <meta property="og:site_name" content="Lionel&#39;s Blog">
-<meta property="og:description" content="jvm的參數介紹">
+<meta property="og:description" content="JVM是Java Virtual Machine的縮寫，可將JVM其視為一個抽象的計算機，且他不能直接解譯java語言，只能解譯特定的二進位格式的檔案（.class檔案）。JVM屏蔽了與操作系統平臺相關的信息，使得Java只要生成在 JVM上運行的目標代碼（.class），就可在多種平臺上不加修改的運行，這也是Java能夠一次編譯，到處運行的原因。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-25T00:00:00.000Z">
 <meta property="article:modified_time" content="2021-05-25T00:00:00.000Z">
@@ -120,7 +120,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E4%BB%8B%E7%B4%B9"><span class="nav-text">JVM介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E5%8F%83%E6%95%B8%E4%BB%8B%E7%B4%B9"><span class="nav-text">JVM參數介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Explicit-Heap-Memory"><span class="nav-text">Explicit Heap Memory</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-Memory"><span class="nav-text">Out of Memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Garbage-Collection"><span class="nav-text">Garbage Collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GC-Logging"><span class="nav-text">GC Logging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-1"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Misc"><span class="nav-text">Misc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E5%8F%83%E6%95%B8%E4%BB%8B%E7%B4%B9"><span class="nav-text">JVM參數介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Explicit-Heap-Memory"><span class="nav-text">Explicit Heap Memory</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-of-Memory"><span class="nav-text">Out of Memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Garbage-Collection"><span class="nav-text">Garbage Collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GC-Logging"><span class="nav-text">GC Logging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-1"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Misc"><span class="nav-text">Misc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,7 +230,6 @@
   
 </div>
 
-            <div class="post-description">jvm的參數介紹</div>
         </div>
       </header>
 
@@ -238,13 +237,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="JVM介紹"><a href="#JVM介紹" class="headerlink" title="JVM介紹"></a>JVM介紹</h2><p>JVM是Java Virtual Machine的縮寫，根據文件，其介紹如下</p>
+        <p>JVM是Java Virtual Machine的縮寫，可將JVM其視為一個抽象的計算機，且他不能直接解譯java語言，只能解譯特定的二進位格式的檔案（.class檔案）。JVM屏蔽了與操作系統平臺相關的信息，使得Java只要生成在 JVM上運行的目標代碼（.class），就可在多種平臺上不加修改的運行，這也是Java能夠<strong>一次編譯，到處運行的</strong>原因。</p>
+<span id="more"></span>
+
+<p>根據文件，其介紹如下</p>
 <blockquote>
 <p>The Java Virtual Machine is the cornerstone of the Java platform. It is the component of the technology responsible for its hardware- and operating system-independence, the small size of its compiled code, and its ability to protect users from malicious programs.</p>
 <p>The Java Virtual Machine is an abstract computing machine. Like a real computing machine, it has an instruction set and manipulates various memory areas at run time. It is reasonably common to implement a programming language using a virtual machine; the best-known virtual machine may be the P-Code machine of UCSD Pascal.</p>
 <p>The Java Virtual Machine knows nothing of the Java programming language, only of a particular binary format, the class file format. A class file contains Java Virtual Machine instructions (or bytecodes) and a symbol table, as well as other ancillary information.</p>
 </blockquote>
-<p>可將JVM其視為一個抽象的計算機，且他不能直接解譯java語言，只能解譯特定的二進位格式的檔案（.class檔案）。JVM屏蔽了與操作系統平臺相關的信息，使得Java只要生成在 JVM上運行的目標代碼（.class），就可在多種平臺上不加修改的運行，這也是Java能夠<strong>一次編譯，到處運行的</strong>原因。</p>
 <h2 id="JVM參數介紹"><a href="#JVM參數介紹" class="headerlink" title="JVM參數介紹"></a>JVM參數介紹</h2><p>底下來介紹幾個常用的 JVM 參數</p>
 <h3 id="Explicit-Heap-Memory"><a href="#Explicit-Heap-Memory" class="headerlink" title="Explicit Heap Memory"></a>Explicit Heap Memory</h3><p>使用顯式的指令分配和釋放堆中的記憶體，heap memory指的是存放參考資料型別的物件實體，我們可以根據應用程式的需求設定初始heap（<code>Xms</code>）與最大heap（<code>Xmx</code>）的大小，使用方式如下</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-Xms&lt;heap size&gt;[unit]</span><br><span class="line">-Xmx&lt;heap size&gt;[unit]</span><br></pre></td></tr></table></figure>
