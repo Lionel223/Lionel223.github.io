@@ -1,14 +1,13 @@
 ---
 title:  "[Unix] bash基本使用(1)"
 date: 2021-05-18 00:00:00
-description: "bash介紹與基本使用"
 tags: ["unix","bash","command"]
 categories: unix
 ---
 
-## Shell介紹
+shell是一種介於使用者與頁面的一種介面，他的功能是讓使用者能夠藉由指令來操作作業系統。第一個流行的 shell 是由 Steven Bourne 發展出來的，為了紀念他，就稱之為 Bourne shell ，或直接簡稱為 sh，底下就來介紹 bash 與其基本使用方式。
 
-shell是一種介於使用者與頁面的一種介面，他的功能是讓使用者能夠藉由指令來操作作業系統。第一個流行的 shell 是由 Steven Bourne 發展出來的，為了紀念他，就稱之為 Bourne shell ，或直接簡稱為 sh。
+<!-- more -->
 
 在許多作業系統都會提供shell，以Linux來說，他有bash、ksh、zsh...等等，其中bash是許多人用的一個shell。Bash已成為實際的 Linux標準。 這是因為 Bash 與 Unix 的第一個重大 Shell (Bourne Shell，也稱為 sh) 相容。Bash 納入了其前身的最佳功能。但是 Bash 本身也有其他功能，包括叫用外部程式的內建命令和功能，底下我們就來介紹Bash。
 

@@ -1,14 +1,15 @@
 ---
 title: "jvm parameter介紹"
 date: 2021-05-25 00:00:00
-description: "jvm的參數介紹"
 tags: ["java","jvm"]
 categories: java
 ---
 
-## JVM介紹
+JVM是Java Virtual Machine的縮寫，可將JVM其視為一個抽象的計算機，且他不能直接解譯java語言，只能解譯特定的二進位格式的檔案（.class檔案）。JVM屏蔽了與操作系統平臺相關的信息，使得Java只要生成在 JVM上運行的目標代碼（.class），就可在多種平臺上不加修改的運行，這也是Java能夠**一次編譯，到處運行的**原因。
 
-JVM是Java Virtual Machine的縮寫，根據文件，其介紹如下
+<!-- more -->
+
+根據文件，其介紹如下
 
 >The Java Virtual Machine is the cornerstone of the Java platform. It is the component of the technology responsible for its hardware- and operating system-independence, the small size of its compiled code, and its ability to protect users from malicious programs.
 >
@@ -16,8 +17,6 @@ JVM是Java Virtual Machine的縮寫，根據文件，其介紹如下
 >
 >
 >The Java Virtual Machine knows nothing of the Java programming language, only of a particular binary format, the class file format. A class file contains Java Virtual Machine instructions (or bytecodes) and a symbol table, as well as other ancillary information.
-
-可將JVM其視為一個抽象的計算機，且他不能直接解譯java語言，只能解譯特定的二進位格式的檔案（.class檔案）。JVM屏蔽了與操作系統平臺相關的信息，使得Java只要生成在 JVM上運行的目標代碼（.class），就可在多種平臺上不加修改的運行，這也是Java能夠**一次編譯，到處運行的**原因。
 
 ## JVM參數介紹
 

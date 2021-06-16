@@ -1,10 +1,13 @@
 ---
 title:  "[Unix] bash基本使用(4)"
 date: 2021-05-23 00:00:01
-description: "bash的命令別名與歷史命令"
 tags: ["unix","bash","command"]
 categories: unix
 ---
+
+命令別名可以將經常使用的命令自定義，歷史命令可以查看過去曾使用過的指令，兩者皆是 bash 常用的工具，此處將介紹 bash 的命名別名與歷史命令。
+
+<!-- more -->
 
 ## 命令別名
 

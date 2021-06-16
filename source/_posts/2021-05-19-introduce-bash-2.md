@@ -1,16 +1,15 @@
 ---
 title:  "[Unix] bash基本使用(2)"
 date: 2021-05-19 00:00:00
-description: "bash的變數"
 tags: ["unix","bash","command"]
 categories: unix
 ---
 
-## Introduction
-
 當在編寫較大型的shell script時，某些資料，例如路徑，可能會用在很多地方，如果我們把它設定為變數時，那麼當它需要修改時，我們就只需要修改變數的資料即可，所以變數在shell是一個十分方便的工具。
 
 變數（variable）是一組文字或是符號所組成的字串，可以用來取代設定或是一串資料。以下就來說明如何取得、設定變數。
+
+<!-- more -->
 
 ## 變數的取得與設定
 

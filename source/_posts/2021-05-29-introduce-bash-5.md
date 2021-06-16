@@ -1,16 +1,13 @@
 ---
 title:  "[Unix] bash基本使用(5)"
 date: 2021-05-29 00:00:00
-description: "bash的資料流"
 tags: ["unix","bash","command"]
 categories: unix
 ---
 
-## Introduction
-
 什麼是資料流？在bash裡的資料流（data stream）指的就是執行指令時，指令可能從檔案讀取資料，也就是stdin，經過處理後，將資料輸出到螢幕上，輸出至螢幕時又分為成功與失敗的情況，分別是stdout與stderr。
 
-底下就來介紹這三個資料流（data stream）
+底下就來介紹這三個資料流<!-- more -->（data stream）
 
 ## stdin, stdout and stderr
 

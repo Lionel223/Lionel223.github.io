@@ -1,14 +1,13 @@
 ---
 title:  "[Unix] crontab介紹"
 date: 2021-05-30 00:00:00
-description: "crontab的使用方式"
 tags: ["unix","command"]
 categories: unix
 ---
 
-## Introduction
-
 Linux系統內，有時需要在指定時間自動執行工作，此種工作又被稱為「例行性工作」。依據其性質又分為「一次性工作」與「循環性工作」。一次性工作就是在指定時間執行後便不再執行，而循環性工作則會依照指定的時間間隔或時間點重複執行，此處我們就來介紹循環性工作如何使用。
+
+<!-- more -->
 
 循環性的例行性工作排程是由cron（crond）這個系統服務所控制，使用者也可以使用指令 `crontab` 來控制。crontab 是 Linux 內建的機制，可以根據設置的時間參數來執行例行性的工作排程，使用指令 `man crontab` 可查看其描述
 

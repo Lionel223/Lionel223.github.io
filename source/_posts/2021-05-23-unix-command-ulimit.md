@@ -1,14 +1,13 @@
 ---
 title:  "[Unix] ulimit 指令介紹"
 date: 2021-05-23 00:00:00
-description: "介紹常用的unix指令"
 tags: ["unix","bash","command"]
 categories: unix
 ---
 
-## Introduction
+`ulimit`是unix的一個指令，他是shell使用來管控系統資源的指令，可以限制使用者的某些系統資源，本文章會介紹 ulimit 的設定以及使用方式。
 
-`ulimit`是unix的一個指令，他是shell使用來管控系統資源的指令，可以限制使用者的某些系統資源
+<!-- more -->
 
 使用指令`man ulimit`來看他的描述
 

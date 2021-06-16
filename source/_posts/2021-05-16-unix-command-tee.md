@@ -1,14 +1,15 @@
 ---
 title:  "[Unix] tee 指令介紹"
 date: 2021-05-16 00:00:00
-description: "介紹常用的unix指令"
 tags: ["unix","bash","command"]
 categories: unix
 ---
 
-## Introduction
+`tee`是unix的一個指令，他可以將資料流同時分送到檔案與螢幕（screen），預設只有stdout，沒有stderr，底下就來介紹 tee 指令的使用方式。
 
-`tee`是unix的一個指令，他可以將資料流同時分送到檔案與螢幕（screen），預設只有stdout，沒有stderr，其示意圖如下
+<!-- more -->
+
+其示意圖如下
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Tee.svg" alt="Tee" style="zoom:67%;" />
 

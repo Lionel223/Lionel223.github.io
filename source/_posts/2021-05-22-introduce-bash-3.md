@@ -1,14 +1,13 @@
 ---
 title:  "[Unix] bash基本使用(3)"
 date: 2021-05-22 00:00:00
-description: "bash的環境變數"
 tags: ["unix","bash","command"]
 categories: unix
 ---
 
-## Introduction
-
 環境變數就是使用者操作環境的一些設定，環境變數可以幫我們達到很多功能，例如執行檔搜尋的路徑等等的功能，有兩個指令可以查詢我們有多少預設的環境變數，分別是`env`跟`export`。以下就來介紹各個常用的環境變數
+
+<!-- more -->
 
 ## 常用環境變數
 

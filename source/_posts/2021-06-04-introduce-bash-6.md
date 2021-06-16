@@ -1,12 +1,13 @@
 ---
 title: "[Unix] bash基本使用(6)"
 date: 2021-06-04 01:30:16
-description: "bash的環境設定"
 tags: ["unix","bash","command"]
 categories: unix
 ---
 
 前面所提到的命令別名與自訂變數，若沒做任何設定時，只要登出bash就會失效了，要將這些設定寫入設定檔，才能保留這些設定，下面就來介紹這些設定檔。
+
+<!-- more -->
 
 ## Bash的環境設定檔
 

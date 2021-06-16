@@ -1,13 +1,16 @@
 ---
-title:  "SSL簡易說明"  # SSL加密原理簡介
+title:  "SSL簡易說明"
 date: 2020-01-19 00:00:00
-description: "簡易說明ssl的原理"
 tags: ["security", "SSL"]
 categories: security
 ---
 
-## 什麼是ssl
-SSL就是Secure Socket Layer的縮寫，是一種安全協定，目的是為網際網路通訊提供安全及資料完整性保障，以及防止兩個應用/系統間發送的資料不會被讀取或修改任何傳輸的資訊。SSL使用上被排在OSI model(Open Systems Interconnection model)中的Session層以及Application層，示意如下
+SSL就是Secure Socket Layer的縮寫，是一種安全協定，目的是為網際網路通訊提供安全及資料完整性保障，以及防止兩個應用/系統間發送的資料不會被讀取或修改任何傳輸的資訊。底下就來簡易說明 ssl 的原理。
+
+<!-- more -->
+
+SSL使用上被排在OSI model(Open Systems Interconnection model)中的Session層以及Application層，示意如下
+
 1. Physical layer (network cable / wifi)
 2. Data link layer (ethernet)
 3. Network layer (IPv4)

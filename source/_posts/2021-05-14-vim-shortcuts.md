@@ -1,14 +1,13 @@
 ---
 title:  "vim shortcuts"
 date: 2021-05-14 00:00:00
-description: "vim常用的快捷鍵"
 tags: ["vim", "shortcuts"]
 categories: unix
 ---
 
+vim（**V**i **IM**proved）是從vi延伸的一個開源的文字編輯器，他有許多方便程式開發的功能，他也是類unix系統中常用的編輯器。底下就來介紹vim以及常用的快捷鍵。
 
-
-vim（**V**i **IM**proved）是從vi延伸的一個開源的文字編輯器，他有許多方便程式開發的功能，他也是類unix系統中常用的編輯器。Vim的第一個版本是在1991年發布。
+<!-- more -->
 
 ## vim的特點
 

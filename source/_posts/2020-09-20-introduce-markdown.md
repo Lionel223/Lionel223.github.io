@@ -1,18 +1,17 @@
 ---
 title:  "markdown基礎使用"
 date: 2020-09-20 00:00:00
-description: "markdown的基礎使用與介紹"
 tags: ["basic_introduction"]
-categories: other
+categories: markdown
 ---
 
-## Introduction
-
-Markdown是一種輕量級的標記式語言(用簡單句法描述簡單格式的文本語言)，使人可編寫簡單的文件，並轉成有效的HTML文件
+Markdown是一種輕量級的標記式語言(用簡單句法描述簡單格式的文本語言)，使人可編寫簡單的文件，並轉成有效的HTML文件。
 
 Markdown語法的主要目的是用來作為一種web寫作的一種格式
 
-其與HTML的部分有關，並非用來取代HTML的而是讓文件容易閱讀、編寫，也可在文件內編寫HTML，但要注意：markdown語法無法在HTML tag內被處理，以下介紹markdown的語法
+其與HTML的部分有關，並非用來取代HTML的而是讓文件容易閱讀、編寫，也可在文件內編寫HTML，但要注意：markdown語法無法在HTML tag內被處理，以下就來介紹markdown的語法
+
+<!-- more -->
 
 ## Basic syntax
 
