@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="在 JAVA 裡面，有些 Class 的前綴詞是以Atomic 為開頭的，本文主要介紹 Atomic 的意義以及使用方式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java_atomic">
+<meta property="og:url" content="https://lionel223.github.io/2021/07/04/java-atomic/index.html">
+<meta property="og:site_name" content="Lionel&#39;s Blog">
+<meta property="og:description" content="在 JAVA 裡面，有些 Class 的前綴詞是以Atomic 為開頭的，本文主要介紹 Atomic 的意義以及使用方式。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-04T21:36:48.000Z">
+<meta property="article:modified_time" content="2021-07-04T21:36:48.000Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="atomic">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lionel223.github.io/2021/07/04/java-atomic/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;07&#x2F;04&#x2F;java-atomic&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;07&#x2F;04&#x2F;java-atomic&#x2F;&quot;,&quot;title&quot;:&quot;java_atomic&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>java_atomic | Lionel's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lionel's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Atomic-%E7%9A%84%E6%84%8F%E7%BE%A9"><span class="nav-text">Atomic 的意義</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA-%E4%B8%AD%E7%9A%84-Atomic"><span class="nav-text">JAVA 中的 Atomic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lock-free"><span class="nav-text">lock-free</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#thread-safe"><span class="nav-text">thread-safe</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA-%E7%9A%84-Atmoic-Class-%E4%BB%A5%E5%8F%8A-method"><span class="nav-text">JAVA 的 Atmoic Class 以及 method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lionel223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lionel223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/07/04/java-atomic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lionel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lionel's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java_atomic
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-07-04 21:36:48" itemprop="dateCreated datePublished" datetime="2021-07-04T21:36:48+00:00">2021-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在 JAVA 裡面，有些 Class 的前綴詞是以<code>Atomic</code> 為開頭的，本文主要介紹 Atomic 的意義以及使用方式。</p>
+<span id="more"></span>
+
+<h2 id="Atomic-的意義"><a href="#Atomic-的意義" class="headerlink" title="Atomic 的意義"></a>Atomic 的意義</h2><p>在電腦領域中，Atomic 的意思是不可再分割的意思，例如多個 thread 在處理一個全域的資源時，Atomic 的操作可以確保同一個時刻只有唯一的 thread 在對這個資源進行處理。</p>
+<p>Atomic Operation 表示不會被打斷的操作，它可以是一個步驟，也可以是多個步驟，但其順序不可被打亂，且不可被切割，只執行其中一部份。</p>
+<h2 id="JAVA-中的-Atomic"><a href="#JAVA-中的-Atomic" class="headerlink" title="JAVA 中的 Atomic"></a>JAVA 中的 Atomic</h2><p>在 JAVA 也有一個 package 名為 <code>java.util.concurrent.atomic</code>，這個 package 底下的 class 皆提供了防鎖死（lock-free），以及執行緒安全（thread-safe）的 Atomic Operation 方法，以下簡易介紹一下 lock-free 以及 thread-safe</p>
+<h3 id="lock-free"><a href="#lock-free" class="headerlink" title="lock-free"></a>lock-free</h3><p>lock-free 的意義是當 A thread 正在使用 Atomic 的 method 時，B thread 此時去存取會被即時拒絕，所以 B thread 不會被鎖死。為了達成 lock-free，他們使用了 lock and wait-free algorithms（Nonblocking algorithms）以及 CPU 中的 CAS（Compare and Swap）</p>
+<h3 id="thread-safe"><a href="#thread-safe" class="headerlink" title="thread-safe"></a>thread-safe</h3><p>當我們說這個 Class 是 thread-safe 時，表示當他被多個 thread 使用時，Class 可以持續進行正確的行為，不須考慮 thread 在運行情況下的交替執行，也不需做額外的同步機制。例如以下的 Class 就不是 thread safe的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Counter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> number = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> number++; <span class="comment">// 不是thread-safe，因為相當於number = number + 1;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>number++</code> 相當於 <code>number=number+ 1</code>，需要先從變數 <code>number</code> 取出值再加一，然後存入 <code>number</code> 變數中，在 multi thread 時這個步驟可能會遇到取到中間值的情況，例如當兩個 thread 同時使用 add method 時，可能導致結果是 1 或是 2。</p>
+<h2 id="JAVA-的-Atmoic-Class-以及-method"><a href="#JAVA-的-Atmoic-Class-以及-method" class="headerlink" title="JAVA 的 Atmoic Class 以及 method"></a>JAVA 的 Atmoic Class 以及 method</h2><p><code>java.util.concurrent.atomic</code> 裡面的 class 的開頭都有 Atomic。底下是 atomic 的 class</p>
+<ul>
+<li>AtomicBoolean</li>
+<li>AtomicInteger</li>
+<li>AtomicIntegerArray</li>
+<li>AtomicIntegerFieldUpdater</li>
+<li>AtomicLong</li>
+<li>AtomicLongArray</li>
+<li>AtomicLongFieldUpdater</li>
+<li>AtomicReference</li>
+</ul>
+<p>以前面的 Counter Class 為例，我們在這邊就可以使用 <code>AtomicInteger</code> 來實踐剛剛的方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicInteger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AtomicCounter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> AtomicInteger atomicNumber = <span class="keyword">new</span> AtomicInteger();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> atomicNumber.getAndIncrement(); <span class="comment">// thread-safe</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此處我們使用了 method <code>getAndIncrement</code>，他可以對原本的數值加一並且返回原先的數值，底下再介紹數個 <code>AtomicInteger</code> 的 method</p>
+<ul>
+<li><p>compareAndSet</p>
+<p>當輸入的值符合預期值（expect），就將值更新上去</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">compareAndSet</span><span class="params">(<span class="keyword">int</span> expect, <span class="keyword">int</span> update)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>定義：Atomically sets the value to the given updated value if the current value <code>==</code> the expected value.</p>
+<ul>
+<li><p><strong>Parameters</strong></p>
+<p><code>expect</code> - the expected value</p>
+<p><code>update</code> - the new value</p>
+</li>
+<li><p><strong>Returns</strong></p>
+<p><code>true</code> if successful. False return indicates that the actual value was not equal to the expected value.</p>
+</li>
+<li><p><strong>Example</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicInteger; </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span></span><br><span class="line"><span class="class"></span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// create an atomic integer object. </span></span><br><span class="line">        AtomicInteger&lt;Integer&gt; atomicNumber = <span class="keyword">new</span> AtomicInteger&lt;Integer&gt;(); </span><br><span class="line">        <span class="comment">// set some value </span></span><br><span class="line">        ref.set(<span class="number">1</span>); </span><br><span class="line">        <span class="comment">// 輸入的expect是2，但目前的值是1，所以不會更新，且response為false</span></span><br><span class="line">        <span class="keyword">boolean</span> response = ref.compareAndSet(<span class="number">2</span>, <span class="number">3</span>); </span><br><span class="line">  </span><br><span class="line">        <span class="comment">// print value </span></span><br><span class="line">        System.out.println(<span class="string">&quot; Value is set = &quot;</span> + response); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Output</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Value is set = false</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>getAndAccumulate</p>
+<p>返回先前的值，並使用自定義的運算來更新當前值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAccumulate</span><span class="params">(<span class="keyword">int</span> x, IntBinaryOperator accumulatorFunction)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>Atomically updates the current value with the results of applying the given function to the current and given values, returning the previous value. The function should be side-effect-free, since it may be re-applied when attempted updates fail due to contention among threads. The function is applied with the current value as its first argument, and the given update as the second argument.</p>
+<ul>
+<li><p><strong>Parameters</strong></p>
+<p><code>x</code> - the update value</p>
+<p><code>accumulatorFunction</code> - a side-effect-free function of two arguments</p>
+</li>
+<li><p><strong>Returns</strong></p>
+<p>the previous value</p>
+</li>
+<li><p><strong>Example</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicInteger; </span><br><span class="line"><span class="keyword">import</span> java.util.function.IntBinaryOperator; </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">    </span>&#123; </span><br><span class="line">        <span class="keyword">new</span> UserThread(<span class="string">&quot;Thread A&quot;</span>); </span><br><span class="line">        <span class="keyword">new</span> UserThread(<span class="string">&quot;Thread B&quot;</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shared</span> </span>&#123; </span><br><span class="line">    <span class="keyword">static</span> AtomicInteger ai = <span class="keyword">new</span> AtomicInteger(<span class="number">1</span>); </span><br><span class="line">&#125; </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123; </span><br><span class="line">    String name; </span><br><span class="line">  </span><br><span class="line">    UserThread(String name) </span><br><span class="line">    &#123; </span><br><span class="line">        <span class="keyword">this</span>.name = name; </span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">this</span>).start(); </span><br><span class="line">    &#125; </span><br><span class="line">  </span><br><span class="line">    IntBinaryOperator ibo = (x, y) -&gt; (x * y); <span class="comment">// x是原先的值，y是下面的value</span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">int</span> value = <span class="number">5</span>; </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123; </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123; </span><br><span class="line">  </span><br><span class="line">            <span class="keyword">int</span> ans = Shared.ai.getAndAccumulate(value, ibo); </span><br><span class="line">            System.out.println(name + <span class="string">&quot; &quot;</span> + ans); </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Output</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Thread A 1</span><br><span class="line">Thread A 5</span><br><span class="line">Thread A 25</span><br><span class="line">Thread B 125</span><br><span class="line">Thread B 625</span><br><span class="line">Thread B 3125</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>getAndUpdate</p>
+<p>返回先前的值，並更新為指定值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndUpdate</span><span class="params">(IntUnaryOperator updateFunction)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>Atomically updates the current value with the results of applying the given function, returning the previous value. The function should be side-effect-free, since it may be re-applied when attempted updates fail due to contention among threads.</p>
+<ul>
+<li><p><strong>Parameters:</strong></p>
+<p><code>updateFunction</code> - a side-effect-free function</p>
+</li>
+<li><p><strong>Returns:</strong></p>
+<p>the previous value</p>
+</li>
+<li><p><strong>Example</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicInteger; </span><br><span class="line"><span class="keyword">import</span> java.util.function.IntBinaryOperator; </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">    </span>&#123; </span><br><span class="line">        AtomicInteger ai = <span class="keyword">new</span> AtomicInteger(<span class="number">0</span>);</span><br><span class="line">	      <span class="keyword">int</span> threadInt = ...</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Update ai atomically, but only if the current value is less than threadInt</span></span><br><span class="line">				ai.updateAndGet(value -&gt; value &lt; threadInt ? threadInt : value);</span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>※ <code>GetAndAccumulate</code> 與 <code>GetAndupdate</code> 都很相似，從 implementation 來看的話，會發現兩者只有一點點差異，<code>GetAndupdate</code> 算是更基本的操作，而 <code>GetAndAccumulate</code> 則是較快捷的方式</p>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/15054086/what-does-atomic-mean-in-programming">What does “atomic” mean in programming?</a></li>
+<li><a target="_blank" rel="noopener" href="https://matthung0807.blogspot.com/2019/05/java-javautilconcurrentatomicatomicinte.html">Java java.util.concurrent.atomic.AtomicInteger用途</a></li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10229833">[Java] Atomic的介紹</a></li>
+<li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C">原子操作</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/index.html?java/util/concurrent/atomic/package-summary.html">Package java.util.concurrent.atomic</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/atomicinteger-getandaccumulate-method-in-java-with-examples/">AtomicInteger getAndAccumulate() method in Java with Examples</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/29626524/how-to-update-an-atomic-based-on-a-condition">How to update an Atomic based on a condition?</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/36022739/is-there-any-functional-difference-between-atomicinteger-updateandget-and-atom">Is there any functional difference between AtomicInteger.updateAndGet() and AtomicInteger.accumulateAndGet()?</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/atomic/" rel="tag"># atomic</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/28/introduce-maven/" rel="prev" title="Maven基本介紹">
+                  <i class="fa fa-chevron-left"></i> Maven基本介紹
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="comment-button-group">
+          <a class="btn comment-button disqus">disqus</a>
+          <a class="btn comment-button disqusjs">disqusjs</a>
+      </div>
+        <div class="comment-position disqus">
+          
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+        </div>
+        <div class="comment-position disqusjs">
+          
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+        </div><script data-pjax src="/js/comments-buttons.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{&quot;enable&quot;:&quot;ture&quot;,&quot;shortname&quot;:&quot;lionel223&quot;,&quot;count&quot;:false,&quot;i18n&quot;:{&quot;disqus&quot;:&quot;disqus&quot;}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css" integrity="sha256-GxdCIOyfxQ1OBfS99qAIJDoGK1ADuBsxhMTqXG82fAY=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{&quot;enable&quot;:true,&quot;api&quot;:&quot;https:&#x2F;&#x2F;disqus.skk.moe&#x2F;disqus&#x2F;&quot;,&quot;apikey&quot;:&quot;qQdEARuomIWB3sp0lcWI1GaWdJfiagymjTPsXp1E8IJiISMeuM5kaHUdXK87bHPx&quot;,&quot;shortname&quot;:&quot;lionel223&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;disqusjs@1.3.0&#x2F;dist&#x2F;disqus.js&quot;,&quot;integrity&quot;:&quot;sha256-LVaMHPQ2zLqOc5rXSAfr4d1PIkEGNLyyUTDNPZmTtUw&#x3D;&quot;}}</script>
+<script src="/js/third-party/comments/disqusjs.js"></script>
+
+</body>
+</html>

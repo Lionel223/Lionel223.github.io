@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Maven 是 Apache 底下的一個專案管理工具，本文將簡單介紹 Maven 的功能，以及如何使用 Maven。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven基本介紹">
+<meta property="og:url" content="https://lionel223.github.io/2021/06/28/introduce-maven/index.html">
+<meta property="og:site_name" content="Lionel&#39;s Blog">
+<meta property="og:description" content="Maven 是 Apache 底下的一個專案管理工具，本文將簡單介紹 Maven 的功能，以及如何使用 Maven。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-06-28T23:53:00.000Z">
+<meta property="article:modified_time" content="2021-06-28T23:53:00.000Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="maven">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lionel223.github.io/2021/06/28/introduce-maven/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;06&#x2F;28&#x2F;introduce-maven&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;28&#x2F;introduce-maven&#x2F;&quot;,&quot;title&quot;:&quot;Maven基本介紹&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Maven基本介紹 | Lionel's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lionel's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-%E4%BB%8B%E7%B4%B9"><span class="nav-text">Maven 介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-lifecycle"><span class="nav-text">Maven lifecycle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POM%E4%BB%8B%E7%B4%B9"><span class="nav-text">POM介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%B0%A1%E5%96%AE%E7%9A%84-POM"><span class="nav-text">最簡單的 POM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-Inheritance"><span class="nav-text">Project Inheritance</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-1"><span class="nav-text">Example 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Scenario"><span class="nav-text">Scenario</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Solution"><span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-2"><span class="nav-text">Example 2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Scenario-1"><span class="nav-text">Scenario</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Solution-1"><span class="nav-text">Solution</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-Aggregation"><span class="nav-text">Project Aggregation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-1-1"><span class="nav-text">Example 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Scenerio"><span class="nav-text">Scenerio</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Solution-2"><span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-2-1"><span class="nav-text">Example 2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Scenerio-1"><span class="nav-text">Scenerio</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Solution-3"><span class="nav-text">Solution</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-Inheritance-and-Project-Aggregation"><span class="nav-text">Project Inheritance and Project Aggregation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-Interpolation-and-Variables"><span class="nav-text">Project Interpolation and Variables</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Project-Model-Variables"><span class="nav-text">Project Model Variables</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Special-Variables"><span class="nav-text">Special Variables</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Properties"><span class="nav-text">Properties</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven%E7%9A%84%E9%A0%85%E7%9B%AE%E7%B5%90%E6%A7%8B"><span class="nav-text">Maven的項目結構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven%E7%9A%84%E6%8C%87%E4%BB%A4%E4%BB%8B%E7%B4%B9"><span class="nav-text">Maven的指令介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lionel223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lionel223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/06/28/introduce-maven/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lionel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lionel's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Maven基本介紹
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-06-28 23:53:00" itemprop="dateCreated datePublished" datetime="2021-06-28T23:53:00+00:00">2021-06-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Maven 是 Apache 底下的一個專案管理工具，本文將簡單介紹 Maven 的功能，以及如何使用 Maven。</p>
+<span id="more"></span>
+
+<h2 id="Maven-介紹"><a href="#Maven-介紹" class="headerlink" title="Maven 介紹"></a>Maven 介紹</h2><p>Maven 是一個專案管理工具，它包含了專案物件模型（POM，project object model），一個標準集合，一個專案生命週期（Project Lifecycle），一個依賴管理系統（Dependency Management System）。</p>
+<p>Maven 的主要目標就是讓開發者在最短的時間了解整個開發工作的完整狀態，為了達到這個目標，所以 Maven 專注在以下幾點：</p>
+<ul>
+<li><p>Making the build process easy</p>
+<p>簡化構建的流程，它協助開發人員屏蔽了許多細節</p>
+</li>
+<li><p>Providing a uniform build system</p>
+<p>提供一個統一的構建系統，使用 POM（專案物件模型）以及一組 plugin 來創建專案，當熟悉了 Maven 的專案後，處理專案之間的依賴關係將花費較少的時間</p>
+</li>
+<li><p>Providing quality project information</p>
+<p>提供良好的專案訊息，Maven 可提供許多專案訊息，這些訊息可從 POM，或者專案的 source，例如專案的依賴關係、專案的引用來源 等等</p>
+</li>
+<li><p>Encouraging better development practices</p>
+<p>鼓勵更好的開發者實踐方式</p>
+</li>
+</ul>
+<h2 id="Maven-lifecycle"><a href="#Maven-lifecycle" class="headerlink" title="Maven lifecycle"></a>Maven lifecycle</h2><p>Maven 將專案的構建劃分為不同的生命週期（lifecycle），可以明確的定義構建、分發至某個專案的過程，對於要構建專案的人，只要熟悉一小部分的指令就可以構建 Maven 的專案了，而 POM 則可確保他們得到所需要的結果。</p>
+<p>當我們執行指令時，就已經使用了 lifecycle、phase、goal，例如，當執行 <code>mvn package</code> 時，實際上就執行了底下六個步驟，左邊是他的 phase，右邊是 goal</p>
+<table>
+<thead>
+<tr>
+<th>phase</th>
+<th>goal</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>process-resources</code></td>
+<td><code>resources:resources</code></td>
+</tr>
+<tr>
+<td><code>compile</code></td>
+<td><code>compiler:compile</code></td>
+</tr>
+<tr>
+<td><code>process-test-resources</code></td>
+<td><code>resources:testResources</code></td>
+</tr>
+<tr>
+<td><code>test-compile</code></td>
+<td><code>compiler:testCompile</code></td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td><code>surefire:test</code></td>
+</tr>
+<tr>
+<td><code>package</code></td>
+<td><code>jar:jar</code></td>
+</tr>
+</tbody></table>
+<p>目前有三個內建的 lifecycle，分別是 <strong>default</strong>、<strong>clean</strong>、<strong>site</strong>，<strong>default</strong> 的生命週期可以處理專案的部署，<strong>clean</strong> 的生命週期可以處理專案的清理，<strong>site</strong> 的生命週期則可處理專案項目的文檔。</p>
+<p>生命週期都是由 phase 所組成的，例如底下是 default lifecycle 的 phase</p>
+<ul>
+<li><code>validate</code> - 驗證專案是否正確，以及所有必要的訊息是否皆可用</li>
+<li><code>compile</code> - 編譯專案的 source code</li>
+<li><code>test</code> - 使用合適的單元測試來測試編譯過的 source code</li>
+<li><code>package</code> - 將編譯過的 source code 打包成可發布的格式，例如 jar 檔</li>
+<li><code>verify</code> - 檢查整合測試的結果，確保程式符合需求</li>
+<li><code>install</code> - 將 package 安裝到 local repository，確保可以使其他專案使用</li>
+<li><code>deploy</code> - 構建完成，將 package 發佈至 remote repository 提供給其他開發人員使用</li>
+</ul>
+<h2 id="POM介紹"><a href="#POM介紹" class="headerlink" title="POM介紹"></a>POM介紹</h2><p>專案物件模型POM（Project Object Model）是 Maven 的基本工作單位，他是一個 XML 文件，記載了專案的設定與資訊，其中也包含 Maven 構建專案的資訊，以及許多專案的默認值，例如我們預設的 build 的目錄會放在目錄 <code>target</code> 內，開發主目錄在 <code>src/main/java</code>，而測試主目錄則是在 <code>/src/test/java</code>。執行 Maven 時，Maven 會先在當前目錄中找尋 POM，並讀取 POM 來取得相關設定並執行。</p>
+<p>另外還有一種 POM 叫做 Super POM，這種 POM 是 Maven 的預設 POM，所有專案的 POM 都是從 Super POM 繼承的，也就是說 ，所有的 POM 資訊都是來自 Super POM，但 POM 的資訊也會覆蓋 Super POM 的重複項。</p>
+<h3 id="最簡單的-POM"><a href="#最簡單的-POM" class="headerlink" title="最簡單的 POM"></a>最簡單的 POM</h3><p>最簡單的 POM 必須包含以下的資訊</p>
+<ul>
+<li><code>project</code> - root</li>
+<li><code>modelVersion</code> - 要設定為 <code>4.0.0</code></li>
+<li><code>groupId</code> - 專案的 group id</li>
+<li><code>artifactId</code> - artifact id，可以想成是專案的名稱</li>
+<li><code>version</code> - 在指定的 group 底下，這個 artifact 的版本</li>
+</ul>
+<p>範例</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>一個 POM 需要有 groupId、artifactId、version，這三個值可以組成專案的 fully qualified artifact name，他的格式是 <code>&lt;groupId&gt;:&lt;artifactId&gt;:&lt;version&gt;</code>，例如以上的範例，其 fully qualified artifact name 為 <code>com.mycompany.app:my-app:1</code></p>
+<p>就像前面提到的，若有些設定沒有提供，那麼就會使用預設值，例如 <code>packaging type</code> 在這邊沒有提供，就會使用預設的 <code>jar</code>。</p>
+<h3 id="Project-Inheritance"><a href="#Project-Inheritance" class="headerlink" title="Project Inheritance"></a>Project Inheritance</h3><p>前面提到的 Super POM 也是其中一種專案的繼承，但也可以在 POM 內加入 <code>&lt;parent&gt;</code> 來放入 parent POM。</p>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h4><h5 id="Scenario"><a href="#Scenario" class="headerlink" title="Scenario"></a>Scenario</h5><p>我們使用前面的範例，我們先前已經引入的 artifact  <code>com.mycompany.app:my-app:1</code>，現在有另外一個 artifact 名稱是 <code>com.mycompany.app:my-module:1</code>，其文件內容如下</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-module<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>整體文件架構如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line"> |-- my-module</span><br><span class="line"> |   `-- pom.xml</span><br><span class="line"> `-- pom.xml</span><br></pre></td></tr></table></figure>
+
+<p>※ <em>my-module/pom.xml</em> 是 <code>com.mycompany.app:my-module:1</code> 的 POM，<em>pom.xml</em> 則是 <code>com.mycompany.app:my-app:1</code> 的 POM</p>
+<p>現在我們需要讓 <code>com.mycompany.app:my-app:1</code> 成為 <code>com.mycompany.app:my-module:1</code> 的 parent POM</p>
+<h5 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h5><p>此時我們需要將 <code>com.mycompany.app:my-app:1</code> 轉換成 <code>com.mycompany.app:my-module:1</code> 的 parent artifact，所以 <code>com.mycompany.app:my-module:1</code> 需要修改如下</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-module<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此時新增了 <code>&lt;praent&gt;</code>，這個欄位是用來描述這個 POM 的 parent artifact，所以必須提供完整的 artifact 名稱。</p>
+<p>若 groupId 或 version 與 parent 的 POM 一樣，也可以不用填寫，如下範例</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h4><h5 id="Scenario-1"><a href="#Scenario-1" class="headerlink" title="Scenario"></a>Scenario</h5><p>前一個例子使用是需要 parent POM 已經安裝到 local repository了，或者是放在特殊的檔案結構（專案 POM 的 parent POM 必須在前一層），例如檔案結構如下的話</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line"> |-- my-module</span><br><span class="line"> |   `-- pom.xml</span><br><span class="line"> `-- parent</span><br><span class="line">     `-- pom.xml</span><br></pre></td></tr></table></figure>
+
+<h5 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h5><p>為了知道 parent POM 的位置，需要再加上 <code>&lt;relativePath&gt;</code> 欄位，所以 <code>com.mycompany.app:my-module:1</code> 要修改如下</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>&gt;</span>../parent/pom.xml<span class="tag">&lt;/<span class="name">relativePath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-module<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Project-Aggregation"><a href="#Project-Aggregation" class="headerlink" title="Project Aggregation"></a>Project Aggregation</h3><p>Project Aggregation 就類似 Project Inheritance，但與 Project Inheritance 不同，Project Inheritance 需在 my-module 內新增 parent 欄位來設定 parent POM，而 Project Aggregation 則是在 parent POM 內設定 my-module。</p>
+<p>透過這種方式，parent POM 就可以知道他的 module，若是在 parent POM 執行 Maven 指令的話，也可以一起執行他的 module，若要使用 Project Aggregation，則需要做以下的事情：</p>
+<ol>
+<li>將 parent POM 的 <code>&lt;packaging&gt;</code> 修改為 <code>pom</code></li>
+<li>在 parent POM 內設定 children POM 的路徑</li>
+</ol>
+<h4 id="Example-1-1"><a href="#Example-1-1" class="headerlink" title="Example 1"></a>Example 1</h4><p>我們再次使用前面的設定</p>
+<h5 id="Scenerio"><a href="#Scenerio" class="headerlink" title="Scenerio"></a>Scenerio</h5><p><strong>com.mycompany.app:my-app:1’s POM</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>com.mycompany.app:my-module:1’s POM</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-module<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>directory structure</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line"> |-- my-module</span><br><span class="line"> |   `-- pom.xml</span><br><span class="line"> `-- pom.xml</span><br></pre></td></tr></table></figure>
+
+<h5 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h5><p>我們要將 my-module 聚合到 my-app，此時需要修改 <code>com.mycompany.app:my-app:1</code> 的 POM</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">module</span>&gt;</span>my-module<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在此處我們新增了欄位 <code>&lt;packaging&gt;</code> 以及 <code>&lt;modules&gt;</code>，<code>&lt;packaging&gt;</code> 的值被設定為 <code>pom</code>，<code>&lt;modules&gt;</code> 則被設定為 <code>my-module</code>，需注意 <code>&lt;module&gt;</code> 設定的是相對路徑，而不是 module 的名稱，此時在 my-app 內執行 Maven 指令時，也會在 my-module 內執行</p>
+<h4 id="Example-2-1"><a href="#Example-2-1" class="headerlink" title="Example 2"></a>Example 2</h4><h5 id="Scenerio-1"><a href="#Scenerio-1" class="headerlink" title="Scenerio"></a>Scenerio</h5><p>使用前面範例，但檔案結構修改如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line"> |-- my-module</span><br><span class="line"> |   `-- pom.xml</span><br><span class="line"> `-- parent</span><br><span class="line">     `-- pom.xml</span><br></pre></td></tr></table></figure>
+
+<h5 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution"></a>Solution</h5><p>與前面一樣，只要修改 <code>&lt;module&gt;</code> 的相對路徑即可</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.app<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">module</span>&gt;</span>../my-module<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Project-Inheritance-and-Project-Aggregation"><a href="#Project-Inheritance-and-Project-Aggregation" class="headerlink" title="Project Inheritance and Project Aggregation"></a>Project Inheritance and Project Aggregation</h3><p>若有許多的 Maven 專案，且他們都有許多相同的設定時，可以將相同的部份抽出來，並做成一個 parent project，只要讓其他的 POM 都繼承這個 parent POM 即可</p>
+<p>若有另一組專案，他們有許多的 project 需要一起 build 和 process，也可以創建一個 parent project，並將其餘的 POM 設定成 parent project 的 modules，這樣的話只要執行 parent POM，則其餘的 module 也會跟著執行</p>
+<p>但我們也可以同時使用 Project Inheritance 和 Project Aggregation，只要做好以下三點：</p>
+<ol>
+<li>在每個 child project 的 POM 設定 <code>&lt;parent&gt;</code></li>
+<li>parent POM 內設定 <code>&lt;packaging&gt;</code> 改為 <code>pom</code></li>
+<li>parent POM 設定 modules，以及 child project 的相對位置</li>
+</ol>
+<h3 id="Project-Interpolation-and-Variables"><a href="#Project-Interpolation-and-Variables" class="headerlink" title="Project Interpolation and Variables"></a>Project Interpolation and Variables</h3><p>有時需要在不同的地方使用到相同的值，這時我們就可以在一個地方定義值，在提供給其他 POM 使用，例如我們要定義 <code>project.version</code>，可以定義</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此時即可在其他地方如此使用</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;project.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這個機制是在 inheritance 之後進行的，所以若 parent POM 包含了變數，這個變數也可以被 child POM 繼承並使用。</p>
+<p>這邊共有三種可使用的變數，說明如下</p>
+<h4 id="Project-Model-Variables"><a href="#Project-Model-Variables" class="headerlink" title="Project Model Variables"></a>Project Model Variables</h4><p>所有 POM 內的參數都可以視為變數，例如 <code>$&#123;project.groupId&#125;</code>、<code>$&#123;project.version&#125;</code>、<code>$&#123;project.build.sourceDIrectory&#125;</code>，這些字首都須加上 <code>project</code>，另外也有 <code>pom</code> 為字首的，但現在已經 deprecate 了</p>
+<h4 id="Special-Variables"><a href="#Special-Variables" class="headerlink" title="Special Variables"></a>Special Variables</h4><table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>project.basedir</code></td>
+<td>此專案的位置</td>
+</tr>
+<tr>
+<td><code>project.baseUri</code></td>
+<td>此專案的位置使用 Uri表示<br /><em>Since Maven 2.1.0</em></td>
+</tr>
+<tr>
+<td><code>maven.build.timestamp</code></td>
+<td>The timestamp that denotes the start of the build (UTC). <br /><em>Since Maven 2.1.0-M1</em></td>
+</tr>
+</tbody></table>
+<p>對於build timestamp的格式，可以通過 <code>&lt;maven.build.timestamp.format&gt;</code>指定如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.build.timestamp.format</span>&gt;</span>yyyy-MM-dd&#x27;T&#x27;HH:mm:ss&#x27;Z&#x27;<span class="tag">&lt;/<span class="name">maven.build.timestamp.format</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>詳情可參考 <code>SimpleDateFormat</code> 的文件，若沒有設定則會使用預設值</p>
+<h4 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h4><p>如前所述，可定義 <code>&lt;properties&gt;</code>，範例如下</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mavenVersion</span>&gt;</span>3.0<span class="tag">&lt;/<span class="name">mavenVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-artifact<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mavenVersion&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mavenVersion&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Maven的項目結構"><a href="#Maven的項目結構" class="headerlink" title="Maven的項目結構"></a>Maven的項目結構</h2><p>一個 Maven project，其目錄結構如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">maven-project</span><br><span class="line">├── pom.xml</span><br><span class="line">├── src</span><br><span class="line">│   ├── main</span><br><span class="line">│   │   ├── java</span><br><span class="line">│   │   └── resources</span><br><span class="line">│   └── test</span><br><span class="line">│       ├── java</span><br><span class="line">│       └── resources</span><br><span class="line">└── target</span><br></pre></td></tr></table></figure>
+
+<p>maven-project 是檔案名稱，底下有一份文件是 <code>pom.xml</code>，JAVA source code會存放在 <code>src/main/java</code> 內，資源則會放在 <code>src/main/resources</code>，測試程式會放在 <code>src/test/java</code>，資源放在 <code>src/test/resources</code>，最後 compile 和 package 的文件則會放在 target 內，這就是一個 Maven project 的標準目錄結構。</p>
+<h2 id="Maven的指令介紹"><a href="#Maven的指令介紹" class="headerlink" title="Maven的指令介紹"></a>Maven的指令介紹</h2><p>這個是 maven 的指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn [options] [goal(s)] [phase(s)]</span><br></pre></td></tr></table></figure>
+
+<p>可以使用 <code>mvn -h</code> 來查詢如何使用</p>
+<p>前面也有提過可以使用 mvn 指令搭配 phase 名稱，這些 phase 就會按照順序執行，例如執行了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+
+<p>此時也會先進行 validate、compile、test，最後在進行 package，也可以執行多個 phase，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn clean package</span><br></pre></td></tr></table></figure>
+
+<p>此時就會先執行 clean（以及先前必要的 phase），然後再執行 package（以及先前必要的 phase）</p>
+<p>另外還有一種是 Goal，他是更細的工作，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn archetype:generate</span><br><span class="line">或者是</span><br><span class="line">mvn checkstyle:check</span><br></pre></td></tr></table></figure>
+
+<p>底下列出一些常用的 phase 以及指令：</p>
+<ul>
+<li><p>編譯專案</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn compile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>清除專案</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn clean</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>將相依程式庫（JAR）複製至target/dependency目錄</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn dependency:copy-dependencies</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>包裝專案為JAR，放在target目錄</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定主類別執行程式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn exec:java -Dexec.mainClass=packageName.className</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>刪除已下載的plugin並重新下載plugin</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn dependency:purge-local-repository</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>將專案產生的JAR檔，安裝至 local repository</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn install</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/96050/#outline__4_1_2_2_1">Maven整體認識——詳細介紹</a></li>
+<li><a target="_blank" rel="noopener" href="https://maven.apache.org/what-is-maven.html">Apache Maven Project</a></li>
+<li><a target="_blank" rel="noopener" href="http://tutorials.jenkov.com/maven/maven-commands.html">Maven Commands</a></li>
+<li><a target="_blank" rel="noopener" href="https://kentyeh.github.io/mavenStartup/index.html">Maven教學</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1309301146648610">Maven介紹</a></li>
+<li><a target="_blank" rel="noopener" href="https://openhome.cc/Gossip/JUnit/BuildLifeCycle.html">建構生命週期</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/maven/" rel="tag"># maven</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/25/introduce-ip/" rel="prev" title="IP的基本介紹與使用">
+                  <i class="fa fa-chevron-left"></i> IP的基本介紹與使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/04/java-atomic/" rel="next" title="java_atomic">
+                  java_atomic <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="comment-button-group">
+          <a class="btn comment-button disqus">disqus</a>
+          <a class="btn comment-button disqusjs">disqusjs</a>
+      </div>
+        <div class="comment-position disqus">
+          
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+        </div>
+        <div class="comment-position disqusjs">
+          
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+        </div><script data-pjax src="/js/comments-buttons.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{&quot;enable&quot;:&quot;ture&quot;,&quot;shortname&quot;:&quot;lionel223&quot;,&quot;count&quot;:false,&quot;i18n&quot;:{&quot;disqus&quot;:&quot;disqus&quot;}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css" integrity="sha256-GxdCIOyfxQ1OBfS99qAIJDoGK1ADuBsxhMTqXG82fAY=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{&quot;enable&quot;:true,&quot;api&quot;:&quot;https:&#x2F;&#x2F;disqus.skk.moe&#x2F;disqus&#x2F;&quot;,&quot;apikey&quot;:&quot;qQdEARuomIWB3sp0lcWI1GaWdJfiagymjTPsXp1E8IJiISMeuM5kaHUdXK87bHPx&quot;,&quot;shortname&quot;:&quot;lionel223&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;disqusjs@1.3.0&#x2F;dist&#x2F;disqus.js&quot;,&quot;integrity&quot;:&quot;sha256-LVaMHPQ2zLqOc5rXSAfr4d1PIkEGNLyyUTDNPZmTtUw&#x3D;&quot;}}</script>
+<script src="/js/third-party/comments/disqusjs.js"></script>
+
+</body>
+</html>
