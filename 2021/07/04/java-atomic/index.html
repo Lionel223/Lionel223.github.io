@@ -22,7 +22,7 @@
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
 <meta name="description" content="在 JAVA 裡面，有些 Class 的前綴詞是以Atomic 為開頭的，本文主要介紹 Atomic 的意義以及使用方式。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java_atomic">
+<meta property="og:title" content="java 的 atomic 介紹">
 <meta property="og:url" content="https://lionel223.github.io/2021/07/04/java-atomic/index.html">
 <meta property="og:site_name" content="Lionel&#39;s Blog">
 <meta property="og:description" content="在 JAVA 裡面，有些 Class 的前綴詞是以Atomic 為開頭的，本文主要介紹 Atomic 的意義以及使用方式。">
@@ -39,10 +39,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;07&#x2F;04&#x2F;java-atomic&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;07&#x2F;04&#x2F;java-atomic&#x2F;&quot;,&quot;title&quot;:&quot;java_atomic&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;07&#x2F;04&#x2F;java-atomic&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;07&#x2F;04&#x2F;java-atomic&#x2F;&quot;,&quot;title&quot;:&quot;java 的 atomic 介紹&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>java_atomic | Lionel's Blog</title>
+<title>java 的 atomic 介紹 | Lionel's Blog</title>
   
 
 
@@ -134,20 +134,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -204,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          java_atomic
+          java 的 atomic 介紹
         </h1>
 
         <div class="post-meta-container">
@@ -358,6 +358,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/07/07/linux-swap/" rel="next" title="swap 基本介紹">
+                  swap 基本介紹 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
