@@ -1,5 +1,5 @@
 ---
-title: java_atomic
+title: java 的 atomic 介紹
 date: 2021-07-04 21:36:48
 tags: ["java", "atomic"]
 categories: java
