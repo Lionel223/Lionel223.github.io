@@ -27,18 +27,6 @@ Linux 上的 swap space 是在 RAM 用完後才會使用到。當系統要更多
 
 應用程式啟動時，常常會使用到大量的記憶體，但後續都不會使用，此時可以透過後台的程序將這些只使用一次的記憶體交換到磁碟上，使其他記憶體有預留的空間。kswapd 是 Linux 上負責做 page replacement 的程序，他也是交換閒置記憶體的程序，當記憶體的量低於一定量時，他可以保證其他程序可以盡快獲得所需的記憶體。而在 Linux 裡面是使用 LRU（Least Recently Used Page Replacement）的演算法來置換記憶體的 page，他會將存在於實體記憶體頁框中最久沒用到的 page 給取代掉，系統中的每個區都會在記憶體中持有 active_list 和 inactive_list 兩種連結串列，其中前者包含活躍的記憶體頁，後者中儲存的記憶體頁都是回收的候選頁面
 
-
-
-
-
-
-
-將存在於實體記憶體頁框中最久沒用到的分頁給取代掉，實作起來比起FIFO稍微困難，需使用計數變數(Counter)去儲存每個在頁框內的分頁使用後閒置的時間，或是如Linked List等額外的資料結構來儲存過去頁框中的分頁使用的順序，但實行起來成效顯著。流程如下表，分頁後數字的部份為最近使用的排序，數字愈小表示愈久之前使用過。
-
-
-
-
-
 ## Reference
 
 * [Linux 系統 Swap 交換空間管理教學：Swap 分割區與檔案的使用與管理](https://blog.gtwang.org/linux/linux-swap-space-tutorial/)

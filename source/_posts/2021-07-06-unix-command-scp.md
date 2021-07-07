@@ -1,5 +1,5 @@
 ---
-title: [Unix] scp 指令介紹
+title: "[Unix] scp 指令介紹"
 date: 2021-07-06 20:10:08
 tags: ["linux","command"]
 categories: linux
@@ -101,6 +101,18 @@ scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
 
   ```bash
   $ scp user1@host1.com:/files/file.txt user2@host2.com:/files
+  ```
+  
+* 設定 host alias，複製本機檔案至遠端
+
+  ```bash
+  $ vim ~/.ssh/config
+  Host	alias_host_name
+  	User	remote_username
+  	HostName	10.10.10.10
+  	Port	50001
+  
+  $ scp file.txt alias_host_name:/remote/directory
   ```
 
 ## Reference
