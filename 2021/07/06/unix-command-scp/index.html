@@ -20,30 +20,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;lionel223.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
-<meta name="description" content="當在編寫較大型的shell script時，某些資料，例如路徑，可能會用在很多地方，如果我們把它設定為變數時，那麼當它需要修改時，我們就只需要修改變數的資料即可，所以變數在shell是一個十分方便的工具。 變數（variable）是一組文字或是符號所組成的字串，可以用來取代設定或是一串資料。以下就來說明如何取得、設定變數。">
+<meta name="description" content="當我們需要從遠端加密複製檔案時，常常會用到 scp 這個指令，本文會介紹這個指令的語法，以及他的使用方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Unix] bash基本使用(2)">
-<meta property="og:url" content="https://lionel223.github.io/2021/05/19/introduce-bash-2/index.html">
+<meta property="og:title" content="[Unix] scp 指令介紹">
+<meta property="og:url" content="https://lionel223.github.io/2021/07/06/unix-command-scp/index.html">
 <meta property="og:site_name" content="Lionel&#39;s Blog">
-<meta property="og:description" content="當在編寫較大型的shell script時，某些資料，例如路徑，可能會用在很多地方，如果我們把它設定為變數時，那麼當它需要修改時，我們就只需要修改變數的資料即可，所以變數在shell是一個十分方便的工具。 變數（variable）是一組文字或是符號所組成的字串，可以用來取代設定或是一串資料。以下就來說明如何取得、設定變數。">
+<meta property="og:description" content="當我們需要從遠端加密複製檔案時，常常會用到 scp 這個指令，本文會介紹這個指令的語法，以及他的使用方法">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-05-19T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-05-19T00:00:00.000Z">
+<meta property="article:published_time" content="2021-07-06T20:10:08.000Z">
+<meta property="article:modified_time" content="2021-07-06T20:10:08.000Z">
 <meta property="article:author" content="Lionel">
-<meta property="article:tag" content="unix">
-<meta property="article:tag" content="bash">
 <meta property="article:tag" content="command">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://lionel223.github.io/2021/05/19/introduce-bash-2/">
+<link rel="canonical" href="https://lionel223.github.io/2021/07/06/unix-command-scp/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;05&#x2F;19&#x2F;introduce-bash-2&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;19&#x2F;introduce-bash-2&#x2F;&quot;,&quot;title&quot;:&quot;[Unix] bash基本使用(2)&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;lionel223.github.io&#x2F;2021&#x2F;07&#x2F;06&#x2F;unix-command-scp&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;07&#x2F;06&#x2F;unix-command-scp&#x2F;&quot;,&quot;title&quot;:&quot;[Unix] scp 指令介紹&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>[Unix] bash基本使用(2) | Lionel's Blog</title>
+<title>[Unix] scp 指令介紹 | Lionel's Blog</title>
   
 
 
@@ -121,7 +120,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%8A%E6%95%B8%E7%9A%84%E5%8F%96%E5%BE%97%E8%88%87%E8%A8%AD%E5%AE%9A"><span class="nav-text">變數的取得與設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%8A%E6%95%B8%E7%9A%84%E8%A8%AD%E5%AE%9A%E8%A6%8F%E5%89%87"><span class="nav-text">變數的設定規則</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E4%BB%8B"><span class="nav-text">簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Command-Syntax"><span class="nav-text">Command Syntax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%89%8D%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-text">使用前的注意事項</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -192,7 +191,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/05/19/introduce-bash-2/">
+    <link itemprop="mainEntityOfPage" href="https://lionel223.github.io/2021/07/06/unix-command-scp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -205,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [Unix] bash基本使用(2)
+          [Unix] scp 指令介紹
         </h1>
 
         <div class="post-meta-container">
@@ -216,7 +215,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-05-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-19T00:00:00+00:00">2021-05-19</time>
+      <time title="Created: 2021-07-06 20:10:08" itemprop="dateCreated datePublished" datetime="2021-07-06T20:10:08+00:00">2021-07-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -224,7 +223,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/unix/" itemprop="url" rel="index"><span itemprop="name">unix</span></a>
+          <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
         </span>
     </span>
 
@@ -238,72 +237,83 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>當在編寫較大型的shell script時，某些資料，例如路徑，可能會用在很多地方，如果我們把它設定為變數時，那麼當它需要修改時，我們就只需要修改變數的資料即可，所以變數在shell是一個十分方便的工具。</p>
-<p>變數（variable）是一組文字或是符號所組成的字串，可以用來取代設定或是一串資料。以下就來說明如何取得、設定變數。</p>
+        <p>當我們需要從遠端加密複製檔案時，常常會用到 <code>scp</code> 這個指令，本文會介紹這個指令的語法，以及他的使用方法</p>
 <span id="more"></span>
 
-<h2 id="變數的取得與設定"><a href="#變數的取得與設定" class="headerlink" title="變數的取得與設定"></a>變數的取得與設定</h2><ul>
-<li><p>取得變數</p>
-<p>變數的取得可使用<code>echo</code>指令，取得變數時，需在變數的前面加上<code>$</code>，以下面指令為例，我們想取得<code>user</code>內的值，可以這樣使用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$user</span></span><br><span class="line">Lionel</span><br><span class="line"><span class="comment"># 也可將變數加上大括號</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;user&#125;</span></span><br><span class="line">Lionel</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>設定、修改變數</p>
-<p>設定、修改變數，只要使用<code>=</code>即可設定，例如我們想將<code>user</code>的值修改為LIONEL，只要這樣即可</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ user=LIONEL</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;user&#125;</span></span><br><span class="line">LIONEL</span><br></pre></td></tr></table></figure>
-
-<p>※ 當一個變數名稱尚未被設定時，預設內容是空的</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;abc&#125;</span></span><br><span class="line">  （這邊會是空的）</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>取消變數</p>
-<p>使用指令<code>unset</code>即可取消變數</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">unset</span> user</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="變數的設定規則"><a href="#變數的設定規則" class="headerlink" title="變數的設定規則"></a>變數的設定規則</h2><ul>
-<li><p>變數與變數內容要使用等號連結，且等號兩邊不可空白，以下兩個是錯誤的設定</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ user = Lionel</span><br><span class="line">$ user=Lionel Chen</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>變數名稱只能由英文與數字組成，且開頭不可是數字，以下為錯誤的變數名稱</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1user</span><br><span class="line">user_name</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>若變數內容包含空白字元，可使用<code>&quot;&quot;</code>或是<code>&#39;&#39;</code>將變數內容包起來，例如以下範例</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ user=<span class="string">&quot;Lionel Chen&quot;</span></span><br><span class="line"><span class="comment"># 也可使用單引號</span></span><br><span class="line">$ user=<span class="string">&#x27;Lionel Chen&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>不過單引號跟雙引號也有差異</p>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>SCP（secure copy）是一個指令，可以讓使用者在兩個 host 間加密的複製檔案或者資料夾，當使用了指令 <code>scp</code>，你就可以</p>
 <ul>
-<li><p>使用雙引號時，若裡面包含特殊字元，可以保留原先的特性</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 雙引號內，$可以保留原先的特性</span></span><br><span class="line">$ var=<span class="string">&quot;Current lang is <span class="variable">$LANG</span>&quot;</span></span><br><span class="line">$ <span class="built_in">echo</span> var</span><br><span class="line">Current lang is zh_TW.UTF-8</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用單引號時，若裡面包含特殊字元，會視為一般字元（純文字）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 單引號內，$視為一般字元</span></span><br><span class="line">$ var=<span class="string">&#x27;Current lang is $LANG&#x27;</span></span><br><span class="line">$ <span class="built_in">echo</span> var</span><br><span class="line">Current lang is <span class="variable">$LANG</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>也可使用跳脫字元<code>\</code>將特殊字元變成一般字元</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 跳脫字元後面的空白視為一般字元</span></span><br><span class="line">$ user=Lionel\ Chen</span><br><span class="line">$ <span class="built_in">echo</span> user</span><br><span class="line">Lionel Chen</span><br></pre></td></tr></table></figure>
-</li>
+<li>從本機複製一個檔案或者資料夾到遠端</li>
+<li>從遠端複製一個檔案或者資料夾到本機</li>
+<li>從 A 端複製一個檔案或者資料夾到 B 端</li>
+</ul>
+<p>使用指令 <code>man scp</code> 即可看到他的描述</p>
+<blockquote>
+<p>scp copies files between hosts on a network.  It uses ssh(1) for data transfer, and uses the same authentication and provides the same security as ssh(1).  scp will ask for passwords or passphrases if they are needed for authentication.</p>
+<p>The source and target may be specified as a local pathname, a remote host with optional path in the form [user@]host:[path], or a URI in the form scp://[user@]host[:port][/path]. Local file names can be made explicit using absolute or relative pathnames to avoid scp treating file names containing `:’ as host specifiers.</p>
+</blockquote>
+<h2 id="Command-Syntax"><a href="#Command-Syntax" class="headerlink" title="Command Syntax"></a>Command Syntax</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>OPTION</code> - 許多選項，例如 cipher、ssh 設定、port、limit、recursive copy等等，詳細資訊可使用 <code>man scp</code> 查詢，此處列出常用的數個選項<ul>
+<li><code>-P</code> - 自定義 ssh port（一般預設 22）</li>
+<li><code>-p</code> - 保留原本的修改時間、存取時間與權限</li>
+<li><code>-C</code> - 這個選項會讓資料壓縮之後再傳送，可以減少網路頻寬的使用量</li>
+<li><code>-r</code> - recurisively copy，可複製整個目錄以及其下的所有檔案，若沒設定，只會傳輸當前目錄底下的檔案</li>
+<li><code>-l</code> - 限制傳輸時使用頻寬（Kbit/s）</li>
+<li><code>-v</code> - 顯示傳輸進度與資訊（本地端複製無法顯示進度）</li>
 </ul>
 </li>
-<li><p>若需藉由其餘指令的資訊，可使用此方式<code>`command`</code>或是<code>$(command)</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 取得核心版本設定</span></span><br><span class="line">$ version=$(uname -r)</span><br><span class="line"><span class="comment"># 這樣也可</span></span><br><span class="line">$ version=`uname -r`</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$version</span></span><br><span class="line">19.6.0</span><br></pre></td></tr></table></figure>
+<li><code>[user@]SRC_HOST:]file1</code> - 來源檔案</li>
+<li><code>[user@]DEST_HOST:]file2</code> - 目標檔案</li>
+</ul>
+<h2 id="使用前的注意事項"><a href="#使用前的注意事項" class="headerlink" title="使用前的注意事項"></a>使用前的注意事項</h2><ul>
+<li>指令 <code>scp</code> 在傳輸時需要借助 <code>ssh</code>，所以他會需要一組 ssh key 或者密碼去認證 remote server</li>
+<li>冒號 <code>:</code> 是 <code>scp</code> 用來辨認位置是 local 還是 remote 的方法</li>
+<li>為了確保可以複製檔案，來源檔案必須至少可以讀取（read permission），目標位置則是可以寫入（write permission）</li>
+<li>複製檔案時要注意是否有相同檔名，若有的話，<code>scp</code> 會將它覆蓋（overwrite），且不會有任何警告</li>
+<li>若要傳送大型檔案，建議在 <code>screen </code> 或者 <code>tmux</code> 內執行 <code>scp</code></li>
+</ul>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><ul>
+<li><p>複製本機檔案至遠端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ scp file.txt remote_username@10.10.10.10:/remote/directory</span><br></pre></td></tr></table></figure>
 
-<p>※ 也可在執行指令時使用此變數</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 進入核心模組目錄，此指令會先把內部的指令執行後，在執行外部的指令</span></span><br><span class="line">$ <span class="built_in">cd</span> /lib/modules/$(uname -r)/kernel</span><br></pre></td></tr></table></figure>
+<p>※ 若沒有指定 remote directory，那預設會放到 home directory 裡面</p>
 </li>
-<li><p>若需要擴充變數內容，可使用<code>&quot;$變數&quot;</code>或是<code>$&#123;變數&#125;</code>來累加內容</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PATH=<span class="string">&quot;<span class="variable">$PATH</span>&quot;</span>:/home/bin</span><br><span class="line">PATH=<span class="variable">$&#123;PATH&#125;</span>:/home/bin</span><br></pre></td></tr></table></figure>
+<li><p>複製本機檔案至遠端，且保留原本檔案權限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ scp -p file.txt remote_username@10.10.10.10:/remote/directory</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>若需要此變數在其他子程序內執行，需使用指令<code>export</code>使變數變成環境變數</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure>
+<li><p>複製本機檔案至遠端，且將檔案壓縮後再傳送</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ scp -C file.txt remote_username@10.10.10.10:/remote/directory</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>通常大寫字元都是系統預設變數，建議自行設定的變數可使用小寫字元，以利區分</p>
+<li><p>複製本機檔案至遠端，並使用其他的 port（本次使用 port 8888）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ scp -P 8888 file.txt remote_username@10.10.10.10:/remote/directory</span><br></pre></td></tr></table></figure>
+
+<p>※ 若沒有使用 <code>-P</code>，預設使用 port 22</p>
+</li>
+<li><p>複製本機檔案至遠端，並限制傳輸速度（單位是 Kbit / s）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ scp -l 300 file.txt remote_username@10.10.10.10:/remote/directory</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>複製本機資料夾至遠端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ scp -r /<span class="built_in">local</span>/directory remote_username@10.10.10.10:/remote/directory</span><br></pre></td></tr></table></figure>
+
+<p>※ 檔案最後面 <code>/local/directory</code> 不加斜線 <code>/</code>，就可以複製目錄本身，包含內容，而不是只有目錄的內容而已</p>
+</li>
+<li><p>複製遠端檔案至本機</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ scp remote_username@10.10.10.10:/remote/file.txt /<span class="built_in">local</span>/directory</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在兩個遠端之間複製檔案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ scp user1@host1.com:/files/file.txt user2@host2.com:/files</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>設定 host alias，複製本機檔案至遠端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim ~/.ssh/config</span><br><span class="line">Host	alias_host_name</span><br><span class="line">	User	remote_username</span><br><span class="line">	HostName	10.10.10.10</span><br><span class="line">	Port	50001</span><br><span class="line"></span><br><span class="line">$ scp file.txt alias_host_name:/remote/directory</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-<p>※ 可以將常用的路徑也寫成環境變數，加快速度</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 將工作目錄切成變數，即可快速切換</span></span><br><span class="line">$ work=<span class="string">&quot;~/Desktop/company/&quot;</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="variable">$work</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://crmne0707.pixnet.net/blog/post/319842818-bash-shell-%e8%ae%8a%e6%95%b8%e8%a8%ad%e5%ae%9a">bash shell變數設定</a></li>
-<li><a target="_blank" rel="noopener" href="http://linux.vbird.org/linux_basic/0320bash.php">鳥哥的 Linux 私房菜 – 第十章、認識與學習BASH</a></li>
+<li><a target="_blank" rel="noopener" href="http://it.givemepower.net/linux-command-scp-remote-encrypted-copy-directory-and-file/#:~:text=%E9%81%A0%E7%AB%AF%E5%82%99%E4%BB%BD%E3%80%82-,SCP%E6%98%AFLinux(Unix%20Like)%E8%B6%85%E5%A5%BD%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8B,%E8%83%BD%E5%9C%A8MAC%20OSX%E4%BD%BF%E7%94%A8%E3%80%82">Linux好用指令-scp-遠端加密複製目錄與檔案</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.gtwang.org/linux/linux-scp-command-tutorial-examples/">Linux 的 scp 指令用法教學與範例：遠端加密複製檔案與目錄</a></li>
+<li><a target="_blank" rel="noopener" href="https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/">How to Use SCP Command to Securely Transfer Files</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/11304895/how-do-i-copy-a-folder-from-remote-to-local-using-scp">How do I copy a folder from remote to local using scp?</a></li>
 </ul>
 
     </div>
@@ -314,22 +324,21 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/unix/" rel="tag"># unix</a>
-              <a href="/tags/bash/" rel="tag"># bash</a>
               <a href="/tags/command/" rel="tag"># command</a>
+              <a href="/tags/linux/" rel="tag"># linux</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/05/18/introduce-bash-1/" rel="prev" title="[Unix] bash基本使用(1)">
-                  <i class="fa fa-chevron-left"></i> [Unix] bash基本使用(1)
+                <a href="/2021/07/04/java-atomic/" rel="prev" title="java 的 atomic 介紹">
+                  <i class="fa fa-chevron-left"></i> java 的 atomic 介紹
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/05/22/introduce-bash-3/" rel="next" title="[Unix] bash基本使用(3)">
-                  [Unix] bash基本使用(3) <i class="fa fa-chevron-right"></i>
+                <a href="/2021/07/07/linux-swap/" rel="next" title="swap 基本介紹">
+                  swap 基本介紹 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
